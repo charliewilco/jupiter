@@ -473,12 +473,29 @@ pre,
 
 .target-row {
   display: grid;
-  grid-template-columns: minmax(80px, 0.42fr) minmax(82px, 0.5fr) minmax(0, 1.7fr);
+  grid-template-columns: 38px minmax(80px, 0.42fr) minmax(82px, 0.5fr) minmax(0, 1.7fr);
   gap: 12px;
-  align-items: baseline;
+  align-items: center;
   min-height: 52px;
   padding: 11px 12px;
   background: var(--ui-background-elevated);
+}
+
+.target-icon {
+  display: grid;
+  width: 34px;
+  aspect-ratio: 1;
+  place-items: center;
+  background: var(--ui-background);
+  border: 1px solid var(--ui-border);
+  border-radius: 7px;
+}
+
+.target-icon img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .target-row span {
@@ -539,7 +556,7 @@ pre,
 
   .role-row,
   .target-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 34px minmax(0, 1fr);
     gap: 5px;
   }
 
@@ -549,6 +566,15 @@ pre,
 
   .role-row code {
     text-align: left;
+  }
+
+  .target-row span,
+  .target-row code {
+    grid-column: 2;
+  }
+
+  .target-icon {
+    grid-row: 1 / span 3;
   }
 
   .swatch-grid,

@@ -1,44 +1,87 @@
 import definitions from "../../definitions/metis.json";
 
+const icons = {
+  definitions: {
+    dark: new URL("../assets/icons/dark/definitions.svg", import.meta.url).toString(),
+    light: new URL("../assets/icons/light/definitions.svg", import.meta.url).toString()
+  },
+  ghostty: {
+    dark: new URL("../assets/icons/dark/ghostty.png", import.meta.url).toString(),
+    light: new URL("../assets/icons/light/ghostty.png", import.meta.url).toString()
+  },
+  iterm2: {
+    dark: new URL("../assets/icons/dark/iterm2.svg", import.meta.url).toString(),
+    light: new URL("../assets/icons/light/iterm2.svg", import.meta.url).toString()
+  },
+  prismjs: {
+    dark: new URL("../assets/icons/dark/prismjs.svg", import.meta.url).toString(),
+    light: new URL("../assets/icons/light/prismjs.svg", import.meta.url).toString()
+  },
+  shiki: {
+    dark: new URL("../assets/icons/dark/shiki.svg", import.meta.url).toString(),
+    light: new URL("../assets/icons/light/shiki.svg", import.meta.url).toString()
+  },
+  vim: {
+    dark: new URL("../assets/icons/dark/vim.svg", import.meta.url).toString(),
+    light: new URL("../assets/icons/light/vim.svg", import.meta.url).toString()
+  },
+  vscode: {
+    dark: new URL("../assets/icons/dark/vscode.png", import.meta.url).toString(),
+    light: new URL("../assets/icons/light/vscode.png", import.meta.url).toString()
+  },
+  xcode: {
+    dark: new URL("../assets/icons/dark/xcode.png", import.meta.url).toString(),
+    light: new URL("../assets/icons/light/xcode.png", import.meta.url).toString()
+  }
+};
+
 const exportTargets = [
   {
     name: "Ghostty",
     group: "Terminal",
+    icon: icons.ghostty,
     files: ["ghostty/metis-dark", "ghostty/metis-light"]
   },
   {
     name: "iTerm2",
     group: "Terminal",
+    icon: icons.iterm2,
     files: ["iterm/Metis Dark.itermcolors", "iterm/Metis Light.itermcolors"]
   },
   {
     name: "Xcode",
     group: "Editor",
+    icon: icons.xcode,
     files: ["xcode/Metis Dark.xccolortheme", "xcode/Metis Light.xccolortheme"]
   },
   {
     name: "VSCode",
     group: "Editor",
+    icon: icons.vscode,
     files: ["vscode/themes/metis-dark-color-theme.json", "vscode/themes/metis-light-color-theme.json"]
   },
   {
     name: "Shiki",
     group: "Renderer",
+    icon: icons.shiki,
     files: ["shiki/metis-dark.json", "shiki/metis-light.json"]
   },
   {
     name: "Vim",
     group: "Editor",
+    icon: icons.vim,
     files: ["colors/metis.vim", "autoload/airline/themes/metis.vim"]
   },
   {
     name: "PrismJS",
     group: "Renderer",
+    icon: icons.prismjs,
     files: ["prismjs/metis.css"]
   },
   {
     name: "Definitions",
     group: "Source",
+    icon: icons.definitions,
     files: ["definitions/metis.json"]
   }
 ];
@@ -144,6 +187,34 @@ const labelFromKey = (key) =>
 
 const getCurrentTheme = () => definitions.themes[document.documentElement.dataset.mode || "dark"];
 const getInitialMode = () => localStorage.getItem("metis-preview-mode") || "dark";
+const iconPicture = (target) => {
+  const mode = document.documentElement.dataset.mode || getInitialMode();
+  const icon = target.icon[mode];
+
+  return `
+    <picture class="target-icon" data-icon-light="${target.icon.light}" data-icon-dark="${target.icon.dark}">
+      <source media="(min-width: 0)" srcset="${icon}">
+      <img src="${icon}" alt="" width="28" height="28" loading="lazy" decoding="async">
+    </picture>
+  `;
+};
+const updateIconPictures = () => {
+  const mode = document.documentElement.dataset.mode || "dark";
+
+  document.querySelectorAll(".target-icon").forEach((picture) => {
+    const src = picture.dataset[mode === "dark" ? "iconDark" : "iconLight"];
+    const source = picture.querySelector("source");
+    const image = picture.querySelector("img");
+
+    if (source) {
+      source.srcset = src;
+    }
+
+    if (image) {
+      image.src = src;
+    }
+  });
+};
 
 document.documentElement.dataset.mode = getInitialMode();
 setThemeVars(definitions.themes[getInitialMode()]);
@@ -167,6 +238,7 @@ class MetisDemo extends HTMLElement {
     });
 
     document.dispatchEvent(new CustomEvent("metis-mode-change", { detail: { mode: this.mode } }));
+    updateIconPictures();
   }
 
   setMode(mode) {
@@ -382,6 +454,7 @@ class MetisExportTable extends HTMLElement {
             .map(
               (target) => `
                 <article class="target-row">
+                  ${iconPicture(target)}
                   <span>${target.group}</span>
                   <strong>${target.name}</strong>
                   <code>${escapeHtml(target.files.join("  "))}</code>
