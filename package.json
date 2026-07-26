@@ -3,21 +3,23 @@
   "name": "metis-themes",
   "version": "3.0.0",
   "description": "Metis themes for Ghostty, iTerm2, Xcode, VSCode, Shiki, Vim, and PrismJS.",
+  "homepage": "https://charliewilco.github.io/metis/",
+  "license": "Unlicense",
   "scripts": {
     "build": "node scripts/build.js",
-    "test": "node metis/test.js && node scripts/build.js --check"
-  },
-  "devDependencies": {
-    "prettier": "^1.14.3"
+    "check:generated": "node scripts/build.js --check",
+    "check:json": "node scripts/validate-json.js",
+    "check:plist": "node scripts/validate-plist.js",
+    "check:vim": "vim --clean -Nu NONE -n -es -c 'set runtimepath^=$PWD' -c 'set background=dark' -c 'colorscheme metis' -c 'set background=light' -c 'colorscheme metis' -c 'qa!'",
+    "check:vscode": "node scripts/validate-vscode-package.js",
+    "check": "npm run check:generated && npm run check:json && npm run check:plist && npm run check:vim && npm run check:vscode",
+    "test": "node metis/test.js && npm run check"
   },
   "workspaces": [
-    "metis"
+    "metis",
+    "vscode"
   ],
-  "prettier": {
-    "printWidth": 95,
-    "useTabs": false,
-    "tabWidth": 2,
-    "bracketSpacing": true,
-    "jsxBracketSameLine": true
+  "devDependencies": {
+    "parcel": "^2.16.4"
   }
 }
