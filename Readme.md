@@ -1,97 +1,54 @@
-![Color Palette for Ganymede](./assets/ganymede-palette.png)
+# Metis
 
-# Ganymede
+Metis is a color system and theme set for terminal, editor, and syntax highlighting surfaces.
 
-<a href="https://github.com/charlespeters/VVWIP">
-  <img src="https://unpkg.com/vvwip/AWIP.svg" alt="AWIP" align='right' />
-</a>
+Supported targets:
 
-A color scheme for Hyper/Hyperterm, Vim/NeoVim & Atom (maybe, eventually, probably...) inspired by the icy coldness of the moons of Jupiter contrasted against all the bright vibrant colors that my personality comprises.
+- Ghostty: `ghostty/metis-dark`, `ghostty/metis-light`
+- iTerm2: `iterm/Metis Dark.itermcolors`, `iterm/Metis Light.itermcolors`
+- Xcode: `xcode/Metis Dark.xccolortheme`, `xcode/Metis Light.xccolortheme`
+- VSCode: `vscode/themes/metis-dark-color-theme.json`, `vscode/themes/metis-light-color-theme.json`
+- Shiki: `shiki/metis-dark.json`, `shiki/metis-light.json`
+- Vim: `colors/metis.vim`, `autoload/airline/themes/metis.vim`
+- PrismJS: `prismjs/metis.css`
+- Generic definitions: `definitions/metis.json`
 
----
+## Build
 
-[![Build Status](https://travis-ci.org/charliewilco/ganymede.svg?branch=master)](https://travis-ci.org/charliewilco/ganymede)
-
-## Usage
-
-```shell
-npm i -S ganymede
+```sh
+yarn build
 ```
 
-<h3 align='center'>
-  <img alt='Vim Icon' src='assets/vim.png' />
-  <br />
-  <a href='https://github.com/charlespeters/ganymede.vim'>Vim</a>
-</h3>
+The build writes every generated artifact from `metis/index.js`.
 
-This was designed using Neovim, but totally works in normal people Vim (like 7.4+). Add `charlespeters/vim-ganymede` to whatever plugin system you're using (Pathogen, Vundle, etc). In your `.vimrc` add:
+```sh
+yarn test
+```
+
+The test command validates the core package and verifies generated artifacts are current.
+
+## Vim
 
 ```vim
-set t_Co=256
-colorscheme ganymede
-
-let g:airline_theme='ganymede'
+set background=dark
+colorscheme metis
+let g:airline_theme = "metis"
 ```
 
-![Screenshot of Vim using Ganymede](assets/screenshot-vim.png)
+Use `set background=light` before loading the colorscheme for the light variant.
 
-<h3 align='center'>
-  <img alt='Hyper Icon' src='assets/hyper.png' />
-  <br />
-  <a href='https://github.com/charlespeters/hyperganymede'>Hyper</a>
-</h3>
+## PrismJS
 
-Add `'hyperganymede'` under plugins in your configuration file (preferably toward the end of the list). An example:
+Load `prismjs/metis.css` and scope code blocks with either `.metis-dark`, `.metis-light`, `data-theme="metis-dark"`, or `data-theme="metis-light"`.
+
+## Package
+
+The `metis` package exports the dark theme as its default compatibility surface plus explicit definitions:
 
 ```js
-module.exports = {
-  config: {
-    fontFamily: 'SFMono-Medium',
-    cursorShape: 'BEAM',
-    bell: false,
-    ...
-  },
-  plugins: {
-    'hyperganymede'
-  }
-}
+const Metis = require("metis");
+
+Metis.themes.dark;
+Metis.themes.light;
+Metis.definitions;
 ```
-
-And in action:
-
-![Screenshot of Hyper using Ganymede](assets/screenshot-hyper.png)
-
-<h3 align='center'>
-  <img alt='Atom Icon' src='assets/atom.png' />
-  <br />
-  <a href='https://github.com/charlespeters/ganymede-atom-syntax'>Atom</a>
-</h3>
-
-There's a syntax port of Ganymede for Atom. To install, run this command below or search for Ganymede.
-
-```
-apm install ganymede-atom-syntax
-```
-
-![Screenshot of Atom using Ganymede](assets/screenshot-atom.png)
-
-The screenshot above uses Atom Dark UI theme and SF Mono.
-
-<h3 align='center'>
-  <img alt='iTerm Icon' src='assets/iterm.png' />
-  <br />
-  <a href='https://github.com/charlespeters/ganymede-iterm'>iTerm</a>
-</h3>
-
-Download [`Ganymede.itermcolors`](https://raw.githubusercontent.com/charlespeters/ganymede-iterm/master/Ganymede.itermcolors) and drag into onto iTerm in your Dock or In iTerm, open your preferences
-navigate to _"Profiles" > "Colors" > "Color Presets" > "Import"_ and select the copy of `Ganymede.itermcolors` you downloaded.
-
----
-
-## Acknowledgement
-
-I probably wouldn't have built this if [Trevor Miller](https://twitter.com/trevordmiller) hadn't paved the way with his [Nova Project](http://www.trevordmiller.com/nova/). Trevor you're awesome, 🍻⚡️🎉.
-
-## License
-
-MIT

@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  test:
+    name: Build and validate themes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate artifacts
+        run: yarn build
+
+      - name: Check generated artifacts are committed
+        run: git diff --exit-code
+
+      - name: Test definitions
+        run: yarn test
+
+      - name: Validate JSON outputs
+        run: |
+          node - <<'NODE'
+          const fs = require("fs");
+
+          for (const file of [
+            "definitions/metis.json",
+            "shiki/metis-dark.json",
+            "shiki/metis-light.json",
+            "vscode/package.json",
+            "vscode/themes/metis-dark-color-theme.json",
+            "vscode/themes/metis-light-color-theme.json"
+          ]) {
+            JSON.parse(fs.readFileSync(file, "utf8"));
+          }
+          NODE
+
+      - name: Validate plist outputs
+        run: |
+          python3 - <<'PY'
+          import plistlib
+
+          for file in [
+              "iterm/Metis Dark.itermcolors",
+              "iterm/Metis Light.itermcolors",
+              "xcode/Metis Dark.xccolortheme",
+              "xcode/Metis Light.xccolortheme",
+          ]:
+              with open(file, "rb") as handle:
+                  plistlib.load(handle)
+          PY
+
+      - name: Smoke test Vim theme
+        run: |
+          vim --clean -Nu NONE -n -es \
+            -c "set runtimepath^=${GITHUB_WORKSPACE}" \
+            -c "set background=dark" \
+            -c "colorscheme metis" \
+            -c "set background=light" \
+            -c "colorscheme metis" \
+            -c "qa!"
+
+      - name: Package VSCode theme
+        working-directory: vscode
+        run: npx --yes @vscode/vsce package --no-dependencies

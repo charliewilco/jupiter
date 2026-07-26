@@ -1,0 +1,13 @@
+{
+  "name": "metis",
+  "version": "3.0.0",
+  "description": "Metis color definitions for terminals, editors, and syntax highlighters.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": "charlespeters/metis",
+  "keywords": [],
+  "author": "charles peters <charlespeters42@gmail.com> (https://charlespeters.net)",
+  "license": "MIT"
+}

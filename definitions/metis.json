@@ -1,0 +1,231 @@
+{
+  "name": "Metis",
+  "slug": "metis",
+  "version": "3.0.0",
+  "palette": {
+    "cyan": "#00A6D6",
+    "blue": "#3D8BFF",
+    "indigo": "#7C83FF",
+    "violet": "#A774FF",
+    "magenta": "#D85FAF",
+    "rose": "#F05F84",
+    "red": "#E0524D",
+    "orange": "#E87743",
+    "amber": "#D99A00",
+    "yellow": "#D8B92E",
+    "green": "#62AD58",
+    "mint": "#3FB997"
+  },
+  "roles": {
+    "syntax": {
+      "constant": "cyan",
+      "identifier": "blue",
+      "statement": "amber",
+      "type": "green",
+      "global": "violet",
+      "emphasis": "magenta",
+      "special": "orange",
+      "string": "mint",
+      "regexp": "rose",
+      "number": "yellow",
+      "operator": "indigo",
+      "tag": "blue",
+      "attribute": "cyan",
+      "deleted": "red",
+      "inserted": "green",
+      "changed": "amber"
+    },
+    "ui": {
+      "userActionNeeded": "red",
+      "userCurrentState": "cyan"
+    }
+  },
+  "themes": {
+    "dark": {
+      "name": "Metis Dark",
+      "slug": "metis-dark",
+      "type": "dark",
+      "colors": {
+        "cyan": "#43C7E8",
+        "blue": "#69A7FF",
+        "indigo": "#9AA2FF",
+        "violet": "#BC8FFF",
+        "magenta": "#EF78C4",
+        "rose": "#FF7698",
+        "red": "#FF6B62",
+        "orange": "#FF9159",
+        "amber": "#F2B339",
+        "yellow": "#E7CF5B",
+        "green": "#82C66F",
+        "mint": "#5DD4AF"
+      },
+      "grays": {
+        "gray0": "#070B10",
+        "gray1": "#0B1117",
+        "gray2": "#182531",
+        "gray3": "#415466",
+        "gray4": "#738492",
+        "gray5": "#AAB8C3",
+        "gray6": "#DCE7EF"
+      },
+      "uiGroups": {
+        "backgroundShade": "#070B10",
+        "background": "#0B1117",
+        "backgroundElevated": "#111A23",
+        "backgroundMuted": "#182531",
+        "selection": "#1F5367",
+        "foreground": "#DCE7EF",
+        "foregroundMuted": "#AAB8C3",
+        "foregroundSubtle": "#738492",
+        "border": "#2A3A47",
+        "line": "#415466",
+        "userActionNeeded": "#FF6B62",
+        "userCurrentState": "#43C7E8",
+        "gray0": "#070B10",
+        "gray1": "#0B1117",
+        "gray2": "#182531",
+        "gray3": "#415466",
+        "gray4": "#738492",
+        "gray5": "#AAB8C3",
+        "gray6": "#DCE7EF"
+      },
+      "syntaxGroups": {
+        "constant": "#43C7E8",
+        "identifier": "#69A7FF",
+        "statement": "#F2B339",
+        "type": "#82C66F",
+        "global": "#BC8FFF",
+        "emphasis": "#EF78C4",
+        "special": "#FF9159",
+        "string": "#5DD4AF",
+        "regexp": "#FF7698",
+        "number": "#E7CF5B",
+        "operator": "#9AA2FF",
+        "tag": "#69A7FF",
+        "attribute": "#43C7E8",
+        "trivial": "#738492"
+      },
+      "versionControlGroups": {
+        "added": "#82C66F",
+        "modified": "#F2B339",
+        "removed": "#FF6B62",
+        "renamed": "#69A7FF"
+      },
+      "ansiGroups": {
+        "normal": {
+          "black": "#0B1117",
+          "red": "#FF6B62",
+          "green": "#82C66F",
+          "yellow": "#F2B339",
+          "blue": "#69A7FF",
+          "magenta": "#EF78C4",
+          "cyan": "#43C7E8",
+          "white": "#DCE7EF"
+        },
+        "bright": {
+          "black": "#738492",
+          "red": "#FF7698",
+          "green": "#5DD4AF",
+          "yellow": "#E7CF5B",
+          "blue": "#9AA2FF",
+          "magenta": "#BC8FFF",
+          "cyan": "#43C7E8",
+          "white": "#F5FAFD"
+        }
+      }
+    },
+    "light": {
+      "name": "Metis Light",
+      "slug": "metis-light",
+      "type": "light",
+      "colors": {
+        "cyan": "#007FA8",
+        "blue": "#1B67D7",
+        "indigo": "#555FCE",
+        "violet": "#7A4BC2",
+        "magenta": "#AD3E86",
+        "rose": "#C83C62",
+        "red": "#B93532",
+        "orange": "#B85727",
+        "amber": "#9D7100",
+        "yellow": "#846F00",
+        "green": "#3F7F38",
+        "mint": "#1F876D"
+      },
+      "grays": {
+        "gray0": "#DCE8EF",
+        "gray1": "#F8FBFD",
+        "gray2": "#DDE8EF",
+        "gray3": "#9DAFBB",
+        "gray4": "#708390",
+        "gray5": "#4A5E6B",
+        "gray6": "#172530"
+      },
+      "uiGroups": {
+        "backgroundShade": "#DCE8EF",
+        "background": "#F8FBFD",
+        "backgroundElevated": "#EEF5F8",
+        "backgroundMuted": "#DDE8EF",
+        "selection": "#B9DCE8",
+        "foreground": "#172530",
+        "foregroundMuted": "#4A5E6B",
+        "foregroundSubtle": "#708390",
+        "border": "#C7D5DE",
+        "line": "#9DAFBB",
+        "userActionNeeded": "#B93532",
+        "userCurrentState": "#007FA8",
+        "gray0": "#DCE8EF",
+        "gray1": "#F8FBFD",
+        "gray2": "#DDE8EF",
+        "gray3": "#9DAFBB",
+        "gray4": "#708390",
+        "gray5": "#4A5E6B",
+        "gray6": "#172530"
+      },
+      "syntaxGroups": {
+        "constant": "#007FA8",
+        "identifier": "#1B67D7",
+        "statement": "#9D7100",
+        "type": "#3F7F38",
+        "global": "#7A4BC2",
+        "emphasis": "#AD3E86",
+        "special": "#B85727",
+        "string": "#1F876D",
+        "regexp": "#C83C62",
+        "number": "#846F00",
+        "operator": "#555FCE",
+        "tag": "#1B67D7",
+        "attribute": "#007FA8",
+        "trivial": "#708390"
+      },
+      "versionControlGroups": {
+        "added": "#3F7F38",
+        "modified": "#9D7100",
+        "removed": "#B93532",
+        "renamed": "#1B67D7"
+      },
+      "ansiGroups": {
+        "normal": {
+          "black": "#F8FBFD",
+          "red": "#B93532",
+          "green": "#3F7F38",
+          "yellow": "#9D7100",
+          "blue": "#1B67D7",
+          "magenta": "#AD3E86",
+          "cyan": "#007FA8",
+          "white": "#172530"
+        },
+        "bright": {
+          "black": "#708390",
+          "red": "#C83C62",
+          "green": "#1F876D",
+          "yellow": "#846F00",
+          "blue": "#555FCE",
+          "magenta": "#7A4BC2",
+          "cyan": "#007FA8",
+          "white": "#FFFFFF"
+        }
+      }
+    }
+  }
+}
