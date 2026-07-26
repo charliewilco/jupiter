@@ -4,142 +4,105 @@ const exportTargets = [
   {
     name: "Ghostty",
     group: "Terminal",
-    description: "Native dark and light terminal palettes with ANSI groups generated from the same source.",
     files: ["ghostty/metis-dark", "ghostty/metis-light"]
   },
   {
     name: "iTerm2",
     group: "Terminal",
-    description: "Installable .itermcolors files for the expanded Metis color system.",
     files: ["iterm/Metis Dark.itermcolors", "iterm/Metis Light.itermcolors"]
   },
   {
     name: "Xcode",
     group: "Editor",
-    description: "Xcode themes for Swift, Objective-C, plist, and build log workflows.",
     files: ["xcode/Metis Dark.xccolortheme", "xcode/Metis Light.xccolortheme"]
   },
   {
     name: "VSCode",
     group: "Editor",
-    description: "Packaged VSCode themes using token colors generated from Metis definitions.",
     files: ["vscode/themes/metis-dark-color-theme.json", "vscode/themes/metis-light-color-theme.json"]
   },
   {
     name: "Shiki",
     group: "Renderer",
-    description: "JSON theme definitions for static docs, MDX, Astro, and code examples.",
     files: ["shiki/metis-dark.json", "shiki/metis-light.json"]
   },
   {
     name: "Vim",
     group: "Editor",
-    description: "A Vim colorscheme plus Airline theme definitions for terminal editing.",
     files: ["colors/metis.vim", "autoload/airline/themes/metis.vim"]
   },
   {
     name: "PrismJS",
     group: "Renderer",
-    description: "A small CSS theme for docs that already rely on Prism token classes.",
     files: ["prismjs/metis.css"]
   },
   {
     name: "Definitions",
     group: "Source",
-    description: "The canonical palette, role, syntax, UI, ANSI, and version-control definitions.",
     files: ["definitions/metis.json"]
   }
 ];
 
 const codeLines = [
   [
-    ["comment", "// Metis is generated from one definitions file."],
-  ],
-  [
-    ["keyword", "export"],
-    ["plain", " "],
     ["keyword", "const"],
-    ["plain", " theme "],
-    ["operator", "="],
-    ["plain", " "],
-    ["function", "createTheme"],
-    ["plain", "({"]
-  ],
-  [
-    ["plain", "  "],
-    ["property", "name"],
-    ["operator", ":"],
-    ["plain", " "],
-    ["string", "\"Metis\""],
-    ["operator", ","]
-  ],
-  [
-    ["plain", "  "],
-    ["property", "modes"],
-    ["operator", ":"],
-    ["plain", " ["],
-    ["string", "\"dark\""],
-    ["operator", ","],
-    ["plain", " "],
-    ["string", "\"light\""],
-    ["plain", "],"]
-  ],
-  [
-    ["plain", "  "],
-    ["property", "targets"],
-    ["operator", ":"],
-    ["plain", " "],
-    ["number", "8"],
-    ["operator", ","]
-  ],
-  [
-    ["plain", "  "],
-    ["function", "mapToken"],
+    ["plain", " token"],
+    ["operator", " = "],
+    ["function", "resolveSyntaxRole"],
     ["plain", "("],
-    ["type", "SyntaxRole"],
-    ["plain", "."],
-    ["property", "statement"],
-    ["plain", ") {"]
+    ["string", "\"statement\""],
+    ["plain", ");"]
   ],
   [
-    ["plain", "    "],
-    ["keyword", "return"],
-    ["plain", " "],
+    ["keyword", "if"],
+    ["plain", " ("],
+    ["property", "token"],
+    ["operator", " === "],
     ["property", "palette"],
     ["plain", "."],
     ["property", "amber"],
-    ["operator", ";"]
+    ["plain", ") {"]
   ],
   [
-    ["plain", "  }"]
+    ["plain", "  "],
+    ["keyword", "return"],
+    ["plain", " "],
+    ["type", "ThemeTarget"],
+    ["plain", "."],
+    ["property", "shiki"],
+    ["plain", ";"]
   ],
   [
-    ["plain", "});"]
+    ["plain", "}"]
   ],
   [
-    ["plain", ""]
+    ["comment", "// One palette writes every supported editor and renderer target."]
   ],
   [
     ["keyword", "await"],
     ["plain", " "],
-    ["function", "writeTargets"],
-    ["plain", "("],
-    ["property", "theme"],
-    ["operator", ","],
-    ["plain", " "],
-    ["property", "formats"],
-    ["plain", ");"]
+    ["function", "writeTheme"],
+    ["plain", "({ "],
+    ["property", "mode"],
+    ["operator", ": "],
+    ["string", "\"light\""],
+    ["plain", ", "],
+    ["property", "targets"],
+    ["operator", ": "],
+    ["number", "8"],
+    ["plain", " });"]
   ]
 ];
 
 const roleRows = [
-  ["statement", "Control flow", "keywords, storage, declarations"],
-  ["identifier", "Identifiers", "functions and named symbols"],
-  ["string", "Strings", "quoted values and content"],
-  ["number", "Numbers", "literals and numeric constants"],
-  ["type", "Types", "classes, structs, interfaces"],
-  ["operator", "Operators", "punctuation with semantic weight"],
-  ["trivial", "Comments", "comments and low-emphasis tokens"]
+  ["statement", "Statement", "keyword, storage, control"],
+  ["identifier", "Identifier", "functions, methods, symbols"],
+  ["constant", "Constant", "properties, enums, attributes"],
+  ["type", "Type", "classes, structs, interfaces"],
+  ["string", "String", "quoted content"],
+  ["number", "Number", "numeric literals"],
+  ["operator", "Operator", "punctuation, separators"],
+  ["trivial", "Trivial", "comments, inactive text"]
 ];
 
 const setThemeVars = (theme) => {
@@ -180,20 +143,21 @@ const labelFromKey = (key) =>
     .replace(/^./, (character) => character.toUpperCase());
 
 const getCurrentTheme = () => definitions.themes[document.documentElement.dataset.mode || "dark"];
-const initialMode = localStorage.getItem("metis-preview-mode") || "dark";
+const getInitialMode = () => localStorage.getItem("metis-preview-mode") || "dark";
 
-document.documentElement.dataset.mode = initialMode;
-setThemeVars(definitions.themes[initialMode]);
+document.documentElement.dataset.mode = getInitialMode();
+setThemeVars(definitions.themes[getInitialMode()]);
 
 class MetisDemo extends HTMLElement {
   connectedCallback() {
-    this.mode = localStorage.getItem("metis-preview-mode") || "dark";
+    this.mode = getInitialMode();
     this.render();
     this.applyMode();
   }
 
   applyMode() {
     const theme = definitions.themes[this.mode];
+
     this.dataset.mode = this.mode;
     document.documentElement.dataset.mode = this.mode;
     setThemeVars(theme);
@@ -213,14 +177,13 @@ class MetisDemo extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <header class="topbar">
-        <a class="brand" href="#preview" aria-label="Metis preview home">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span>
-            <strong>Metis</strong>
-            <small>Theme definitions</small>
-          </span>
-        </a>
+      <header class="masthead">
+        <div class="identity">
+          <div>
+            <h1>Metis</h1>
+            <p>Theme specimen · ${definitions.version}</p>
+          </div>
+        </div>
         <div class="mode-control" aria-label="Theme mode">
           <button type="button" data-mode-option="dark">Dark</button>
           <button type="button" data-mode-option="light">Light</button>
@@ -228,33 +191,32 @@ class MetisDemo extends HTMLElement {
       </header>
 
       <main>
-        <section class="hero" aria-labelledby="metis-title">
-          <div class="hero-copy">
-            <p class="eyebrow">Jupiter inner moon, developer theme system</p>
-            <h1 id="metis-title">Metis</h1>
-            <p class="lede">A two-mode palette generated for terminals, editors, and syntax renderers from one portable definition file.</p>
-          </div>
-          <dl class="stats" aria-label="Theme coverage">
-            <div>
-              <dt>${Object.keys(definitions.palette).length}</dt>
-              <dd>accents</dd>
-            </div>
-            <div>
-              <dt>2</dt>
-              <dd>modes</dd>
-            </div>
-            <div>
-              <dt>${exportTargets.length}</dt>
-              <dd>targets</dd>
-            </div>
-          </dl>
-        </section>
+        <section class="specimen-grid" aria-label="Metis specimen">
+          <section class="specimen-panel lead-panel" aria-labelledby="overview-title">
+            <p class="section-kicker">Overview</p>
+            <h2 id="overview-title">Source-driven themes for the tools this repo actually ships.</h2>
+            <p>The preview reads the checked-in Metis definitions and renders the current mode. The same source writes Ghostty, iTerm2, Xcode, VSCode, Shiki, Vim, and PrismJS outputs.</p>
+            <dl class="overview-list">
+              <div>
+                <dt>Source</dt>
+                <dd><code>definitions/metis.json</code></dd>
+              </div>
+              <div>
+                <dt>Palette</dt>
+                <dd>${Object.keys(definitions.palette).length} accents, ${Object.keys(definitions.themes.dark.syntaxGroups).length} syntax roles</dd>
+              </div>
+              <div>
+                <dt>Build</dt>
+                <dd><code>npm run build</code></dd>
+              </div>
+            </dl>
+          </section>
 
-        <metis-workbench id="preview"></metis-workbench>
-
-        <section class="lower-grid" aria-label="Palette and export details">
+          <metis-code-specimen></metis-code-specimen>
+          <metis-role-table></metis-role-table>
           <metis-palette-grid></metis-palette-grid>
-          <metis-export-grid></metis-export-grid>
+          <metis-terminal-specimen></metis-terminal-specimen>
+          <metis-export-table></metis-export-table>
         </section>
       </main>
     `;
@@ -265,137 +227,56 @@ class MetisDemo extends HTMLElement {
   }
 }
 
-class MetisWorkbench extends HTMLElement {
+class MetisCodeSpecimen extends HTMLElement {
   connectedCallback() {
-    this.surface = "code";
-    this.render();
-  }
-
-  setSurface(surface) {
-    this.surface = surface;
-    this.render();
-  }
-
-  render() {
-    const surfaceLabels = [
-      ["code", "Code"],
-      ["terminal", "Terminal"],
-      ["exports", "Exports"]
-    ];
-
     this.innerHTML = `
-      <section class="workbench" aria-label="Metis preview workbench">
-        <div class="window-bar">
-          <div class="window-dots" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
+      <section class="specimen-panel code-panel" aria-labelledby="code-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Code</p>
+            <h2 id="code-title">Token contrast</h2>
           </div>
-          <span class="window-title">definitions/metis.json</span>
-          <div class="surface-tabs" aria-label="Preview surface">
-            ${surfaceLabels
-              .map(
-                ([value, label]) =>
-                  `<button type="button" data-surface="${value}" aria-pressed="${value === this.surface}">${label}</button>`
-              )
-              .join("")}
-          </div>
+          <code>theme.ts</code>
         </div>
-        <div class="workbench-body">
-          <aside class="role-rail" aria-label="Syntax roles">
-            ${roleRows
-              .map(
-                ([role, title, detail]) => `
-                  <div class="role-row" style="--role-color: var(--syntax-${role})">
-                    <span></span>
-                    <strong>${title}</strong>
-                    <small>${detail}</small>
-                  </div>
-                `
-              )
-              .join("")}
-          </aside>
-          <div class="preview-surface">
-            ${this.renderSurface()}
-          </div>
+        <pre class="code-sample" aria-label="Code syntax sample"><code>${codeLines
+          .map((line, index) => `<span class="code-line"><span class="line-number">${index + 1}</span><span class="code-content">${line.map(([role, value]) => `<span class="token token-${role}">${escapeHtml(value)}</span>`).join("")}</span></span>`)
+          .join("\n")}</code></pre>
+        <div class="version-strip" aria-label="Version control colors">
+          <span class="added">added</span>
+          <span class="modified">modified</span>
+          <span class="removed">removed</span>
+          <span class="renamed">renamed</span>
         </div>
       </section>
     `;
-
-    this.querySelectorAll("[data-surface]").forEach((button) => {
-      button.addEventListener("click", () => this.setSurface(button.dataset.surface));
-    });
-  }
-
-  renderSurface() {
-    if (this.surface === "terminal") {
-      return `<metis-terminal-preview></metis-terminal-preview>`;
-    }
-
-    if (this.surface === "exports") {
-      return `<metis-export-preview></metis-export-preview>`;
-    }
-
-    return `<metis-code-preview></metis-code-preview>`;
   }
 }
 
-class MetisCodePreview extends HTMLElement {
+class MetisRoleTable extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div class="file-tabs" aria-label="Open files">
-        <span aria-selected="true">theme.ts</span>
-        <span>metis.json</span>
-        <span>palette.css</span>
-      </div>
-      <pre class="code-sample" aria-label="Code syntax sample"><code>${codeLines
-        .map((line, index) => `<span class="code-line"><span class="line-number">${index + 1}</span><span class="code-content">${line.map(([role, value]) => `<span class="token token-${role}">${escapeHtml(value)}</span>`).join("")}</span></span>`)
-        .join("\n")}</code></pre>
-      <div class="diff-strip" aria-label="Version control colors">
-        <span class="added">added</span>
-        <span class="modified">modified</span>
-        <span class="removed">removed</span>
-        <span class="renamed">renamed</span>
-      </div>
-    `;
-  }
-}
-
-class MetisTerminalPreview extends HTMLElement {
-  connectedCallback() {
-    const ansiRows = Object.keys(definitions.themes.dark.ansiGroups.normal)
-      .map((name) => `<span style="--ansi: var(--ansi-${name})"><b></b>${name}</span>`)
-      .join("");
-
-    this.innerHTML = `
-      <div class="terminal-preview">
-        <p><span class="prompt">metis</span> npm run build</p>
-        <p><span class="muted">generated</span> ghostty, iterm, xcode, vscode, shiki, vim, prismjs</p>
-        <p><span class="prompt">metis</span> npm test</p>
-        <p><span class="success">ok</span> definitions, json, plist, vim, vscode</p>
-        <div class="ansi-row" aria-label="ANSI colors">${ansiRows}</div>
-      </div>
-    `;
-  }
-}
-
-class MetisExportPreview extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-      <div class="export-preview">
-        ${exportTargets
-          .slice(0, 4)
-          .map(
-            (target) => `
-              <article>
-                <span>${target.group}</span>
-                <strong>${target.name}</strong>
-                <small>${target.files[0]}</small>
-              </article>
-            `
-          )
-          .join("")}
-      </div>
+      <section class="specimen-panel role-panel" aria-labelledby="roles-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Roles</p>
+            <h2 id="roles-title">Syntax mapping</h2>
+          </div>
+        </div>
+        <div class="role-list">
+          ${roleRows
+            .map(
+              ([role, label, detail]) => `
+                <div class="role-row">
+                  <span class="sample-dot" style="--sample-color: var(--syntax-${role})"></span>
+                  <strong>${label}</strong>
+                  <span>${detail}</span>
+                  <code>${getCurrentTheme().syntaxGroups[role]}</code>
+                </div>
+              `
+            )
+            .join("")}
+        </div>
+      </section>
     `;
   }
 }
@@ -408,10 +289,13 @@ class MetisPaletteGrid extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <section class="section-block" aria-labelledby="palette-title">
-        <div class="section-heading">
-          <p class="eyebrow">Palette</p>
-          <h2 id="palette-title">Expanded accents with mode-aware values.</h2>
+      <section class="specimen-panel palette-panel" aria-labelledby="palette-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Palette</p>
+            <h2 id="palette-title">Accent values</h2>
+          </div>
+          <span class="hint">Click to copy</span>
         </div>
         <div class="swatch-grid">
           ${Object.keys(definitions.palette)
@@ -434,14 +318,15 @@ class MetisPaletteGrid extends HTMLElement {
       button.addEventListener("click", async () => {
         const color = getCurrentTheme().colors[button.dataset.copyColor];
 
-        if (navigator.clipboard) {
-          await navigator.clipboard.writeText(color);
+        try {
+          await navigator.clipboard?.writeText(color);
+          button.dataset.copied = "true";
+          window.setTimeout(() => {
+            delete button.dataset.copied;
+          }, 900);
+        } catch {
+          button.dataset.copied = "false";
         }
-
-        button.dataset.copied = "true";
-        window.setTimeout(() => {
-          delete button.dataset.copied;
-        }, 1200);
       });
     });
   }
@@ -455,22 +340,50 @@ class MetisPaletteGrid extends HTMLElement {
   }
 }
 
-class MetisExportGrid extends HTMLElement {
+class MetisTerminalSpecimen extends HTMLElement {
+  connectedCallback() {
+    const ansiRows = Object.keys(definitions.themes.dark.ansiGroups.normal)
+      .map((name) => `<span class="ansi-item"><b style="--ansi: var(--ansi-${name})"></b>${name}</span>`)
+      .join("");
+
+    this.innerHTML = `
+      <section class="specimen-panel terminal-panel" aria-labelledby="terminal-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Terminal</p>
+            <h2 id="terminal-title">ANSI ramp</h2>
+          </div>
+          <code>Ghostty / iTerm2</code>
+        </div>
+        <div class="terminal-body">
+          <p><span>metis</span> npm run build</p>
+          <p>Generated 16 artifacts from <em>definitions/metis.json</em></p>
+          <p><span>metis</span> npm test</p>
+          <p><strong>ok</strong> json, plist, vim, vscode</p>
+        </div>
+        <div class="ansi-row" aria-label="ANSI colors">${ansiRows}</div>
+      </section>
+    `;
+  }
+}
+
+class MetisExportTable extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <section class="section-block" aria-labelledby="exports-title">
-        <div class="section-heading">
-          <p class="eyebrow">Generated Targets</p>
-          <h2 id="exports-title">One source definition, only the formats this project supports.</h2>
+      <section class="specimen-panel export-panel" aria-labelledby="exports-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Outputs</p>
+            <h2 id="exports-title">Generated files</h2>
+          </div>
         </div>
-        <div class="target-grid">
+        <div class="target-table">
           ${exportTargets
             .map(
               (target) => `
-                <article class="target-card">
+                <article class="target-row">
                   <span>${target.group}</span>
                   <strong>${target.name}</strong>
-                  <p>${target.description}</p>
                   <code>${escapeHtml(target.files.join("  "))}</code>
                 </article>
               `
@@ -483,9 +396,8 @@ class MetisExportGrid extends HTMLElement {
 }
 
 customElements.define("metis-demo", MetisDemo);
-customElements.define("metis-workbench", MetisWorkbench);
-customElements.define("metis-code-preview", MetisCodePreview);
-customElements.define("metis-terminal-preview", MetisTerminalPreview);
-customElements.define("metis-export-preview", MetisExportPreview);
+customElements.define("metis-code-specimen", MetisCodeSpecimen);
+customElements.define("metis-role-table", MetisRoleTable);
 customElements.define("metis-palette-grid", MetisPaletteGrid);
-customElements.define("metis-export-grid", MetisExportGrid);
+customElements.define("metis-terminal-specimen", MetisTerminalSpecimen);
+customElements.define("metis-export-table", MetisExportTable);
