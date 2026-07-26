@@ -1,558 +1,290 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Metis Theme Previewer</title>
-    <meta
-      name="description"
-      content="Preview Metis colors across code, terminal, and editor surfaces."
-    />
-    <link rel="stylesheet" href="./src/styles.css" />
-    <script type="module" src="./src/main.js"></script>
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="masthead">
-        <div class="identity">
-          <div>
-            <h1>Metis</h1>
-            <p>Theme specimen · <span data-version></span></p>
-          </div>
-        </div>
-        <preset-selector aria-label="Theme mode">
-          <preset-def id="light"></preset-def>
-          <preset-def id="dark"></preset-def>
-        </preset-selector>
-      </header>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Metis Theme Previewer</title>
+		<meta name="description" content="Preview Metis colors across code, terminal, and editor surfaces." />
+		<link rel="stylesheet" href="./src/styles.css" />
+		<script type="module" src="./src/main.js"></script>
+	</head>
+	<body>
+		<div class="page-shell">
+			<header class="site-header">
+				<div class="header-copy">
+					<h1>Metis</h1>
+					<p>A source-driven theme family for the editors, terminals, and renderers this repo ships.</p>
+				</div>
+				<preset-selector aria-label="Theme mode">
+					<preset-def id="light"></preset-def>
+					<preset-def id="dark"></preset-def>
+				</preset-selector>
+			</header>
 
-      <main>
-        <article class="specimen-grid" aria-label="Metis specimen">
-          <section
-            class="specimen-panel lead-panel"
-            aria-labelledby="overview-title"
-          >
-            <p class="section-kicker">Overview</p>
-            <h2 id="overview-title">
-              Source-driven themes for the tools this repo actually ships.
-            </h2>
-            <p>
-              The preview reads the checked-in Metis definitions and renders the
-              current mode. The same source writes Ghostty, iTerm2, Xcode,
-              VSCode, Shiki, Vim, and PrismJS outputs.
-            </p>
-            <dl class="overview-list">
-              <div>
-                <dt>Source</dt>
-                <dd><code>definitions/metis.json</code></dd>
-              </div>
-              <div>
-                <dt>Palette</dt>
-                <dd>
-                  <span data-palette-count></span> accents,
-                  <span data-role-count></span> syntax roles
-                </dd>
-              </div>
-              <div>
-                <dt>Build</dt>
-                <dd><code>npm run build</code></dd>
-              </div>
-            </dl>
-          </section>
+			<main class="preview-layout">
+				<aside class="sidebar" aria-labelledby="outputs-title">
+					<h2 id="outputs-title">Outputs</h2>
+					<ul class="output-list">
+						<li>
+							<picture class="output-icon" data-icon-target="iterm2">
+								<source
+									data-icon-mode="light"
+									media="(prefers-color-scheme: light)"
+									srcset="./assets/icons/light/iterm2.svg"
+								/>
+								<source
+									data-icon-mode="dark"
+									media="(prefers-color-scheme: dark)"
+									srcset="./assets/icons/dark/iterm2.svg"
+								/>
+								<img
+									src="./assets/icons/dark/iterm2.svg"
+									alt=""
+									width="28"
+									height="28"
+									loading="lazy"
+									decoding="async"
+								/>
+							</picture>
+							<span>iTerm2</span>
+						</li>
+						<li>
+							<picture class="output-icon" data-icon-target="ghostty">
+								<source
+									data-icon-mode="light"
+									media="(prefers-color-scheme: light)"
+									srcset="./assets/icons/light/ghostty.png"
+								/>
+								<source
+									data-icon-mode="dark"
+									media="(prefers-color-scheme: dark)"
+									srcset="./assets/icons/dark/ghostty.png"
+								/>
+								<img
+									src="./assets/icons/dark/ghostty.png"
+									alt=""
+									width="28"
+									height="28"
+									loading="lazy"
+									decoding="async"
+								/>
+							</picture>
+							<span>Ghostty</span>
+						</li>
+						<li>
+							<picture class="output-icon" data-icon-target="codex">
+								<source
+									data-icon-mode="light"
+									media="(prefers-color-scheme: light)"
+									srcset="./assets/icons/light/codex.svg"
+								/>
+								<source
+									data-icon-mode="dark"
+									media="(prefers-color-scheme: dark)"
+									srcset="./assets/icons/dark/codex.svg"
+								/>
+								<img
+									src="./assets/icons/dark/codex.svg"
+									alt=""
+									width="28"
+									height="28"
+									loading="lazy"
+									decoding="async"
+								/>
+							</picture>
+							<span>Codex</span>
+						</li>
+						<li>
+							<picture class="output-icon" data-icon-target="vim">
+								<source
+									data-icon-mode="light"
+									media="(prefers-color-scheme: light)"
+									srcset="./assets/icons/light/vim.svg"
+								/>
+								<source
+									data-icon-mode="dark"
+									media="(prefers-color-scheme: dark)"
+									srcset="./assets/icons/dark/vim.svg"
+								/>
+								<img src="./assets/icons/dark/vim.svg" alt="" width="28" height="28" loading="lazy" decoding="async" />
+							</picture>
+							<span>Vim</span>
+						</li>
+						<li>
+							<picture class="output-icon" data-icon-target="xcode">
+								<source
+									data-icon-mode="light"
+									media="(prefers-color-scheme: light)"
+									srcset="./assets/icons/light/xcode.png"
+								/>
+								<source
+									data-icon-mode="dark"
+									media="(prefers-color-scheme: dark)"
+									srcset="./assets/icons/dark/xcode.png"
+								/>
+								<img
+									src="./assets/icons/dark/xcode.png"
+									alt=""
+									width="28"
+									height="28"
+									loading="lazy"
+									decoding="async"
+								/>
+							</picture>
+							<span>Xcode</span>
+						</li>
+						<li>
+							<picture class="output-icon" data-icon-target="vscode">
+								<source
+									data-icon-mode="light"
+									media="(prefers-color-scheme: light)"
+									srcset="./assets/icons/light/vscode.png"
+								/>
+								<source
+									data-icon-mode="dark"
+									media="(prefers-color-scheme: dark)"
+									srcset="./assets/icons/dark/vscode.png"
+								/>
+								<img
+									src="./assets/icons/dark/vscode.png"
+									alt=""
+									width="28"
+									height="28"
+									loading="lazy"
+									decoding="async"
+								/>
+							</picture>
+							<span>VSCode</span>
+						</li>
+					</ul>
+					<p class="secondary-outputs">Also available for PrismJS, Shiki, and source definitions.</p>
+				</aside>
 
-          <section
-            class="specimen-panel code-panel"
-            aria-labelledby="code-title"
-          >
-            <div class="panel-heading">
-              <div>
-                <p class="section-kicker">Code</p>
-                <h2 id="code-title">Token contrast</h2>
-              </div>
-              <code>theme.ts</code>
-            </div>
-            <pre class="code-sample" aria-label="Code syntax sample"><code>
-<span class="code-line"><span class="line-number">1</span><span class="code-content"><span class="token token-keyword">const</span><span class="token token-plain"> token</span><span class="token token-operator"> = </span><span class="token token-function">resolveSyntaxRole</span><span class="token token-plain">(</span><span class="token token-string">"statement"</span><span class="token token-plain">);</span></span></span>
-<span class="code-line"><span class="line-number">2</span><span class="code-content"><span class="token token-keyword">if</span><span class="token token-plain"> (</span><span class="token token-property">token</span><span class="token token-operator"> === </span><span class="token token-property">palette</span><span class="token token-plain">.</span><span class="token token-property">amber</span><span class="token token-plain">) {</span></span></span>
-<span class="code-line"><span class="line-number">3</span><span class="code-content"><span class="token token-plain">  </span><span class="token token-keyword">return</span><span class="token token-plain"> </span><span class="token token-type">ThemeTarget</span><span class="token token-plain">.</span><span class="token token-property">shiki</span><span class="token token-plain">;</span></span></span>
-<span class="code-line"><span class="line-number">4</span><span class="code-content"><span class="token token-plain">}</span></span></span>
-<span class="code-line"><span class="line-number">5</span><span class="code-content"><span class="token token-comment">// One palette writes every supported editor and renderer target.</span></span></span>
-<span class="code-line"><span class="line-number">6</span><span class="code-content"><span class="token token-keyword">await</span><span class="token token-plain"> </span><span class="token token-function">writeTheme</span><span class="token token-plain">({ </span><span class="token token-property">mode</span><span class="token token-operator">: </span><span class="token token-string">"light"</span><span class="token token-plain">, </span><span class="token token-property">targets</span><span class="token token-operator">: </span><span class="token token-number">8</span><span class="token token-plain"> });</span></span></span>
-            </code></pre>
-            <div class="version-strip" aria-label="Version control colors">
-              <span class="added">added</span>
-              <span class="modified">modified</span>
-              <span class="removed">removed</span>
-              <span class="renamed">renamed</span>
-            </div>
-          </section>
+				<article class="theme-article" aria-labelledby="article-title">
+					<section class="color-stage" aria-label="Metis palette">
+						<button type="button" class="color-orb orb-cyan" data-copy-color="cyan">
+							<span>Cyan</span>
+							<code data-color-name="cyan"></code>
+						</button>
+						<button type="button" class="color-orb orb-blue" data-copy-color="blue">
+							<span>Blue</span>
+							<code data-color-name="blue"></code>
+						</button>
+						<button type="button" class="color-orb orb-indigo" data-copy-color="indigo">
+							<span>Indigo</span>
+							<code data-color-name="indigo"></code>
+						</button>
+						<button type="button" class="color-orb orb-violet" data-copy-color="violet">
+							<span>Violet</span>
+							<code data-color-name="violet"></code>
+						</button>
+						<button type="button" class="color-orb orb-magenta" data-copy-color="magenta">
+							<span>Magenta</span>
+							<code data-color-name="magenta"></code>
+						</button>
+						<button type="button" class="color-orb orb-rose" data-copy-color="rose">
+							<span>Rose</span>
+							<code data-color-name="rose"></code>
+						</button>
+						<button type="button" class="color-orb orb-red" data-copy-color="red">
+							<span>Red</span>
+							<code data-color-name="red"></code>
+						</button>
+						<button type="button" class="color-orb orb-orange" data-copy-color="orange">
+							<span>Orange</span>
+							<code data-color-name="orange"></code>
+						</button>
+						<button type="button" class="color-orb orb-amber" data-copy-color="amber">
+							<span>Amber</span>
+							<code data-color-name="amber"></code>
+						</button>
+						<button type="button" class="color-orb orb-yellow" data-copy-color="yellow">
+							<span>Yellow</span>
+							<code data-color-name="yellow"></code>
+						</button>
+						<button type="button" class="color-orb orb-green" data-copy-color="green">
+							<span>Green</span>
+							<code data-color-name="green"></code>
+						</button>
+						<button type="button" class="color-orb orb-mint" data-copy-color="mint">
+							<span>Mint</span>
+							<code data-color-name="mint"></code>
+						</button>
+					</section>
 
-          <section
-            class="specimen-panel role-panel"
-            aria-labelledby="roles-title"
-          >
-            <div class="panel-heading">
-              <div>
-                <p class="section-kicker">Roles</p>
-                <h2 id="roles-title">Syntax mapping</h2>
-              </div>
-            </div>
-            <div class="role-list">
-              <div class="role-row">
-                <span
-                  class="sample-dot"
-                  style="--sample-color: var(--syntax-statement)"
-                ></span>
-                <strong>Statement</strong>
-                <span>keyword, storage, control</span>
-                <code data-role-value="statement"></code>
-              </div>
-              <div class="role-row">
-                <span
-                  class="sample-dot"
-                  style="--sample-color: var(--syntax-identifier)"
-                ></span>
-                <strong>Identifier</strong>
-                <span>functions, methods, symbols</span>
-                <code data-role-value="identifier"></code>
-              </div>
-              <div class="role-row">
-                <span
-                  class="sample-dot"
-                  style="--sample-color: var(--syntax-constant)"
-                ></span>
-                <strong>Constant</strong>
-                <span>properties, enums, attributes</span>
-                <code data-role-value="constant"></code>
-              </div>
-              <div class="role-row">
-                <span
-                  class="sample-dot"
-                  style="--sample-color: var(--syntax-type)"
-                ></span>
-                <strong>Type</strong>
-                <span>classes, structs, interfaces</span>
-                <code data-role-value="type"></code>
-              </div>
-              <div class="role-row">
-                <span
-                  class="sample-dot"
-                  style="--sample-color: var(--syntax-string)"
-                ></span>
-                <strong>String</strong>
-                <span>quoted content</span>
-                <code data-role-value="string"></code>
-              </div>
-              <div class="role-row">
-                <span
-                  class="sample-dot"
-                  style="--sample-color: var(--syntax-number)"
-                ></span>
-                <strong>Number</strong>
-                <span>numeric literals</span>
-                <code data-role-value="number"></code>
-              </div>
-              <div class="role-row">
-                <span
-                  class="sample-dot"
-                  style="--sample-color: var(--syntax-operator)"
-                ></span>
-                <strong>Operator</strong>
-                <span>punctuation, separators</span>
-                <code data-role-value="operator"></code>
-              </div>
-              <div class="role-row">
-                <span
-                  class="sample-dot"
-                  style="--sample-color: var(--syntax-trivial)"
-                ></span>
-                <strong>Trivial</strong>
-                <span>comments, inactive text</span>
-                <code data-role-value="trivial"></code>
-              </div>
-            </div>
-          </section>
+					<section class="explainer" aria-labelledby="article-title">
+						<p class="section-kicker">Preview</p>
+						<h2 id="article-title">A compact palette with enough separation for code, terminals, and renderers.</h2>
+						<p>
+							Metis keeps the palette small and maps each accent through shared role definitions. The same source file
+							produces light and dark presets, keeping the rendered code samples, editor themes, and terminal colors in
+							lockstep.
+						</p>
+					</section>
 
-          <section
-            class="specimen-panel palette-panel"
-            aria-labelledby="palette-title"
-          >
-            <div class="panel-heading">
-              <div>
-                <p class="section-kicker">Palette</p>
-                <h2 id="palette-title">Accent values</h2>
-              </div>
-              <span class="hint">Click to copy</span>
-            </div>
-            <div class="swatch-grid">
-              <button type="button" class="swatch" data-copy-color="amber">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-amber)"
-                ></span>
-                <span>Amber</span>
-                <code data-color-name="amber"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="blue">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-blue)"
-                ></span>
-                <span>Blue</span>
-                <code data-color-name="blue"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="cyan">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-cyan)"
-                ></span>
-                <span>Cyan</span>
-                <code data-color-name="cyan"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="green">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-green)"
-                ></span>
-                <span>Green</span>
-                <code data-color-name="green"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="indigo">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-indigo)"
-                ></span>
-                <span>Indigo</span>
-                <code data-color-name="indigo"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="magenta">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-magenta)"
-                ></span>
-                <span>Magenta</span>
-                <code data-color-name="magenta"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="mint">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-mint)"
-                ></span>
-                <span>Mint</span>
-                <code data-color-name="mint"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="orange">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-orange)"
-                ></span>
-                <span>Orange</span>
-                <code data-color-name="orange"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="red">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-red)"
-                ></span>
-                <span>Red</span>
-                <code data-color-name="red"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="rose">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-rose)"
-                ></span>
-                <span>Rose</span>
-                <code data-color-name="rose"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="violet">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-violet)"
-                ></span>
-                <span>Violet</span>
-                <code data-color-name="violet"></code>
-              </button>
-              <button type="button" class="swatch" data-copy-color="yellow">
-                <span
-                  class="swatch-color"
-                  style="background: var(--color-yellow)"
-                ></span>
-                <span>Yellow</span>
-                <code data-color-name="yellow"></code>
-              </button>
-            </div>
-          </section>
+					<section class="snippet-grid" aria-label="Prism rendered examples">
+						<div class="snippet-card">
+							<div class="snippet-heading">
+								<h3>TypeScript</h3>
+								<code>theme.ts</code>
+							</div>
+							<pre
+								class="language-typescript"
+							><code class="language-typescript">type Output = "ghostty" | "xcode" | "prism";
 
-          <section
-            class="specimen-panel terminal-panel"
-            aria-labelledby="terminal-title"
-          >
-            <div class="panel-heading">
-              <div>
-                <p class="section-kicker">Terminal</p>
-                <h2 id="terminal-title">ANSI ramp</h2>
-              </div>
-              <code>Ghostty / iTerm2</code>
-            </div>
-            <div class="terminal-body">
-              <p><span>metis</span> npm run build</p>
-              <p>Generated 16 artifacts from <em>definitions/metis.json</em></p>
-              <p><span>metis</span> npm test</p>
-              <p><strong>ok</strong> json, plist, vim, vscode</p>
-            </div>
-            <div class="ansi-row" aria-label="ANSI colors">
-              <span class="ansi-item"
-                ><b style="--ansi: var(--ansi-black)"></b>black</span
-              >
-              <span class="ansi-item"
-                ><b style="--ansi: var(--ansi-red)"></b>red</span
-              >
-              <span class="ansi-item"
-                ><b style="--ansi: var(--ansi-green)"></b>green</span
-              >
-              <span class="ansi-item"
-                ><b style="--ansi: var(--ansi-yellow)"></b>yellow</span
-              >
-              <span class="ansi-item"
-                ><b style="--ansi: var(--ansi-blue)"></b>blue</span
-              >
-              <span class="ansi-item"
-                ><b style="--ansi: var(--ansi-magenta)"></b>magenta</span
-              >
-              <span class="ansi-item"
-                ><b style="--ansi: var(--ansi-cyan)"></b>cyan</span
-              >
-              <span class="ansi-item"
-                ><b style="--ansi: var(--ansi-white)"></b>white</span
-              >
-            </div>
-          </section>
+const writeTheme = async (output: Output) =&gt; {
+	const preset = await loadPreset("metis-dark");
+	return buildArtifact({ output, preset });
+};</code></pre>
+						</div>
+						<div class="snippet-card">
+							<div class="snippet-heading">
+								<h3>Go</h3>
+								<code>theme.go</code>
+							</div>
+							<pre class="language-go"><code class="language-go">type TokenRole string
 
-          <section
-            class="specimen-panel export-panel"
-            aria-labelledby="exports-title"
-          >
-            <div class="panel-heading">
-              <div>
-                <p class="section-kicker">Outputs</p>
-                <h2 id="exports-title">Generated files</h2>
-              </div>
-            </div>
-            <div class="target-table">
-              <div class="target-row">
-                <picture class="target-icon" data-icon-target="ghostty">
-                  <source
-                    data-icon-mode="light"
-                    media="(prefers-color-scheme: light)"
-                    srcset="./assets/icons/light/ghostty.png"
-                  />
-                  <source
-                    data-icon-mode="dark"
-                    media="(prefers-color-scheme: dark)"
-                    srcset="./assets/icons/dark/ghostty.png"
-                  />
-                  <img
-                    src="./assets/icons/dark/ghostty.png"
-                    alt=""
-                    width="28"
-                    height="28"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <span>Terminal</span>
-                <strong>Ghostty</strong>
-                <code>ghostty/metis-dark ghostty/metis-light</code>
-              </div>
-              <div class="target-row">
-                <picture class="target-icon" data-icon-target="iterm2">
-                  <source
-                    data-icon-mode="light"
-                    media="(prefers-color-scheme: light)"
-                    srcset="./assets/icons/light/iterm2.svg"
-                  />
-                  <source
-                    data-icon-mode="dark"
-                    media="(prefers-color-scheme: dark)"
-                    srcset="./assets/icons/dark/iterm2.svg"
-                  />
-                  <img
-                    src="./assets/icons/dark/iterm2.svg"
-                    alt=""
-                    width="28"
-                    height="28"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <span>Terminal</span>
-                <strong>iTerm2</strong>
-                <code
-                  >iterm/Metis Dark.itermcolors iterm/Metis
-                  Light.itermcolors</code
-                >
-              </div>
-              <div class="target-row">
-                <picture class="target-icon" data-icon-target="xcode">
-                  <source
-                    data-icon-mode="light"
-                    media="(prefers-color-scheme: light)"
-                    srcset="./assets/icons/light/xcode.png"
-                  />
-                  <source
-                    data-icon-mode="dark"
-                    media="(prefers-color-scheme: dark)"
-                    srcset="./assets/icons/dark/xcode.png"
-                  />
-                  <img
-                    src="./assets/icons/dark/xcode.png"
-                    alt=""
-                    width="28"
-                    height="28"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <span>Editor</span>
-                <strong>Xcode</strong>
-                <code
-                  >xcode/Metis Dark.xccolortheme xcode/Metis
-                  Light.xccolortheme</code
-                >
-              </div>
-              <div class="target-row">
-                <picture class="target-icon" data-icon-target="vscode">
-                  <source
-                    data-icon-mode="light"
-                    media="(prefers-color-scheme: light)"
-                    srcset="./assets/icons/light/vscode.png"
-                  />
-                  <source
-                    data-icon-mode="dark"
-                    media="(prefers-color-scheme: dark)"
-                    srcset="./assets/icons/dark/vscode.png"
-                  />
-                  <img
-                    src="./assets/icons/dark/vscode.png"
-                    alt=""
-                    width="28"
-                    height="28"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <span>Editor</span>
-                <strong>VSCode</strong>
-                <code
-                  >vscode/themes/metis-dark-color-theme.json
-                  vscode/themes/metis-light-color-theme.json</code
-                >
-              </div>
-              <div class="target-row">
-                <picture class="target-icon" data-icon-target="shiki">
-                  <source
-                    data-icon-mode="light"
-                    media="(prefers-color-scheme: light)"
-                    srcset="./assets/icons/light/shiki.svg"
-                  />
-                  <source
-                    data-icon-mode="dark"
-                    media="(prefers-color-scheme: dark)"
-                    srcset="./assets/icons/dark/shiki.svg"
-                  />
-                  <img
-                    src="./assets/icons/dark/shiki.svg"
-                    alt=""
-                    width="28"
-                    height="28"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <span>Renderer</span>
-                <strong>Shiki</strong>
-                <code>shiki/metis-dark.json shiki/metis-light.json</code>
-              </div>
-              <div class="target-row">
-                <picture class="target-icon" data-icon-target="vim">
-                  <source
-                    data-icon-mode="light"
-                    media="(prefers-color-scheme: light)"
-                    srcset="./assets/icons/light/vim.svg"
-                  />
-                  <source
-                    data-icon-mode="dark"
-                    media="(prefers-color-scheme: dark)"
-                    srcset="./assets/icons/dark/vim.svg"
-                  />
-                  <img
-                    src="./assets/icons/dark/vim.svg"
-                    alt=""
-                    width="28"
-                    height="28"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <span>Editor</span>
-                <strong>Vim</strong>
-                <code>colors/metis.vim autoload/airline/themes/metis.vim</code>
-              </div>
-              <div class="target-row">
-                <picture class="target-icon" data-icon-target="prismjs">
-                  <source
-                    data-icon-mode="light"
-                    media="(prefers-color-scheme: light)"
-                    srcset="./assets/icons/light/prismjs.svg"
-                  />
-                  <source
-                    data-icon-mode="dark"
-                    media="(prefers-color-scheme: dark)"
-                    srcset="./assets/icons/dark/prismjs.svg"
-                  />
-                  <img
-                    src="./assets/icons/dark/prismjs.svg"
-                    alt=""
-                    width="28"
-                    height="28"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <span>Renderer</span>
-                <strong>PrismJS</strong>
-                <code>prismjs/metis.css</code>
-              </div>
-              <div class="target-row">
-                <picture class="target-icon" data-icon-target="definitions">
-                  <source
-                    data-icon-mode="light"
-                    media="(prefers-color-scheme: light)"
-                    srcset="./assets/icons/light/definitions.svg"
-                  />
-                  <source
-                    data-icon-mode="dark"
-                    media="(prefers-color-scheme: dark)"
-                    srcset="./assets/icons/dark/definitions.svg"
-                  />
-                  <img
-                    src="./assets/icons/dark/definitions.svg"
-                    alt=""
-                    width="28"
-                    height="28"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <span>Source</span>
-                <strong>Definitions</strong>
-                <code>definitions/metis.json</code>
-              </div>
-            </div>
-          </section>
-        </article>
-      </main>
-    </div>
-  </body>
+func Resolve(role TokenRole, palette Palette) string {
+	if role == "statement" {
+		return palette.Amber
+	}
+	return palette.Foreground
+}</code></pre>
+						</div>
+						<div class="snippet-card">
+							<div class="snippet-heading">
+								<h3>Swift</h3>
+								<code>Theme.swift</code>
+							</div>
+							<pre class="language-swift"><code class="language-swift">struct MetisTheme {
+	let name: String
+	let syntax: [String: Color]
+
+	func color(for role: String) -&gt; Color {
+		syntax[role] ?? syntax["trivial"]!
+	}
+}</code></pre>
+						</div>
+						<div class="snippet-card">
+							<div class="snippet-heading">
+								<h3>Rust</h3>
+								<code>theme.rs</code>
+							</div>
+							<pre
+								class="language-rust"
+							><code class="language-rust">pub fn accent(role: &amp;str, theme: &amp;Theme) -&gt; Color {
+	match role {
+		"string" =&gt; theme.mint,
+		"number" =&gt; theme.yellow,
+		_ =&gt; theme.foreground,
+	}
+}</code></pre>
+						</div>
+					</section>
+				</article>
+			</main>
+
+			<footer class="site-footer" aria-label="Footer"></footer>
+		</div>
+	</body>
 </html>

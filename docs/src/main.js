@@ -1,135 +1,121 @@
+import Prism from "prismjs";
+import "prismjs/components/prism-clike";
+import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-go";
+import "prismjs/components/prism-swift";
+import "prismjs/components/prism-rust";
+import "../../prismjs/metis.css";
 import definitions from "../../definitions/metis.json";
 import "./PresetSelector.js";
 
-const toKebab = (value) =>
-  value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
+const toKebab = (value) => value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
 
 const getInitialMode = () => {
-  const mode = localStorage.getItem("metis-preview-mode");
+	const mode = localStorage.getItem("metis-preview-mode");
 
-  return mode && definitions.themes[mode] ? mode : "dark";
+	return mode && definitions.themes[mode] ? mode : "dark";
 };
-const getCurrentTheme = () =>
-  definitions.themes[document.documentElement.dataset.mode || "dark"];
 
-const setText = (selector, value) => {
-  const node = document.querySelector(selector);
-
-  if (node) {
-    node.textContent = value;
-  }
-};
+const getCurrentTheme = () => definitions.themes[document.documentElement.dataset.mode || "dark"];
 
 const setThemeVars = (theme) => {
-  const root = document.documentElement;
-  const groups = [
-    ["ui", theme.uiGroups],
-    ["syntax", theme.syntaxGroups],
-    ["version", theme.versionControlGroups],
-    ["color", theme.colors],
-    ["ansi", theme.ansiGroups.normal],
-  ];
+	const root = document.documentElement;
+	const groups = [
+		["ui", theme.uiGroups],
+		["syntax", theme.syntaxGroups],
+		["version", theme.versionControlGroups],
+		["color", theme.colors],
+		["ansi", theme.ansiGroups.normal],
+	];
 
-  groups.forEach(([prefix, values]) => {
-    Object.entries(values).forEach(([key, value]) => {
-      root.style.setProperty(`--${prefix}-${toKebab(key)}`, value);
-    });
-  });
+	groups.forEach(([prefix, values]) => {
+		Object.entries(values).forEach(([key, value]) => {
+			root.style.setProperty(`--${prefix}-${toKebab(key)}`, value);
+		});
+	});
 };
 
-const bindSwatches = () => {
-  document.querySelectorAll("[data-copy-color]").forEach((button) => {
-    button.addEventListener("click", async () => {
-      const color = getCurrentTheme().colors[button.dataset.copyColor];
+const updateColorValues = () => {
+	const theme = getCurrentTheme();
 
-      try {
-        await navigator.clipboard?.writeText(color);
-        button.dataset.copied = "true";
-        window.setTimeout(() => {
-          delete button.dataset.copied;
-        }, 900);
-      } catch {
-        button.dataset.copied = "false";
-      }
-    });
-  });
-};
-
-const updateValues = () => {
-  const theme = getCurrentTheme();
-
-  document.querySelectorAll("[data-color-name]").forEach((node) => {
-    node.textContent = theme.colors[node.dataset.colorName];
-  });
-
-  document.querySelectorAll("[data-role-value]").forEach((node) => {
-    node.textContent = theme.syntaxGroups[node.dataset.roleValue];
-  });
+	document.querySelectorAll("[data-color-name]").forEach((node) => {
+		node.textContent = theme.colors[node.dataset.colorName];
+	});
 };
 
 const cacheIconSources = () => {
-  document.querySelectorAll("[data-icon-target]").forEach((picture) => {
-    picture.querySelectorAll("[data-icon-mode]").forEach((source) => {
-      picture.dataset[`${source.dataset.iconMode}Icon`] = source.srcset;
-    });
-  });
+	document.querySelectorAll("[data-icon-target]").forEach((picture) => {
+		picture.querySelectorAll("[data-icon-mode]").forEach((source) => {
+			picture.dataset[`${source.dataset.iconMode}Icon`] = source.srcset;
+		});
+	});
 };
 
 const updateIcons = () => {
-  const mode = document.documentElement.dataset.mode || "dark";
+	const mode = document.documentElement.dataset.mode || "dark";
 
-  document.querySelectorAll("[data-icon-target]").forEach((picture) => {
-    const src = picture.dataset[`${mode}Icon`];
+	document.querySelectorAll("[data-icon-target]").forEach((picture) => {
+		const src = picture.dataset[`${mode}Icon`];
 
-    if (!src) {
-      return;
-    }
+		if (!src) {
+			return;
+		}
 
-    picture.querySelectorAll("source").forEach((source) => {
-      source.srcset = src;
-    });
+		picture.querySelectorAll("source").forEach((source) => {
+			source.srcset = src;
+		});
 
-    const image = picture.querySelector("img");
+		const image = picture.querySelector("img");
 
-    if (image) {
-      image.src = src;
-    }
-  });
+		if (image) {
+			image.src = src;
+		}
+	});
+};
+
+const bindColorStage = () => {
+	document.querySelectorAll("[data-copy-color]").forEach((button) => {
+		button.addEventListener("click", async () => {
+			const color = getCurrentTheme().colors[button.dataset.copyColor];
+
+			try {
+				await navigator.clipboard?.writeText(color);
+				button.dataset.copied = "true";
+				window.setTimeout(() => {
+					delete button.dataset.copied;
+				}, 900);
+			} catch {
+				button.dataset.copied = "false";
+			}
+		});
+	});
 };
 
 const setMode = (mode) => {
-  document.documentElement.dataset.mode = mode;
-  localStorage.setItem("metis-preview-mode", mode);
-  setThemeVars(definitions.themes[mode]);
-  updateValues();
-  updateIcons();
+	const theme = definitions.themes[mode];
+	const selector = document.querySelector("preset-selector");
 
-  const selector = document.querySelector("preset-selector");
+	document.documentElement.dataset.mode = mode;
+	document.documentElement.dataset.theme = theme.slug;
+	localStorage.setItem("metis-preview-mode", mode);
+	setThemeVars(theme);
+	updateColorValues();
+	updateIcons();
 
-  if (selector) {
-    selector.setAttribute("value", mode);
-  }
+	if (selector) {
+		selector.setAttribute("value", mode);
+	}
 };
 
-setText("[data-version]", definitions.version);
-setText("[data-palette-count]", Object.keys(definitions.palette).length);
-setText(
-  "[data-role-count]",
-  Object.keys(definitions.themes.dark.syntaxGroups).length,
-);
-
 cacheIconSources();
-bindSwatches();
+bindColorStage();
+Prism.highlightAll();
 
-document
-  .querySelector("preset-selector")
-  ?.addEventListener("preset-change", (event) => {
-    if (
-      event instanceof CustomEvent &&
-      typeof event.detail.value === "string"
-    ) {
-      setMode(event.detail.value);
-    }
-  });
+document.querySelector("preset-selector")?.addEventListener("preset-change", (event) => {
+	if (event instanceof CustomEvent && typeof event.detail.value === "string") {
+		setMode(event.detail.value);
+	}
+});
 
 setMode(getInitialMode());
