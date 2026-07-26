@@ -36,20 +36,27 @@ class ColorStage extends HTMLElement {
 		this.replaceChildren();
 
 		Object.keys(definitions.palette).forEach((name) => {
+			const figure = document.createElement("figure");
 			const button = document.createElement("button");
+			const object = document.createElement("object");
+			const caption = document.createElement("figcaption");
 			const label = document.createElement("span");
 			const value = document.createElement("code");
 
+			figure.className = "color-swatch";
 			button.type = "button";
 			button.className = `color-orb orb-${name}`;
 			button.dataset.copyColor = name;
 			button.addEventListener("click", () => this.#copy(name, button));
+			object.setAttribute("aria-hidden", "true");
 
 			label.textContent = this.#label(name);
 			value.dataset.colorName = name;
 
-			button.append(label, value);
-			this.append(button);
+			button.append(object);
+			caption.append(label, value);
+			figure.append(button, caption);
+			this.append(figure);
 		});
 	}
 
@@ -67,9 +74,11 @@ class ColorStage extends HTMLElement {
 				return;
 			}
 
-			const orb = /** @type {HTMLElement | null} */ (node.closest(".color-orb"));
+			const figure = /** @type {HTMLElement | null} */ (node.closest(".color-swatch"));
+			const orb = /** @type {HTMLElement | null} */ (figure?.querySelector(".color-orb") || null);
 
 			node.textContent = colors[name];
+			figure?.style.setProperty("--swatch-color", colors[name]);
 			orb?.style.setProperty("--orb-color", colors[name]);
 		});
 	}

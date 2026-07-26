@@ -177,13 +177,10 @@ h1 {
 }
 
 color-stage {
-	position: relative;
 	display: grid;
-	grid-template-columns: repeat(6, minmax(0, 1fr));
-	gap: 14px;
-	min-height: 350px;
-	padding: 20px;
-	align-items: center;
+	grid-template-columns: repeat(6, minmax(86px, 1fr));
+	gap: 18px 14px;
+	padding: 18px;
 	background:
 		linear-gradient(180deg, color-mix(in srgb, var(--ui-background-elevated) 74%, transparent), transparent),
 		var(--ui-background-muted);
@@ -191,21 +188,26 @@ color-stage {
 	border-radius: 8px;
 }
 
+.color-swatch {
+	display: grid;
+	gap: 8px;
+	justify-items: center;
+	min-width: 0;
+	margin: 0;
+}
+
 .color-orb {
 	display: grid;
-	align-content: center;
-	justify-items: center;
-	width: 100%;
+	width: min(100%, 74px);
 	aspect-ratio: 1;
-	min-width: 0;
-	padding: 12px;
-	color: var(--ui-background);
+	padding: 0;
 	cursor: pointer;
 	background: var(--orb-color);
 	border: 0;
 	border-radius: 999px;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ui-border) 30%, transparent);
-	text-align: center;
+	box-shadow:
+		inset 0 0 0 1px color-mix(in srgb, var(--ui-border) 30%, transparent),
+		0 1px 2px color-mix(in srgb, var(--ui-foreground) 14%, transparent);
 }
 
 .color-orb:hover {
@@ -218,76 +220,31 @@ color-stage {
 		inset 0 0 0 1px color-mix(in srgb, var(--ui-border) 30%, transparent);
 }
 
-.color-orb span {
-	font-size: 0.78rem;
+.color-orb object {
+	display: block;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.color-swatch figcaption {
+	display: grid;
+	gap: 2px;
+	justify-items: center;
+	color: var(--ui-foreground);
+	text-align: center;
+}
+
+.color-swatch span {
+	font-size: 0.76rem;
 	font-weight: 820;
 	line-height: 1.1;
 }
 
-.color-orb code {
-	margin-top: 5px;
+.color-swatch code {
+	color: var(--ui-foreground-muted);
 	font-size: 0.64rem;
 	line-height: 1.1;
-}
-
-.orb-cyan {
-	--orb-color: var(--color-cyan);
-	transform: translateY(24px);
-}
-
-.orb-blue {
-	--orb-color: var(--color-blue);
-	transform: translateY(-14px);
-}
-
-.orb-indigo {
-	--orb-color: var(--color-indigo);
-	transform: translateY(38px);
-}
-
-.orb-violet {
-	--orb-color: var(--color-violet);
-	transform: translateY(-30px);
-}
-
-.orb-magenta {
-	--orb-color: var(--color-magenta);
-	transform: translateY(18px);
-}
-
-.orb-rose {
-	--orb-color: var(--color-rose);
-	transform: translateY(-8px);
-}
-
-.orb-red {
-	--orb-color: var(--color-red);
-	transform: translateY(4px);
-}
-
-.orb-orange {
-	--orb-color: var(--color-orange);
-	transform: translateY(38px);
-}
-
-.orb-amber {
-	--orb-color: var(--color-amber);
-	transform: translateY(-20px);
-}
-
-.orb-yellow {
-	--orb-color: var(--color-yellow);
-	transform: translateY(26px);
-}
-
-.orb-green {
-	--orb-color: var(--color-green);
-	transform: translateY(-6px);
-}
-
-.orb-mint {
-	--orb-color: var(--color-mint);
-	transform: translateY(18px);
 }
 
 .explainer {
@@ -399,7 +356,7 @@ color-stage {
 	}
 
 	color-stage {
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(4, minmax(78px, 1fr));
 	}
 }
 
@@ -419,20 +376,19 @@ color-stage {
 	}
 
 	color-stage {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		min-height: 0;
+		grid-template-columns: repeat(3, minmax(74px, 1fr));
 		padding: 12px;
 	}
 
 	.color-orb {
-		padding: 8px;
+		width: min(100%, 62px);
 	}
 
-	.color-orb span {
+	.color-swatch span {
 		font-size: 0.68rem;
 	}
 
-	.color-orb code {
-		display: none;
+	.color-swatch code {
+		font-size: 0.58rem;
 	}
 }
