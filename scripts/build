@@ -3,22 +3,8 @@ set -euo pipefail
 
 yarn
 
-echo "---- BUILDING GANYMEDE FILES ----\n"
+echo "---- TESTING METIS DEFINITIONS ----\n"
 
-yarn workspace ganymede test
+yarn test
 
-echo "---- BUILDING VIM ----\n"
-
-yarn workspace vim build
-
-echo "---- BUILDING ITERM ----\n"
-
-yarn workspace iterm build
-
-echo "---- BUILDING VSCODE ----\n"
-
-yarn workspace ganymede-vscode-theme build
-
-echo "---- BUILDING SITE ----\n"
-
-yarn workspace next build
+echo "---- BUILD COMPLETE ----\n"

@@ -1,21 +1,17 @@
 {
   "private": true,
-  "name": "ganymede-atom-syntax",
-  "theme": "syntax",
-  "version": "2.0.2",
+  "name": "metis-themes",
+  "version": "3.0.0",
+  "description": "Metis themes for Ghostty, iTerm2, Xcode, VSCode, Shiki, Vim, and PrismJS.",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node metis/test.js && node scripts/build.js --check"
+  },
   "devDependencies": {
     "prettier": "^1.14.3"
   },
-  "engines": {
-    "atom": ">=1.0.0 <2.0.0"
-  },
   "workspaces": [
-    "ganymede",
-    "ganymede-vscode-theme",
-    "next",
-    "hyperganymede",
-    "iterm",
-    "vim"
+    "metis"
   ],
   "prettier": {
     "printWidth": 95,

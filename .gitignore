@@ -1,5 +1,3 @@
 dist
 node_modules
-
-vim-source/colors
-vim-source/autoload
+.DS_Store

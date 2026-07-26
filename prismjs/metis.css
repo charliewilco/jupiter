@@ -1,0 +1,121 @@
+.metis-dark, [data-theme="metis-dark"] {
+  color: #DCE7EF;
+  background: #0B1117;
+  --metis-background: #0B1117;
+  --metis-foreground: #DCE7EF;
+  --metis-selection: #1F5367;
+  --metis-border: #2A3A47;
+}
+
+.metis-dark code, [data-theme="metis-dark"] code,
+.metis-dark pre, [data-theme="metis-dark"] pre {
+  color: #DCE7EF;
+  background: #0B1117;
+  text-shadow: none;
+}
+
+.metis-dark pre::selection, [data-theme="metis-dark"] pre::selection,
+.metis-dark code::selection, [data-theme="metis-dark"] code::selection,
+.metis-dark .token::selection, [data-theme="metis-dark"] .token::selection {
+  background: #1F5367;
+}
+
+.metis-dark .token.comment, [data-theme="metis-dark"] .token.comment { color: #738492; }
+.metis-dark .token.prolog, [data-theme="metis-dark"] .token.prolog { color: #738492; }
+.metis-dark .token.doctype, [data-theme="metis-dark"] .token.doctype { color: #738492; }
+.metis-dark .token.cdata, [data-theme="metis-dark"] .token.cdata { color: #738492; }
+.metis-dark .token.punctuation, [data-theme="metis-dark"] .token.punctuation { color: #9AA2FF; }
+.metis-dark .token.property, [data-theme="metis-dark"] .token.property { color: #43C7E8; }
+.metis-dark .token.tag, [data-theme="metis-dark"] .token.tag { color: #69A7FF; }
+.metis-dark .token.boolean, [data-theme="metis-dark"] .token.boolean { color: #E7CF5B; }
+.metis-dark .token.number, [data-theme="metis-dark"] .token.number { color: #E7CF5B; }
+.metis-dark .token.constant, [data-theme="metis-dark"] .token.constant { color: #43C7E8; }
+.metis-dark .token.symbol, [data-theme="metis-dark"] .token.symbol { color: #43C7E8; }
+.metis-dark .token.deleted, [data-theme="metis-dark"] .token.deleted { color: #FF6B62; }
+.metis-dark .token.selector, [data-theme="metis-dark"] .token.selector { color: #69A7FF; }
+.metis-dark .token.attr-name, [data-theme="metis-dark"] .token.attr-name { color: #43C7E8; }
+.metis-dark .token.string, [data-theme="metis-dark"] .token.string { color: #5DD4AF; }
+.metis-dark .token.char, [data-theme="metis-dark"] .token.char { color: #5DD4AF; }
+.metis-dark .token.builtin, [data-theme="metis-dark"] .token.builtin { color: #82C66F; }
+.metis-dark .token.inserted, [data-theme="metis-dark"] .token.inserted { color: #82C66F; }
+.metis-dark .token.operator, [data-theme="metis-dark"] .token.operator { color: #9AA2FF; }
+.metis-dark .token.entity, [data-theme="metis-dark"] .token.entity { color: #43C7E8; }
+.metis-dark .token.url, [data-theme="metis-dark"] .token.url { color: #43C7E8; }
+.metis-dark .token.atrule, [data-theme="metis-dark"] .token.atrule { color: #BC8FFF; }
+.metis-dark .token.attr-value, [data-theme="metis-dark"] .token.attr-value { color: #5DD4AF; }
+.metis-dark .token.keyword, [data-theme="metis-dark"] .token.keyword { color: #F2B339; }
+.metis-dark .token.function, [data-theme="metis-dark"] .token.function { color: #69A7FF; }
+.metis-dark .token.class-name, [data-theme="metis-dark"] .token.class-name { color: #82C66F; }
+.metis-dark .token.regex, [data-theme="metis-dark"] .token.regex { color: #FF7698; }
+.metis-dark .token.important, [data-theme="metis-dark"] .token.important { color: #EF78C4; }
+.metis-dark .token.variable, [data-theme="metis-dark"] .token.variable { color: #69A7FF; }
+
+.metis-dark .token.bold, [data-theme="metis-dark"] .token.bold,
+.metis-dark .token.important, [data-theme="metis-dark"] .token.important {
+  font-weight: 700;
+}
+
+.metis-dark .token.italic, [data-theme="metis-dark"] .token.italic {
+  font-style: italic;
+}
+
+.metis-light, [data-theme="metis-light"] {
+  color: #172530;
+  background: #F8FBFD;
+  --metis-background: #F8FBFD;
+  --metis-foreground: #172530;
+  --metis-selection: #B9DCE8;
+  --metis-border: #C7D5DE;
+}
+
+.metis-light code, [data-theme="metis-light"] code,
+.metis-light pre, [data-theme="metis-light"] pre {
+  color: #172530;
+  background: #F8FBFD;
+  text-shadow: none;
+}
+
+.metis-light pre::selection, [data-theme="metis-light"] pre::selection,
+.metis-light code::selection, [data-theme="metis-light"] code::selection,
+.metis-light .token::selection, [data-theme="metis-light"] .token::selection {
+  background: #B9DCE8;
+}
+
+.metis-light .token.comment, [data-theme="metis-light"] .token.comment { color: #708390; }
+.metis-light .token.prolog, [data-theme="metis-light"] .token.prolog { color: #708390; }
+.metis-light .token.doctype, [data-theme="metis-light"] .token.doctype { color: #708390; }
+.metis-light .token.cdata, [data-theme="metis-light"] .token.cdata { color: #708390; }
+.metis-light .token.punctuation, [data-theme="metis-light"] .token.punctuation { color: #555FCE; }
+.metis-light .token.property, [data-theme="metis-light"] .token.property { color: #007FA8; }
+.metis-light .token.tag, [data-theme="metis-light"] .token.tag { color: #1B67D7; }
+.metis-light .token.boolean, [data-theme="metis-light"] .token.boolean { color: #846F00; }
+.metis-light .token.number, [data-theme="metis-light"] .token.number { color: #846F00; }
+.metis-light .token.constant, [data-theme="metis-light"] .token.constant { color: #007FA8; }
+.metis-light .token.symbol, [data-theme="metis-light"] .token.symbol { color: #007FA8; }
+.metis-light .token.deleted, [data-theme="metis-light"] .token.deleted { color: #B93532; }
+.metis-light .token.selector, [data-theme="metis-light"] .token.selector { color: #1B67D7; }
+.metis-light .token.attr-name, [data-theme="metis-light"] .token.attr-name { color: #007FA8; }
+.metis-light .token.string, [data-theme="metis-light"] .token.string { color: #1F876D; }
+.metis-light .token.char, [data-theme="metis-light"] .token.char { color: #1F876D; }
+.metis-light .token.builtin, [data-theme="metis-light"] .token.builtin { color: #3F7F38; }
+.metis-light .token.inserted, [data-theme="metis-light"] .token.inserted { color: #3F7F38; }
+.metis-light .token.operator, [data-theme="metis-light"] .token.operator { color: #555FCE; }
+.metis-light .token.entity, [data-theme="metis-light"] .token.entity { color: #007FA8; }
+.metis-light .token.url, [data-theme="metis-light"] .token.url { color: #007FA8; }
+.metis-light .token.atrule, [data-theme="metis-light"] .token.atrule { color: #7A4BC2; }
+.metis-light .token.attr-value, [data-theme="metis-light"] .token.attr-value { color: #1F876D; }
+.metis-light .token.keyword, [data-theme="metis-light"] .token.keyword { color: #9D7100; }
+.metis-light .token.function, [data-theme="metis-light"] .token.function { color: #1B67D7; }
+.metis-light .token.class-name, [data-theme="metis-light"] .token.class-name { color: #3F7F38; }
+.metis-light .token.regex, [data-theme="metis-light"] .token.regex { color: #C83C62; }
+.metis-light .token.important, [data-theme="metis-light"] .token.important { color: #AD3E86; }
+.metis-light .token.variable, [data-theme="metis-light"] .token.variable { color: #1B67D7; }
+
+.metis-light .token.bold, [data-theme="metis-light"] .token.bold,
+.metis-light .token.important, [data-theme="metis-light"] .token.important {
+  font-weight: 700;
+}
+
+.metis-light .token.italic, [data-theme="metis-light"] .token.italic {
+  font-style: italic;
+}
