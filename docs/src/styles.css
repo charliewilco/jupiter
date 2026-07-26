@@ -38,7 +38,7 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-metis-demo {
+.page-shell {
   display: block;
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
@@ -513,7 +513,7 @@ pre,
 }
 
 @media (max-width: 980px) {
-  metis-demo {
+  .page-shell {
     width: min(100% - 24px, 760px);
   }
 
@@ -537,7 +537,7 @@ pre,
 }
 
 @media (max-width: 640px) {
-  metis-demo {
+  .page-shell {
     width: min(100% - 20px, 460px);
     padding-top: 10px;
   }
