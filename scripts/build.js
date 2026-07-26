@@ -249,7 +249,7 @@ function writeFile(relativePath, contents) {
   if (checkOnly) {
     const existing = fs.existsSync(fullPath) ? fs.readFileSync(fullPath, "utf8") : null;
     if (existing !== normalized) {
-      throw new Error(`${relativePath} is out of date. Run yarn build.`);
+      throw new Error(`${relativePath} is out of date. Run npm run build.`);
     }
     return;
   }
@@ -746,13 +746,14 @@ function vscodePackage() {
   return {
     name: "metis-vscode-theme",
     displayName: "Metis",
-    publisher: "charlespeters",
+    publisher: "charliewilco",
     description: "Metis themes for VSCode.",
     version: "3.0.0",
-    license: "MIT",
+    homepage: "https://charliewilco.github.io/metis/",
+    license: "Unlicense",
     repository: {
       type: "git",
-      url: "https://github.com/charlespeters/metis"
+      url: "https://github.com/charliewilco/metis"
     },
     engines: {
       vscode: "^1.80.0"

@@ -16,16 +16,22 @@ Supported targets:
 ## Build
 
 ```sh
-yarn build
+npm run build
 ```
 
 The build writes every generated artifact from `metis/index.js`.
 
 ```sh
-yarn test
+npm test
 ```
 
-The test command validates the core package and verifies generated artifacts are current.
+The test command validates the core package, verifies generated artifacts are current, checks JSON and plist outputs, smoke-tests Vim, and packages the VSCode theme.
+
+## Demo
+
+The previewer lives at https://charliewilco.github.io/metis/.
+
+The previewer source lives in `docs/` and is built by Parcel in GitHub Actions. On pushes to `master`, `.github/workflows/deploy-demo.yml` builds `docs/index.html` into `docs-dist/` and publishes that output to the `gh-pages` branch.
 
 ## Vim
 
