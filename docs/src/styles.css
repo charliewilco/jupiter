@@ -73,7 +73,6 @@ pre {
 	gap: 24px;
 	align-items: center;
 	padding: 8px 0 26px;
-	border-bottom: 1px solid var(--ui-border);
 }
 
 .header-copy {
@@ -139,9 +138,6 @@ h1 {
 	min-height: 46px;
 	padding: 7px 8px;
 	color: var(--ui-foreground);
-	background: var(--ui-background-elevated);
-	border: 1px solid var(--ui-border);
-	border-radius: 8px;
 	font-size: 0.9rem;
 	font-weight: 760;
 }
@@ -151,9 +147,6 @@ h1 {
 	width: 34px;
 	aspect-ratio: 1;
 	place-items: center;
-	background: var(--ui-background);
-	border: 1px solid var(--ui-border);
-	border-radius: 7px;
 }
 
 .output-icon img {
@@ -176,8 +169,9 @@ h1 {
 }
 
 color-stage {
+	--column-size: 3rem;
 	display: grid;
-	grid-template-columns: repeat(3, minmax(74px, 1fr));
+	grid-template-columns: repeat(3, minmax(var(--column-size), 1fr));
 	gap: 18px 14px;
 	padding: 18px;
 	background:
@@ -189,7 +183,7 @@ color-stage {
 
 .color-swatch {
 	display: grid;
-	gap: 8px;
+	gap: 1rem;
 	justify-items: center;
 	min-width: 0;
 	margin: 0;
@@ -197,13 +191,14 @@ color-stage {
 
 .color-orb {
 	display: grid;
-	width: min(100%, 74px);
+	width: var(--column-size);
+	height: var(--column-size);
 	aspect-ratio: 1;
 	padding: 0;
 	cursor: pointer;
 	background: var(--orb-color);
 	border: 0;
-	border-radius: 999px;
+	border-radius: 0.5rem;
 	box-shadow:
 		inset 0 0 0 1px color-mix(in srgb, var(--ui-border) 30%, transparent),
 		0 1px 2px color-mix(in srgb, var(--ui-foreground) 14%, transparent);
@@ -247,9 +242,8 @@ color-stage {
 }
 
 .explainer {
-	display: grid;
-	gap: 12px;
 	max-width: 720px;
+	margin: auto;
 	padding: 34px 0 26px;
 }
 
@@ -263,16 +257,18 @@ color-stage {
 
 .explainer h2 {
 	color: var(--ui-foreground);
-	font-size: clamp(1.6rem, 3vw, 2.65rem);
+	font-size: 1.375rem;
 	font-weight: 760;
 	line-height: 1.08;
 	letter-spacing: 0;
+	margin-bottom: 2rem;
 }
 
 .explainer p {
 	color: var(--ui-foreground-muted);
 	font-size: 1rem;
 	line-height: 1.65;
+	margin-bottom: 1.5rem;
 }
 
 .snippet-grid {
@@ -283,7 +279,6 @@ color-stage {
 
 .snippet-card {
 	overflow: hidden;
-	background: var(--ui-background-elevated);
 	border: 1px solid var(--ui-border);
 	border-radius: 8px;
 }
@@ -293,8 +288,7 @@ color-stage {
 	gap: 12px;
 	align-items: baseline;
 	justify-content: space-between;
-	padding: 12px 14px;
-	border-bottom: 1px solid var(--ui-border);
+	padding: 12px 14px 0;
 }
 
 .snippet-heading h3 {
