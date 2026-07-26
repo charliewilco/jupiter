@@ -80,8 +80,10 @@ pre {
 	text-align: center;
 }
 
-.site-header preset-selector {
+.theme-controls {
 	grid-column: 3;
+	display: grid;
+	gap: 8px;
 	justify-self: end;
 }
 
@@ -354,11 +356,11 @@ color-stage {
 	}
 
 	.header-copy,
-	.site-header preset-selector {
+	.theme-controls {
 		grid-column: 1;
 	}
 
-	.site-header preset-selector {
+	.theme-controls {
 		justify-self: center;
 	}
 
@@ -373,6 +375,7 @@ color-stage {
 		padding-top: 16px;
 	}
 
+	.theme-controls,
 	.site-header preset-selector {
 		width: 100%;
 	}

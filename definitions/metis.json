@@ -40,10 +40,465 @@
       "userCurrentState": "cyan"
     }
   },
+  "variants": {
+    "metis": {
+      "name": "Metis",
+      "slug": "metis",
+      "palette": {
+        "cyan": "#00A6D6",
+        "blue": "#3D8BFF",
+        "indigo": "#7C83FF",
+        "violet": "#A774FF",
+        "magenta": "#D85FAF",
+        "rose": "#F05F84",
+        "red": "#E0524D",
+        "orange": "#E87743",
+        "amber": "#D99A00",
+        "yellow": "#D8B92E",
+        "green": "#62AD58",
+        "mint": "#3FB997"
+      },
+      "roles": {
+        "syntax": {
+          "constant": "cyan",
+          "identifier": "blue",
+          "statement": "amber",
+          "type": "green",
+          "global": "violet",
+          "emphasis": "magenta",
+          "special": "orange",
+          "string": "mint",
+          "regexp": "rose",
+          "number": "yellow",
+          "operator": "indigo",
+          "tag": "blue",
+          "attribute": "cyan",
+          "deleted": "red",
+          "inserted": "green",
+          "changed": "amber"
+        },
+        "ui": {
+          "userActionNeeded": "red",
+          "userCurrentState": "cyan"
+        }
+      },
+      "themes": {
+        "dark": {
+          "name": "Metis Dark",
+          "slug": "metis-dark",
+          "variant": "metis",
+          "type": "dark",
+          "colors": {
+            "cyan": "#43C7E8",
+            "blue": "#69A7FF",
+            "indigo": "#9AA2FF",
+            "violet": "#BC8FFF",
+            "magenta": "#EF78C4",
+            "rose": "#FF7698",
+            "red": "#FF6B62",
+            "orange": "#FF9159",
+            "amber": "#F2B339",
+            "yellow": "#E7CF5B",
+            "green": "#82C66F",
+            "mint": "#5DD4AF"
+          },
+          "grays": {
+            "gray0": "#070B10",
+            "gray1": "#0B1117",
+            "gray2": "#182531",
+            "gray3": "#415466",
+            "gray4": "#738492",
+            "gray5": "#AAB8C3",
+            "gray6": "#DCE7EF"
+          },
+          "uiGroups": {
+            "backgroundShade": "#070B10",
+            "background": "#0B1117",
+            "backgroundElevated": "#111A23",
+            "backgroundMuted": "#182531",
+            "selection": "#1F5367",
+            "foreground": "#DCE7EF",
+            "foregroundMuted": "#AAB8C3",
+            "foregroundSubtle": "#738492",
+            "border": "#2A3A47",
+            "line": "#415466",
+            "userActionNeeded": "#FF6B62",
+            "userCurrentState": "#43C7E8",
+            "gray0": "#070B10",
+            "gray1": "#0B1117",
+            "gray2": "#182531",
+            "gray3": "#415466",
+            "gray4": "#738492",
+            "gray5": "#AAB8C3",
+            "gray6": "#DCE7EF"
+          },
+          "syntaxGroups": {
+            "constant": "#43C7E8",
+            "identifier": "#69A7FF",
+            "statement": "#F2B339",
+            "type": "#82C66F",
+            "global": "#BC8FFF",
+            "emphasis": "#EF78C4",
+            "special": "#FF9159",
+            "string": "#5DD4AF",
+            "regexp": "#FF7698",
+            "number": "#E7CF5B",
+            "operator": "#9AA2FF",
+            "tag": "#69A7FF",
+            "attribute": "#43C7E8",
+            "trivial": "#738492"
+          },
+          "versionControlGroups": {
+            "added": "#82C66F",
+            "modified": "#F2B339",
+            "removed": "#FF6B62",
+            "renamed": "#69A7FF"
+          },
+          "ansiGroups": {
+            "normal": {
+              "black": "#0B1117",
+              "red": "#FF6B62",
+              "green": "#82C66F",
+              "yellow": "#F2B339",
+              "blue": "#69A7FF",
+              "magenta": "#EF78C4",
+              "cyan": "#43C7E8",
+              "white": "#DCE7EF"
+            },
+            "bright": {
+              "black": "#738492",
+              "red": "#FF7698",
+              "green": "#5DD4AF",
+              "yellow": "#E7CF5B",
+              "blue": "#9AA2FF",
+              "magenta": "#BC8FFF",
+              "cyan": "#43C7E8",
+              "white": "#F5FAFD"
+            }
+          }
+        },
+        "light": {
+          "name": "Metis Light",
+          "slug": "metis-light",
+          "variant": "metis",
+          "type": "light",
+          "colors": {
+            "cyan": "#007FA8",
+            "blue": "#1B67D7",
+            "indigo": "#555FCE",
+            "violet": "#7A4BC2",
+            "magenta": "#AD3E86",
+            "rose": "#C83C62",
+            "red": "#B93532",
+            "orange": "#B85727",
+            "amber": "#9D7100",
+            "yellow": "#846F00",
+            "green": "#3F7F38",
+            "mint": "#1F876D"
+          },
+          "grays": {
+            "gray0": "#DCE8EF",
+            "gray1": "#F8FBFD",
+            "gray2": "#DDE8EF",
+            "gray3": "#9DAFBB",
+            "gray4": "#708390",
+            "gray5": "#4A5E6B",
+            "gray6": "#172530"
+          },
+          "uiGroups": {
+            "backgroundShade": "#DCE8EF",
+            "background": "#F8FBFD",
+            "backgroundElevated": "#EEF5F8",
+            "backgroundMuted": "#DDE8EF",
+            "selection": "#B9DCE8",
+            "foreground": "#172530",
+            "foregroundMuted": "#4A5E6B",
+            "foregroundSubtle": "#708390",
+            "border": "#C7D5DE",
+            "line": "#9DAFBB",
+            "userActionNeeded": "#B93532",
+            "userCurrentState": "#007FA8",
+            "gray0": "#DCE8EF",
+            "gray1": "#F8FBFD",
+            "gray2": "#DDE8EF",
+            "gray3": "#9DAFBB",
+            "gray4": "#708390",
+            "gray5": "#4A5E6B",
+            "gray6": "#172530"
+          },
+          "syntaxGroups": {
+            "constant": "#007FA8",
+            "identifier": "#1B67D7",
+            "statement": "#9D7100",
+            "type": "#3F7F38",
+            "global": "#7A4BC2",
+            "emphasis": "#AD3E86",
+            "special": "#B85727",
+            "string": "#1F876D",
+            "regexp": "#C83C62",
+            "number": "#846F00",
+            "operator": "#555FCE",
+            "tag": "#1B67D7",
+            "attribute": "#007FA8",
+            "trivial": "#708390"
+          },
+          "versionControlGroups": {
+            "added": "#3F7F38",
+            "modified": "#9D7100",
+            "removed": "#B93532",
+            "renamed": "#1B67D7"
+          },
+          "ansiGroups": {
+            "normal": {
+              "black": "#F8FBFD",
+              "red": "#B93532",
+              "green": "#3F7F38",
+              "yellow": "#9D7100",
+              "blue": "#1B67D7",
+              "magenta": "#AD3E86",
+              "cyan": "#007FA8",
+              "white": "#172530"
+            },
+            "bright": {
+              "black": "#708390",
+              "red": "#C83C62",
+              "green": "#1F876D",
+              "yellow": "#846F00",
+              "blue": "#555FCE",
+              "magenta": "#7A4BC2",
+              "cyan": "#007FA8",
+              "white": "#FFFFFF"
+            }
+          }
+        }
+      }
+    },
+    "ganymede": {
+      "name": "Ganymede",
+      "slug": "ganymede",
+      "palette": {
+        "cyan": "#00B7ED",
+        "blue": "#00B7ED",
+        "yellow": "#FFBA00",
+        "green": "#F1D677",
+        "purple": "#F25A55",
+        "red": "#F25A55",
+        "orange": "#F25A55",
+        "pink": "#F5837F"
+      },
+      "roles": {
+        "syntax": {
+          "constant": "cyan",
+          "identifier": "blue",
+          "statement": "yellow",
+          "type": "green",
+          "global": "purple",
+          "emphasis": "pink",
+          "special": "orange",
+          "string": "red",
+          "regexp": "pink",
+          "number": "yellow",
+          "operator": "cyan",
+          "tag": "blue",
+          "attribute": "yellow",
+          "deleted": "red",
+          "inserted": "green",
+          "changed": "orange"
+        },
+        "ui": {
+          "userActionNeeded": "red",
+          "userCurrentState": "cyan"
+        }
+      },
+      "themes": {
+        "dark": {
+          "name": "Ganymede Dark",
+          "slug": "ganymede-dark",
+          "variant": "ganymede",
+          "type": "dark",
+          "colors": {
+            "cyan": "#00B7ED",
+            "blue": "#00B7ED",
+            "yellow": "#FFBA00",
+            "green": "#F1D677",
+            "purple": "#F25A55",
+            "red": "#F25A55",
+            "orange": "#F25A55",
+            "pink": "#F5837F"
+          },
+          "grays": {
+            "gray0": "#022538",
+            "gray1": "#093750",
+            "gray2": "#055682",
+            "gray3": "#A2D9F5",
+            "gray4": "#1C7DB1",
+            "gray5": "#A2D9F5",
+            "gray6": "#DCEBF5"
+          },
+          "uiGroups": {
+            "backgroundShade": "#022538",
+            "background": "#093750",
+            "backgroundElevated": "#0B4867",
+            "backgroundMuted": "#055682",
+            "selection": "#1C7DB1",
+            "foreground": "#DCEBF5",
+            "foregroundMuted": "#A2D9F5",
+            "foregroundSubtle": "#1C7DB1",
+            "border": "#1C7DB1",
+            "line": "#A2D9F5",
+            "userActionNeeded": "#F25A55",
+            "userCurrentState": "#00B7ED",
+            "gray0": "#022538",
+            "gray1": "#093750",
+            "gray2": "#055682",
+            "gray3": "#A2D9F5",
+            "gray4": "#1C7DB1",
+            "gray5": "#A2D9F5",
+            "gray6": "#DCEBF5"
+          },
+          "syntaxGroups": {
+            "constant": "#00B7ED",
+            "identifier": "#00B7ED",
+            "statement": "#FFBA00",
+            "type": "#F1D677",
+            "global": "#F25A55",
+            "emphasis": "#F5837F",
+            "special": "#F25A55",
+            "string": "#F25A55",
+            "regexp": "#F5837F",
+            "number": "#FFBA00",
+            "operator": "#00B7ED",
+            "tag": "#00B7ED",
+            "attribute": "#FFBA00",
+            "trivial": "#1C7DB1"
+          },
+          "versionControlGroups": {
+            "added": "#F1D677",
+            "modified": "#F25A55",
+            "removed": "#F25A55",
+            "renamed": "#00B7ED"
+          },
+          "ansiGroups": {
+            "normal": {
+              "black": "#093750",
+              "red": "#F25A55",
+              "green": "#F1D677",
+              "yellow": "#FFBA00",
+              "blue": "#00B7ED",
+              "magenta": "#F5837F",
+              "cyan": "#00B7ED",
+              "white": "#DCEBF5"
+            },
+            "bright": {
+              "black": "#1C7DB1",
+              "red": "#F25A55",
+              "green": "#F1D677",
+              "yellow": "#FFBA00",
+              "blue": "#00B7ED",
+              "magenta": "#F5837F",
+              "cyan": "#00B7ED",
+              "white": "#F5FAFD"
+            }
+          }
+        },
+        "light": {
+          "name": "Ganymede Light",
+          "slug": "ganymede-light",
+          "variant": "ganymede",
+          "type": "light",
+          "colors": {
+            "cyan": "#007EA3",
+            "blue": "#007EA3",
+            "yellow": "#9E7100",
+            "green": "#6F641B",
+            "purple": "#B53331",
+            "red": "#B53331",
+            "orange": "#B53331",
+            "pink": "#B6524F"
+          },
+          "grays": {
+            "gray0": "#D8EEF8",
+            "gray1": "#F4FBFE",
+            "gray2": "#CFEAF6",
+            "gray3": "#79AFC9",
+            "gray4": "#557E92",
+            "gray5": "#315B71",
+            "gray6": "#093750"
+          },
+          "uiGroups": {
+            "backgroundShade": "#D8EEF8",
+            "background": "#F4FBFE",
+            "backgroundElevated": "#E7F5FB",
+            "backgroundMuted": "#CFEAF6",
+            "selection": "#B4E5F6",
+            "foreground": "#093750",
+            "foregroundMuted": "#315B71",
+            "foregroundSubtle": "#557E92",
+            "border": "#AED2E3",
+            "line": "#79AFC9",
+            "userActionNeeded": "#B53331",
+            "userCurrentState": "#007EA3",
+            "gray0": "#D8EEF8",
+            "gray1": "#F4FBFE",
+            "gray2": "#CFEAF6",
+            "gray3": "#79AFC9",
+            "gray4": "#557E92",
+            "gray5": "#315B71",
+            "gray6": "#093750"
+          },
+          "syntaxGroups": {
+            "constant": "#007EA3",
+            "identifier": "#007EA3",
+            "statement": "#9E7100",
+            "type": "#6F641B",
+            "global": "#B53331",
+            "emphasis": "#B6524F",
+            "special": "#B53331",
+            "string": "#B53331",
+            "regexp": "#B6524F",
+            "number": "#9E7100",
+            "operator": "#007EA3",
+            "tag": "#007EA3",
+            "attribute": "#9E7100",
+            "trivial": "#557E92"
+          },
+          "versionControlGroups": {
+            "added": "#6F641B",
+            "modified": "#B53331",
+            "removed": "#B53331",
+            "renamed": "#007EA3"
+          },
+          "ansiGroups": {
+            "normal": {
+              "black": "#F4FBFE",
+              "red": "#B53331",
+              "green": "#6F641B",
+              "yellow": "#9E7100",
+              "blue": "#007EA3",
+              "magenta": "#B6524F",
+              "cyan": "#007EA3",
+              "white": "#093750"
+            },
+            "bright": {
+              "black": "#557E92",
+              "red": "#B53331",
+              "green": "#6F641B",
+              "yellow": "#9E7100",
+              "blue": "#007EA3",
+              "magenta": "#B6524F",
+              "cyan": "#007EA3",
+              "white": "#FFFFFF"
+            }
+          }
+        }
+      }
+    }
+  },
   "themes": {
     "dark": {
       "name": "Metis Dark",
       "slug": "metis-dark",
+      "variant": "metis",
       "type": "dark",
       "colors": {
         "cyan": "#43C7E8",
@@ -137,6 +592,7 @@
     "light": {
       "name": "Metis Light",
       "slug": "metis-light",
+      "variant": "metis",
       "type": "light",
       "colors": {
         "cyan": "#007FA8",

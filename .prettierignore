@@ -1,0 +1,11 @@
+autoload/airline/themes/*.vim
+codex/*.json
+colors/*.vim
+definitions/*.json
+ghostty/*
+iterm/*.itermcolors
+prismjs/*.css
+shiki/*.json
+vscode/package.json
+vscode/themes/*.json
+xcode/*.xccolortheme

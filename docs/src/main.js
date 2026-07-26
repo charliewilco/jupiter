@@ -12,6 +12,12 @@ import "./PresetSelector.js";
 
 const toKebab = (value) => value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
 
+const getInitialVariant = () => {
+	const variant = localStorage.getItem("metis-preview-variant");
+
+	return variant && definitions.variants[variant] ? variant : "metis";
+};
+
 const getInitialMode = () => {
 	const mode = localStorage.getItem("metis-preview-mode");
 
@@ -65,22 +71,30 @@ const updateIcons = () => {
 	});
 };
 
-const setMode = (mode) => {
-	const theme = definitions.themes[mode];
-	const selector = document.querySelector("preset-selector");
+const setPreview = (variant, mode) => {
+	const theme = definitions.variants[variant].themes[mode];
+	const familySelector = document.querySelector("[data-family-selector]");
+	const modeSelector = document.querySelector("[data-mode-selector]");
 	const colorStage = document.querySelector("color-stage");
 
+	document.documentElement.dataset.variant = variant;
 	document.documentElement.dataset.mode = mode;
 	document.documentElement.dataset.theme = theme.slug;
+	localStorage.setItem("metis-preview-variant", variant);
 	localStorage.setItem("metis-preview-mode", mode);
 	setThemeVars(theme);
 	updateIcons();
 
-	if (selector) {
-		selector.setAttribute("value", mode);
+	if (familySelector) {
+		familySelector.setAttribute("value", variant);
+	}
+
+	if (modeSelector) {
+		modeSelector.setAttribute("value", mode);
 	}
 
 	if (colorStage) {
+		colorStage.setAttribute("variant", variant);
 		colorStage.setAttribute("mode", mode);
 	}
 };
@@ -88,10 +102,16 @@ const setMode = (mode) => {
 cacheIconSources();
 Prism.highlightAll();
 
-document.querySelector("preset-selector")?.addEventListener("preset-change", (event) => {
+document.querySelector("[data-family-selector]")?.addEventListener("preset-change", (event) => {
 	if (event instanceof CustomEvent && typeof event.detail.value === "string") {
-		setMode(event.detail.value);
+		setPreview(event.detail.value, document.documentElement.dataset.mode || "dark");
 	}
 });
 
-setMode(getInitialMode());
+document.querySelector("[data-mode-selector]")?.addEventListener("preset-change", (event) => {
+	if (event instanceof CustomEvent && typeof event.detail.value === "string") {
+		setPreview(document.documentElement.dataset.variant || "metis", event.detail.value);
+	}
+});
+
+setPreview(getInitialVariant(), getInitialMode());

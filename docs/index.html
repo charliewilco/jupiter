@@ -15,10 +15,16 @@
 					<h1>Metis</h1>
 					<p>A color theme that made me think of Jupiter for some strange reason.</p>
 				</div>
-				<preset-selector aria-label="Theme mode">
-					<preset-def id="light"></preset-def>
-					<preset-def id="dark"></preset-def>
-				</preset-selector>
+				<div class="theme-controls" aria-label="Theme preview controls">
+					<preset-selector data-family-selector aria-label="Theme family">
+						<preset-def id="metis"></preset-def>
+						<preset-def id="ganymede"></preset-def>
+					</preset-selector>
+					<preset-selector data-mode-selector aria-label="Theme mode">
+						<preset-def id="light"></preset-def>
+						<preset-def id="dark"></preset-def>
+					</preset-selector>
+				</div>
 			</header>
 
 			<main class="preview-layout">
@@ -169,6 +175,10 @@
 							Metis keeps the palette small and maps each accent through shared role definitions. The same source file
 							produces light and dark presets, keeping the rendered code samples, editor themes, and terminal colors in
 							lockstep.
+						</p>
+						<p>
+							The Ganymede variant preserves the previous archive definition as a matched light and dark pair, so the
+							newer Metis palette can be compared against the original scheme without leaving the preview.
 						</p>
 						<p>
 							Oh Metis is the closest, most inward moon of Jupiter. I think it's mostly gas and vapor. Wait can you have

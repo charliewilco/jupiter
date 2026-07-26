@@ -1,4 +1,4 @@
-const palette = {
+const metisPalette = {
 	cyan: "#00A6D6",
 	blue: "#3D8BFF",
 	indigo: "#7C83FF",
@@ -13,7 +13,18 @@ const palette = {
 	mint: "#3FB997",
 };
 
-const modes = {
+const ganymedePalette = {
+	cyan: "#00B7ED",
+	blue: "#00B7ED",
+	yellow: "#FFBA00",
+	green: "#F1D677",
+	purple: "#F25A55",
+	red: "#F25A55",
+	orange: "#F25A55",
+	pink: "#F5837F",
+};
+
+const metisModes = {
 	dark: {
 		type: "dark",
 		colors: {
@@ -28,7 +39,7 @@ const modes = {
 			border: "#2A3A47",
 			line: "#415466",
 		},
-		accents: Object.assign({}, palette, {
+		accents: Object.assign({}, metisPalette, {
 			cyan: "#43C7E8",
 			blue: "#69A7FF",
 			indigo: "#9AA2FF",
@@ -57,7 +68,7 @@ const modes = {
 			border: "#C7D5DE",
 			line: "#9DAFBB",
 		},
-		accents: Object.assign({}, palette, {
+		accents: Object.assign({}, metisPalette, {
 			cyan: "#007FA8",
 			blue: "#1B67D7",
 			indigo: "#555FCE",
@@ -74,7 +85,51 @@ const modes = {
 	},
 };
 
-const roleMap = {
+const ganymedeModes = {
+	dark: {
+		type: "dark",
+		colors: {
+			backgroundShade: "#022538",
+			background: "#093750",
+			backgroundElevated: "#0B4867",
+			backgroundMuted: "#055682",
+			selection: "#1C7DB1",
+			foreground: "#DCEBF5",
+			foregroundMuted: "#A2D9F5",
+			foregroundSubtle: "#1C7DB1",
+			border: "#1C7DB1",
+			line: "#A2D9F5",
+		},
+		accents: ganymedePalette,
+	},
+	light: {
+		type: "light",
+		colors: {
+			backgroundShade: "#D8EEF8",
+			background: "#F4FBFE",
+			backgroundElevated: "#E7F5FB",
+			backgroundMuted: "#CFEAF6",
+			selection: "#B4E5F6",
+			foreground: "#093750",
+			foregroundMuted: "#315B71",
+			foregroundSubtle: "#557E92",
+			border: "#AED2E3",
+			line: "#79AFC9",
+		},
+		accents: {
+			cyan: "#007EA3",
+			blue: "#007EA3",
+			yellow: "#9E7100",
+			green: "#6F641B",
+			purple: "#B53331",
+			red: "#B53331",
+			orange: "#B53331",
+			pink: "#B6524F",
+		},
+	},
+};
+
+const metisRoleMap = {
 	syntax: {
 		constant: "cyan",
 		identifier: "blue",
@@ -99,8 +154,51 @@ const roleMap = {
 	},
 };
 
-const makeTheme = (name, mode) => {
-	const source = modes[mode];
+const ganymedeRoleMap = {
+	syntax: {
+		constant: "cyan",
+		identifier: "blue",
+		statement: "yellow",
+		type: "green",
+		global: "purple",
+		emphasis: "pink",
+		special: "orange",
+		string: "red",
+		regexp: "pink",
+		number: "yellow",
+		operator: "cyan",
+		tag: "blue",
+		attribute: "yellow",
+		deleted: "red",
+		inserted: "green",
+		changed: "orange",
+	},
+	ui: {
+		userActionNeeded: "red",
+		userCurrentState: "cyan",
+	},
+};
+
+const variants = {
+	metis: {
+		name: "Metis",
+		slug: "metis",
+		palette: metisPalette,
+		roles: metisRoleMap,
+		modes: metisModes,
+	},
+	ganymede: {
+		name: "Ganymede",
+		slug: "ganymede",
+		palette: ganymedePalette,
+		roles: ganymedeRoleMap,
+		modes: ganymedeModes,
+	},
+};
+
+const makeTheme = (variantSlug, mode) => {
+	const variant = variants[variantSlug];
+	const source = variant.modes[mode];
 	const colors = source.accents;
 	const grays = {
 		gray0: source.colors.backgroundShade,
@@ -124,62 +222,64 @@ const makeTheme = (name, mode) => {
 			foregroundSubtle: source.colors.foregroundSubtle,
 			border: source.colors.border,
 			line: source.colors.line,
-			userActionNeeded: colors[roleMap.ui.userActionNeeded],
-			userCurrentState: colors[roleMap.ui.userCurrentState],
+			userActionNeeded: colors[variant.roles.ui.userActionNeeded],
+			userCurrentState: colors[variant.roles.ui.userCurrentState],
 		},
 		grays,
 	);
 
 	const syntaxGroups = {
-		constant: colors[roleMap.syntax.constant],
-		identifier: colors[roleMap.syntax.identifier],
-		statement: colors[roleMap.syntax.statement],
-		type: colors[roleMap.syntax.type],
-		global: colors[roleMap.syntax.global],
-		emphasis: colors[roleMap.syntax.emphasis],
-		special: colors[roleMap.syntax.special],
-		string: colors[roleMap.syntax.string],
-		regexp: colors[roleMap.syntax.regexp],
-		number: colors[roleMap.syntax.number],
-		operator: colors[roleMap.syntax.operator],
-		tag: colors[roleMap.syntax.tag],
-		attribute: colors[roleMap.syntax.attribute],
+		constant: colors[variant.roles.syntax.constant],
+		identifier: colors[variant.roles.syntax.identifier],
+		statement: colors[variant.roles.syntax.statement],
+		type: colors[variant.roles.syntax.type],
+		global: colors[variant.roles.syntax.global],
+		emphasis: colors[variant.roles.syntax.emphasis],
+		special: colors[variant.roles.syntax.special],
+		string: colors[variant.roles.syntax.string],
+		regexp: colors[variant.roles.syntax.regexp],
+		number: colors[variant.roles.syntax.number],
+		operator: colors[variant.roles.syntax.operator],
+		tag: colors[variant.roles.syntax.tag],
+		attribute: colors[variant.roles.syntax.attribute],
 		trivial: source.colors.foregroundSubtle,
 	};
 
 	const versionControlGroups = {
-		added: colors[roleMap.syntax.inserted],
-		modified: colors[roleMap.syntax.changed],
-		removed: colors[roleMap.syntax.deleted],
-		renamed: colors[roleMap.syntax.identifier],
+		added: colors[variant.roles.syntax.inserted],
+		modified: colors[variant.roles.syntax.changed],
+		removed: colors[variant.roles.syntax.deleted],
+		renamed: colors[variant.roles.syntax.identifier],
 	};
+	const accent = (...names) => colors[names.find((name) => colors[name])];
 
 	const ansiGroups = {
 		normal: {
 			black: uiGroups.background,
-			red: colors.red,
-			green: colors.green,
-			yellow: colors.amber,
-			blue: colors.blue,
-			magenta: colors.magenta,
-			cyan: colors.cyan,
+			red: accent("red", "orange"),
+			green: accent("green", "mint"),
+			yellow: accent("amber", "yellow"),
+			blue: accent("blue", "cyan"),
+			magenta: accent("magenta", "pink", "purple"),
+			cyan: accent("cyan", "blue"),
 			white: uiGroups.foreground,
 		},
 		bright: {
 			black: uiGroups.foregroundSubtle,
-			red: colors.rose,
-			green: colors.mint,
-			yellow: colors.yellow,
-			blue: colors.indigo,
-			magenta: colors.violet,
-			cyan: colors.cyan,
+			red: accent("rose", "orange", "red"),
+			green: accent("mint", "green"),
+			yellow: accent("yellow", "amber"),
+			blue: accent("indigo", "blue"),
+			magenta: accent("violet", "pink", "purple", "magenta"),
+			cyan: accent("cyan", "blue"),
 			white: mode === "dark" ? "#F5FAFD" : "#FFFFFF",
 		},
 	};
 
 	return {
-		name,
-		slug: name.toLowerCase().replace(/\s+/g, "-"),
+		name: `${variant.name} ${mode.replace(/^./, (letter) => letter.toUpperCase())}`,
+		slug: `${variant.slug}-${mode}`,
+		variant: variant.slug,
 		type: source.type,
 		colors,
 		grays,
@@ -190,19 +290,38 @@ const makeTheme = (name, mode) => {
 	};
 };
 
-const dark = makeTheme("Metis Dark", "dark");
-const light = makeTheme("Metis Light", "light");
+const makeVariantDefinitions = (variantSlug) => {
+	const variant = variants[variantSlug];
+	const themes = {
+		dark: makeTheme(variantSlug, "dark"),
+		light: makeTheme(variantSlug, "light"),
+	};
+
+	return {
+		name: variant.name,
+		slug: variant.slug,
+		palette: variant.palette,
+		roles: variant.roles,
+		themes,
+	};
+};
+
+const metis = makeVariantDefinitions("metis");
+const ganymede = makeVariantDefinitions("ganymede");
+const dark = metis.themes.dark;
+const light = metis.themes.light;
 
 const definitions = {
 	name: "Metis",
 	slug: "metis",
 	version: "3.0.0",
-	palette,
-	roles: roleMap,
-	themes: {
-		dark,
-		light,
+	palette: metis.palette,
+	roles: metis.roles,
+	variants: {
+		metis,
+		ganymede,
 	},
+	themes: metis.themes,
 };
 
 module.exports = Object.assign({}, dark, {
@@ -211,6 +330,9 @@ module.exports = Object.assign({}, dark, {
 	definitions,
 	themes: definitions.themes,
 	modes: definitions.themes,
+	variants: definitions.variants,
+	metis,
+	ganymede,
 	dark,
 	light,
 });

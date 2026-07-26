@@ -2,11 +2,11 @@
 
 import definitions from "../../definitions/metis.json";
 
-const themes = /** @type {Record<string, typeof definitions.themes.dark>} */ (definitions.themes);
+const variants = /** @type {Record<string, typeof definitions.variants.metis>} */ (definitions.variants);
 
 class ColorStage extends HTMLElement {
 	static get observedAttributes() {
-		return ["mode"];
+		return ["mode", "variant"];
 	}
 
 	connectedCallback() {
@@ -19,11 +19,23 @@ class ColorStage extends HTMLElement {
 	}
 
 	attributeChangedCallback() {
+		this.#render();
 		this.#sync();
+	}
+
+	get variant() {
+		const variant = this.getAttribute("variant");
+
+		return variant && variants[variant] ? variant : "metis";
+	}
+
+	set variant(value) {
+		this.setAttribute("variant", value);
 	}
 
 	get mode() {
 		const mode = this.getAttribute("mode");
+		const themes = variants[this.variant].themes;
 
 		return mode && themes[mode] ? mode : "dark";
 	}
@@ -35,7 +47,7 @@ class ColorStage extends HTMLElement {
 	#render() {
 		this.replaceChildren();
 
-		Object.keys(definitions.palette).forEach((name) => {
+		Object.keys(variants[this.variant].palette).forEach((name) => {
 			const figure = document.createElement("figure");
 			const button = document.createElement("button");
 			const object = document.createElement("object");
@@ -61,7 +73,7 @@ class ColorStage extends HTMLElement {
 	}
 
 	#sync() {
-		const theme = themes[this.mode];
+		const theme = variants[this.variant].themes[this.mode];
 		const colors = /** @type {Record<string, string>} */ (theme.colors);
 
 		/** @type {NodeListOf<HTMLElement>} */
@@ -88,7 +100,7 @@ class ColorStage extends HTMLElement {
 	 * @param {HTMLButtonElement} button
 	 */
 	async #copy(name, button) {
-		const colors = /** @type {Record<string, string>} */ (themes[this.mode].colors);
+		const colors = /** @type {Record<string, string>} */ (variants[this.variant].themes[this.mode].colors);
 		const color = colors[name];
 
 		try {

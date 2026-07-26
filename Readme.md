@@ -4,13 +4,13 @@ Metis is a color system and theme set for terminal, editor, and syntax highlight
 
 Supported targets:
 
-- Codex: `codex/metis-dark.json`, `codex/metis-light.json`
-- Ghostty: `ghostty/metis-dark`, `ghostty/metis-light`
-- iTerm2: `iterm/Metis Dark.itermcolors`, `iterm/Metis Light.itermcolors`
-- Xcode: `xcode/Metis Dark.xccolortheme`, `xcode/Metis Light.xccolortheme`
-- VSCode: `vscode/themes/metis-dark-color-theme.json`, `vscode/themes/metis-light-color-theme.json`
-- Shiki: `shiki/metis-dark.json`, `shiki/metis-light.json`
-- Vim: `colors/metis.vim`, `autoload/airline/themes/metis.vim`
+- Codex: `codex/metis-dark.json`, `codex/metis-light.json`, `codex/ganymede-dark.json`, `codex/ganymede-light.json`
+- Ghostty: `ghostty/metis-dark`, `ghostty/metis-light`, `ghostty/ganymede-dark`, `ghostty/ganymede-light`
+- iTerm2: `iterm/Metis Dark.itermcolors`, `iterm/Metis Light.itermcolors`, `iterm/Ganymede Dark.itermcolors`, `iterm/Ganymede Light.itermcolors`
+- Xcode: `xcode/Metis Dark.xccolortheme`, `xcode/Metis Light.xccolortheme`, `xcode/Ganymede Dark.xccolortheme`, `xcode/Ganymede Light.xccolortheme`
+- VSCode: `vscode/themes/metis-dark-color-theme.json`, `vscode/themes/metis-light-color-theme.json`, `vscode/themes/ganymede-dark-color-theme.json`, `vscode/themes/ganymede-light-color-theme.json`
+- Shiki: `shiki/metis-dark.json`, `shiki/metis-light.json`, `shiki/ganymede-dark.json`, `shiki/ganymede-light.json`
+- Vim: `colors/metis.vim`, `colors/ganymede.vim`, `autoload/airline/themes/metis.vim`, `autoload/airline/themes/ganymede.vim`
 - PrismJS: `prismjs/metis.css`
 - Generic definitions: `definitions/metis.json`
 
@@ -42,11 +42,11 @@ colorscheme metis
 let g:airline_theme = "metis"
 ```
 
-Use `set background=light` before loading the colorscheme for the light variant.
+Use `set background=light` before loading the colorscheme for the light variant. Use `colorscheme ganymede` and `let g:airline_theme = "ganymede"` for the archived Ganymede variant.
 
 ## PrismJS
 
-Load `prismjs/metis.css` and scope code blocks with either `.metis-dark`, `.metis-light`, `data-theme="metis-dark"`, or `data-theme="metis-light"`.
+Load `prismjs/metis.css` and scope code blocks with `.metis-dark`, `.metis-light`, `.ganymede-dark`, `.ganymede-light`, or the matching `data-theme` value.
 
 ## Package
 
@@ -57,5 +57,7 @@ const Metis = require("metis");
 
 Metis.themes.dark;
 Metis.themes.light;
+Metis.variants.ganymede.themes.dark;
+Metis.variants.ganymede.themes.light;
 Metis.definitions;
 ```

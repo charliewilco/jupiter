@@ -32,6 +32,16 @@
         "label": "Metis Light",
         "uiTheme": "vs",
         "path": "./themes/metis-light-color-theme.json"
+      },
+      {
+        "label": "Ganymede Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ganymede-dark-color-theme.json"
+      },
+      {
+        "label": "Ganymede Light",
+        "uiTheme": "vs",
+        "path": "./themes/ganymede-light-color-theme.json"
       }
     ]
   }
