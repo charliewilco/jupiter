@@ -1,248 +1,220 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Metis Theme Previewer</title>
-		<meta name="description" content="Preview Metis colors across code, terminal, and editor surfaces." />
-		<link rel="stylesheet" href="./src/styles.css" />
-		<script type="module" src="./src/main.js"></script>
-	</head>
-	<body>
-		<div class="page-shell">
-			<header class="site-header">
-				<div class="header-copy">
-					<h1>Metis</h1>
-					<p>A source-driven theme family for the editors, terminals, and renderers this repo ships.</p>
-				</div>
-				<preset-selector aria-label="Theme mode">
-					<preset-def id="light"></preset-def>
-					<preset-def id="dark"></preset-def>
-				</preset-selector>
-			</header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Metis Theme Previewer</title>
+    <meta
+      name="description"
+      content="Preview Metis colors across code, terminal, and editor surfaces."
+    />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/main.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="header-copy">
+          <h1>Metis</h1>
+          <p>
+            A source-driven theme family for the editors, terminals, and
+            renderers this repo ships.
+          </p>
+        </div>
+        <preset-selector aria-label="Theme mode">
+          <preset-def id="light"></preset-def>
+          <preset-def id="dark"></preset-def>
+        </preset-selector>
+      </header>
 
-			<main class="preview-layout">
-				<aside class="sidebar" aria-labelledby="outputs-title">
-					<h2 id="outputs-title">Outputs</h2>
-					<ul class="output-list">
-						<li>
-							<picture class="output-icon" data-icon-target="iterm2">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/iterm2.svg"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/iterm2.svg"
-								/>
-								<img
-									src="./assets/icons/dark/iterm2.svg"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>iTerm2</span>
-						</li>
-						<li>
-							<picture class="output-icon" data-icon-target="ghostty">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/ghostty.png"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/ghostty.png"
-								/>
-								<img
-									src="./assets/icons/dark/ghostty.png"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>Ghostty</span>
-						</li>
-						<li>
-							<picture class="output-icon" data-icon-target="codex">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/codex.svg"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/codex.svg"
-								/>
-								<img
-									src="./assets/icons/dark/codex.svg"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>Codex</span>
-						</li>
-						<li>
-							<picture class="output-icon" data-icon-target="vim">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/vim.svg"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/vim.svg"
-								/>
-								<img src="./assets/icons/dark/vim.svg" alt="" width="28" height="28" loading="lazy" decoding="async" />
-							</picture>
-							<span>Vim</span>
-						</li>
-						<li>
-							<picture class="output-icon" data-icon-target="xcode">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/xcode.png"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/xcode.png"
-								/>
-								<img
-									src="./assets/icons/dark/xcode.png"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>Xcode</span>
-						</li>
-						<li>
-							<picture class="output-icon" data-icon-target="vscode">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/vscode.png"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/vscode.png"
-								/>
-								<img
-									src="./assets/icons/dark/vscode.png"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>VSCode</span>
-						</li>
-					</ul>
-					<p class="secondary-outputs">Also available for PrismJS, Shiki, and source definitions.</p>
-				</aside>
+      <main class="preview-layout">
+        <aside class="sidebar" aria-labelledby="outputs-title">
+          <h2 id="outputs-title">Outputs</h2>
+          <ul class="output-list">
+            <li>
+              <picture class="output-icon" data-icon-target="iterm2">
+                <source
+                  data-icon-mode="light"
+                  media="(prefers-color-scheme: light)"
+                  srcset="./assets/icons/light/iterm2.svg"
+                />
+                <source
+                  data-icon-mode="dark"
+                  media="(prefers-color-scheme: dark)"
+                  srcset="./assets/icons/dark/iterm2.svg"
+                />
+                <img
+                  src="./assets/icons/dark/iterm2.svg"
+                  alt=""
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <span>iTerm2</span>
+            </li>
+            <li>
+              <picture class="output-icon" data-icon-target="ghostty">
+                <source
+                  data-icon-mode="light"
+                  media="(prefers-color-scheme: light)"
+                  srcset="./assets/icons/light/ghostty.png"
+                />
+                <source
+                  data-icon-mode="dark"
+                  media="(prefers-color-scheme: dark)"
+                  srcset="./assets/icons/dark/ghostty.png"
+                />
+                <img
+                  src="./assets/icons/dark/ghostty.png"
+                  alt=""
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <span>Ghostty</span>
+            </li>
+            <li>
+              <picture class="output-icon" data-icon-target="codex">
+                <source
+                  data-icon-mode="light"
+                  media="(prefers-color-scheme: light)"
+                  srcset="./assets/icons/light/codex.svg"
+                />
+                <source
+                  data-icon-mode="dark"
+                  media="(prefers-color-scheme: dark)"
+                  srcset="./assets/icons/dark/codex.svg"
+                />
+                <img
+                  src="./assets/icons/dark/codex.svg"
+                  alt=""
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <span>Codex</span>
+            </li>
+            <li>
+              <picture class="output-icon" data-icon-target="vim">
+                <source
+                  data-icon-mode="light"
+                  media="(prefers-color-scheme: light)"
+                  srcset="./assets/icons/light/vim.svg"
+                />
+                <source
+                  data-icon-mode="dark"
+                  media="(prefers-color-scheme: dark)"
+                  srcset="./assets/icons/dark/vim.svg"
+                />
+                <img
+                  src="./assets/icons/dark/vim.svg"
+                  alt=""
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <span>Vim</span>
+            </li>
+            <li>
+              <picture class="output-icon" data-icon-target="xcode">
+                <source
+                  data-icon-mode="light"
+                  media="(prefers-color-scheme: light)"
+                  srcset="./assets/icons/light/xcode.png"
+                />
+                <source
+                  data-icon-mode="dark"
+                  media="(prefers-color-scheme: dark)"
+                  srcset="./assets/icons/dark/xcode.png"
+                />
+                <img
+                  src="./assets/icons/dark/xcode.png"
+                  alt=""
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <span>Xcode</span>
+            </li>
+            <li>
+              <picture class="output-icon" data-icon-target="vscode">
+                <source
+                  data-icon-mode="light"
+                  media="(prefers-color-scheme: light)"
+                  srcset="./assets/icons/light/vscode.png"
+                />
+                <source
+                  data-icon-mode="dark"
+                  media="(prefers-color-scheme: dark)"
+                  srcset="./assets/icons/dark/vscode.png"
+                />
+                <img
+                  src="./assets/icons/dark/vscode.png"
+                  alt=""
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <span>VSCode</span>
+            </li>
+          </ul>
+          <p class="secondary-outputs">
+            Also available for PrismJS, Shiki, and source definitions.
+          </p>
+        </aside>
 
-				<article class="theme-article" aria-labelledby="article-title">
-					<section class="color-stage" aria-label="Metis palette">
-						<button type="button" class="color-orb orb-cyan" data-copy-color="cyan">
-							<span>Cyan</span>
-							<code data-color-name="cyan"></code>
-						</button>
-						<button type="button" class="color-orb orb-blue" data-copy-color="blue">
-							<span>Blue</span>
-							<code data-color-name="blue"></code>
-						</button>
-						<button type="button" class="color-orb orb-indigo" data-copy-color="indigo">
-							<span>Indigo</span>
-							<code data-color-name="indigo"></code>
-						</button>
-						<button type="button" class="color-orb orb-violet" data-copy-color="violet">
-							<span>Violet</span>
-							<code data-color-name="violet"></code>
-						</button>
-						<button type="button" class="color-orb orb-magenta" data-copy-color="magenta">
-							<span>Magenta</span>
-							<code data-color-name="magenta"></code>
-						</button>
-						<button type="button" class="color-orb orb-rose" data-copy-color="rose">
-							<span>Rose</span>
-							<code data-color-name="rose"></code>
-						</button>
-						<button type="button" class="color-orb orb-red" data-copy-color="red">
-							<span>Red</span>
-							<code data-color-name="red"></code>
-						</button>
-						<button type="button" class="color-orb orb-orange" data-copy-color="orange">
-							<span>Orange</span>
-							<code data-color-name="orange"></code>
-						</button>
-						<button type="button" class="color-orb orb-amber" data-copy-color="amber">
-							<span>Amber</span>
-							<code data-color-name="amber"></code>
-						</button>
-						<button type="button" class="color-orb orb-yellow" data-copy-color="yellow">
-							<span>Yellow</span>
-							<code data-color-name="yellow"></code>
-						</button>
-						<button type="button" class="color-orb orb-green" data-copy-color="green">
-							<span>Green</span>
-							<code data-color-name="green"></code>
-						</button>
-						<button type="button" class="color-orb orb-mint" data-copy-color="mint">
-							<span>Mint</span>
-							<code data-color-name="mint"></code>
-						</button>
-					</section>
+        <article class="theme-article" aria-labelledby="article-title">
+          <color-stage aria-label="Metis palette"></color-stage>
 
-					<section class="explainer" aria-labelledby="article-title">
-						<p class="section-kicker">Preview</p>
-						<h2 id="article-title">A compact palette with enough separation for code, terminals, and renderers.</h2>
-						<p>
-							Metis keeps the palette small and maps each accent through shared role definitions. The same source file
-							produces light and dark presets, keeping the rendered code samples, editor themes, and terminal colors in
-							lockstep.
-						</p>
-					</section>
+          <section class="explainer" aria-labelledby="article-title">
+            <p class="section-kicker">Preview</p>
+            <h2 id="article-title">
+              A compact palette with enough separation for code, terminals, and
+              renderers.
+            </h2>
+            <p>
+              Metis keeps the palette small and maps each accent through shared
+              role definitions. The same source file produces light and dark
+              presets, keeping the rendered code samples, editor themes, and
+              terminal colors in lockstep.
+            </p>
+          </section>
 
-					<section class="snippet-grid" aria-label="Prism rendered examples">
-						<div class="snippet-card">
-							<div class="snippet-heading">
-								<h3>TypeScript</h3>
-								<code>theme.ts</code>
-							</div>
-							<pre
-								class="language-typescript"
-							><code class="language-typescript">type Output = "ghostty" | "xcode" | "prism";
+          <section class="snippet-grid" aria-label="Prism rendered examples">
+            <div class="snippet-card">
+              <div class="snippet-heading">
+                <h3>TypeScript</h3>
+                <code>theme.ts</code>
+              </div>
+              <pre
+                class="language-typescript"
+              ><code class="language-typescript">type Output = "ghostty" | "xcode" | "prism";
 
 const writeTheme = async (output: Output) =&gt; {
 	const preset = await loadPreset("metis-dark");
 	return buildArtifact({ output, preset });
 };</code></pre>
-						</div>
-						<div class="snippet-card">
-							<div class="snippet-heading">
-								<h3>Go</h3>
-								<code>theme.go</code>
-							</div>
-							<pre class="language-go"><code class="language-go">type TokenRole string
+            </div>
+            <div class="snippet-card">
+              <div class="snippet-heading">
+                <h3>Go</h3>
+                <code>theme.go</code>
+              </div>
+              <pre
+                class="language-go"
+              ><code class="language-go">type TokenRole string
 
 func Resolve(role TokenRole, palette Palette) string {
 	if role == "statement" {
@@ -250,13 +222,15 @@ func Resolve(role TokenRole, palette Palette) string {
 	}
 	return palette.Foreground
 }</code></pre>
-						</div>
-						<div class="snippet-card">
-							<div class="snippet-heading">
-								<h3>Swift</h3>
-								<code>Theme.swift</code>
-							</div>
-							<pre class="language-swift"><code class="language-swift">struct MetisTheme {
+            </div>
+            <div class="snippet-card">
+              <div class="snippet-heading">
+                <h3>Swift</h3>
+                <code>Theme.swift</code>
+              </div>
+              <pre
+                class="language-swift"
+              ><code class="language-swift">struct MetisTheme {
 	let name: String
 	let syntax: [String: Color]
 
@@ -264,27 +238,27 @@ func Resolve(role TokenRole, palette Palette) string {
 		syntax[role] ?? syntax["trivial"]!
 	}
 }</code></pre>
-						</div>
-						<div class="snippet-card">
-							<div class="snippet-heading">
-								<h3>Rust</h3>
-								<code>theme.rs</code>
-							</div>
-							<pre
-								class="language-rust"
-							><code class="language-rust">pub fn accent(role: &amp;str, theme: &amp;Theme) -&gt; Color {
+            </div>
+            <div class="snippet-card">
+              <div class="snippet-heading">
+                <h3>Rust</h3>
+                <code>theme.rs</code>
+              </div>
+              <pre
+                class="language-rust"
+              ><code class="language-rust">pub fn accent(role: &amp;str, theme: &amp;Theme) -&gt; Color {
 	match role {
 		"string" =&gt; theme.mint,
 		"number" =&gt; theme.yellow,
 		_ =&gt; theme.foreground,
 	}
 }</code></pre>
-						</div>
-					</section>
-				</article>
-			</main>
+            </div>
+          </section>
+        </article>
+      </main>
 
-			<footer class="site-footer" aria-label="Footer"></footer>
-		</div>
-	</body>
+      <footer class="site-footer" aria-label="Footer"></footer>
+    </div>
+  </body>
 </html>
