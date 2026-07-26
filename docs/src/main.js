@@ -1,8 +1,13 @@
 import definitions from "../../definitions/metis.json";
+import "./PresetSelector.js";
 
 const toKebab = (value) => value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
 
-const getInitialMode = () => localStorage.getItem("metis-preview-mode") || "dark";
+const getInitialMode = () => {
+  const mode = localStorage.getItem("metis-preview-mode");
+
+  return mode && definitions.themes[mode] ? mode : "dark";
+};
 const getCurrentTheme = () => definitions.themes[document.documentElement.dataset.mode || "dark"];
 
 const setText = (selector, value) => {
@@ -97,9 +102,11 @@ const setMode = (mode) => {
   updateValues();
   updateIcons();
 
-  document.querySelectorAll("[data-mode-option]").forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.modeOption === mode));
-  });
+  const selector = document.querySelector("preset-selector");
+
+  if (selector) {
+    selector.setAttribute("value", mode);
+  }
 };
 
 setText("[data-version]", definitions.version);
@@ -109,8 +116,10 @@ setText("[data-role-count]", Object.keys(definitions.themes.dark.syntaxGroups).l
 cacheIconSources();
 bindSwatches();
 
-document.querySelectorAll("[data-mode-option]").forEach((button) => {
-  button.addEventListener("click", () => setMode(button.dataset.modeOption));
+document.querySelector("preset-selector")?.addEventListener("preset-change", (event) => {
+  if (event instanceof CustomEvent && typeof event.detail.value === "string") {
+    setMode(event.detail.value);
+  }
 });
 
 setMode(getInitialMode());

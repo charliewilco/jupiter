@@ -82,32 +82,6 @@ h1 {
   font-size: 0.76rem;
 }
 
-.mode-control {
-  display: inline-grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  overflow: hidden;
-  min-width: 142px;
-  background: var(--ui-border);
-  border: 1px solid var(--ui-border);
-  border-radius: 7px;
-}
-
-.mode-control button {
-  min-height: 34px;
-  padding: 0 14px;
-  cursor: pointer;
-  background: var(--ui-background-elevated);
-  border: 0;
-  font-size: 0.82rem;
-  font-weight: 760;
-}
-
-.mode-control button[aria-pressed="true"] {
-  color: var(--ui-background);
-  background: var(--ui-foreground);
-}
-
 main {
   padding-top: 22px;
 }
@@ -546,7 +520,7 @@ pre,
     grid-template-columns: 1fr;
   }
 
-  .mode-control {
+  preset-selector {
     width: 100%;
   }
 
