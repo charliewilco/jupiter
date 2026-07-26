@@ -1,14 +1,16 @@
 import definitions from "../../definitions/metis.json";
 import "./PresetSelector.js";
 
-const toKebab = (value) => value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
+const toKebab = (value) =>
+  value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
 
 const getInitialMode = () => {
   const mode = localStorage.getItem("metis-preview-mode");
 
   return mode && definitions.themes[mode] ? mode : "dark";
 };
-const getCurrentTheme = () => definitions.themes[document.documentElement.dataset.mode || "dark"];
+const getCurrentTheme = () =>
+  definitions.themes[document.documentElement.dataset.mode || "dark"];
 
 const setText = (selector, value) => {
   const node = document.querySelector(selector);
@@ -25,7 +27,7 @@ const setThemeVars = (theme) => {
     ["syntax", theme.syntaxGroups],
     ["version", theme.versionControlGroups],
     ["color", theme.colors],
-    ["ansi", theme.ansiGroups.normal]
+    ["ansi", theme.ansiGroups.normal],
   ];
 
   groups.forEach(([prefix, values]) => {
@@ -111,15 +113,23 @@ const setMode = (mode) => {
 
 setText("[data-version]", definitions.version);
 setText("[data-palette-count]", Object.keys(definitions.palette).length);
-setText("[data-role-count]", Object.keys(definitions.themes.dark.syntaxGroups).length);
+setText(
+  "[data-role-count]",
+  Object.keys(definitions.themes.dark.syntaxGroups).length,
+);
 
 cacheIconSources();
 bindSwatches();
 
-document.querySelector("preset-selector")?.addEventListener("preset-change", (event) => {
-  if (event instanceof CustomEvent && typeof event.detail.value === "string") {
-    setMode(event.detail.value);
-  }
-});
+document
+  .querySelector("preset-selector")
+  ?.addEventListener("preset-change", (event) => {
+    if (
+      event instanceof CustomEvent &&
+      typeof event.detail.value === "string"
+    ) {
+      setMode(event.detail.value);
+    }
+  });
 
 setMode(getInitialMode());

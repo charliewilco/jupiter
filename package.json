@@ -20,6 +20,7 @@
     "vscode"
   ],
   "devDependencies": {
-    "parcel": "^2.16.4"
+    "parcel": "^2.16.4",
+    "prettier": "^3.9.6"
   }
 }

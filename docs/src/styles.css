@@ -1,7 +1,12 @@
 :root {
   color-scheme: dark;
   font-family:
-    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   font-size: 16px;
   line-height: 1.5;
   text-rendering: geometricPrecision;
@@ -308,7 +313,10 @@ pre,
 
 .role-row {
   display: grid;
-  grid-template-columns: 18px minmax(80px, 0.74fr) minmax(0, 1fr) minmax(86px, auto);
+  grid-template-columns: 18px minmax(80px, 0.74fr) minmax(0, 1fr) minmax(
+      86px,
+      auto
+    );
   gap: 10px;
   align-items: center;
   min-height: 48px;
@@ -321,7 +329,8 @@ pre,
   aspect-ratio: 1;
   border-radius: 50%;
   background: var(--sample-color);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ui-border) 55%, transparent);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--ui-border) 55%, transparent);
 }
 
 .role-row strong,
@@ -447,7 +456,10 @@ pre,
 
 .target-row {
   display: grid;
-  grid-template-columns: 38px minmax(80px, 0.42fr) minmax(82px, 0.5fr) minmax(0, 1.7fr);
+  grid-template-columns: 38px minmax(80px, 0.42fr) minmax(82px, 0.5fr) minmax(
+      0,
+      1.7fr
+    );
   gap: 12px;
   align-items: center;
   min-height: 52px;

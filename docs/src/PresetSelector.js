@@ -6,7 +6,11 @@ class PresetDef extends HTMLElement {
   }
 
   get label() {
-    return this.getAttribute("label") || this.textContent.trim() || this.presetId.replace(/^./, (letter) => letter.toUpperCase());
+    return (
+      this.getAttribute("label") ||
+      this.textContent.trim() ||
+      this.presetId.replace(/^./, (letter) => letter.toUpperCase())
+    );
   }
 }
 
@@ -95,7 +99,10 @@ class PresetSelector extends HTMLElement {
     `;
 
     wrapper.setAttribute("role", "group");
-    wrapper.setAttribute("aria-label", this.getAttribute("aria-label") || "Preset");
+    wrapper.setAttribute(
+      "aria-label",
+      this.getAttribute("aria-label") || "Preset",
+    );
     wrapper.style.setProperty("--preset-count", String(defs.length || 1));
     this.#buttons.clear();
 
@@ -124,8 +131,8 @@ class PresetSelector extends HTMLElement {
     this.dispatchEvent(
       new CustomEvent("preset-change", {
         bubbles: true,
-        detail: { value }
-      })
+        detail: { value },
+      }),
     );
   }
 

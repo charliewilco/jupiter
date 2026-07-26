@@ -1,11 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Metis Theme Previewer</title>
-    <meta name="description" content="Preview Metis colors across code, terminal, and editor surfaces.">
-    <link rel="stylesheet" href="./src/styles.css">
+    <meta
+      name="description"
+      content="Preview Metis colors across code, terminal, and editor surfaces."
+    />
+    <link rel="stylesheet" href="./src/styles.css" />
     <script type="module" src="./src/main.js"></script>
   </head>
   <body>
@@ -25,10 +28,19 @@
 
       <main>
         <section class="specimen-grid" aria-label="Metis specimen">
-          <section class="specimen-panel lead-panel" aria-labelledby="overview-title">
+          <section
+            class="specimen-panel lead-panel"
+            aria-labelledby="overview-title"
+          >
             <p class="section-kicker">Overview</p>
-            <h2 id="overview-title">Source-driven themes for the tools this repo actually ships.</h2>
-            <p>The preview reads the checked-in Metis definitions and renders the current mode. The same source writes Ghostty, iTerm2, Xcode, VSCode, Shiki, Vim, and PrismJS outputs.</p>
+            <h2 id="overview-title">
+              Source-driven themes for the tools this repo actually ships.
+            </h2>
+            <p>
+              The preview reads the checked-in Metis definitions and renders the
+              current mode. The same source writes Ghostty, iTerm2, Xcode,
+              VSCode, Shiki, Vim, and PrismJS outputs.
+            </p>
             <dl class="overview-list">
               <div>
                 <dt>Source</dt>
@@ -36,7 +48,10 @@
               </div>
               <div>
                 <dt>Palette</dt>
-                <dd><span data-palette-count></span> accents, <span data-role-count></span> syntax roles</dd>
+                <dd>
+                  <span data-palette-count></span> accents,
+                  <span data-role-count></span> syntax roles
+                </dd>
               </div>
               <div>
                 <dt>Build</dt>
@@ -45,7 +60,10 @@
             </dl>
           </section>
 
-          <section class="specimen-panel code-panel" aria-labelledby="code-title">
+          <section
+            class="specimen-panel code-panel"
+            aria-labelledby="code-title"
+          >
             <div class="panel-heading">
               <div>
                 <p class="section-kicker">Code</p>
@@ -69,7 +87,10 @@
             </div>
           </section>
 
-          <section class="specimen-panel role-panel" aria-labelledby="roles-title">
+          <section
+            class="specimen-panel role-panel"
+            aria-labelledby="roles-title"
+          >
             <div class="panel-heading">
               <div>
                 <p class="section-kicker">Roles</p>
@@ -78,49 +99,73 @@
             </div>
             <div class="role-list">
               <div class="role-row">
-                <span class="sample-dot" style="--sample-color: var(--syntax-statement)"></span>
+                <span
+                  class="sample-dot"
+                  style="--sample-color: var(--syntax-statement)"
+                ></span>
                 <strong>Statement</strong>
                 <span>keyword, storage, control</span>
                 <code data-role-value="statement"></code>
               </div>
               <div class="role-row">
-                <span class="sample-dot" style="--sample-color: var(--syntax-identifier)"></span>
+                <span
+                  class="sample-dot"
+                  style="--sample-color: var(--syntax-identifier)"
+                ></span>
                 <strong>Identifier</strong>
                 <span>functions, methods, symbols</span>
                 <code data-role-value="identifier"></code>
               </div>
               <div class="role-row">
-                <span class="sample-dot" style="--sample-color: var(--syntax-constant)"></span>
+                <span
+                  class="sample-dot"
+                  style="--sample-color: var(--syntax-constant)"
+                ></span>
                 <strong>Constant</strong>
                 <span>properties, enums, attributes</span>
                 <code data-role-value="constant"></code>
               </div>
               <div class="role-row">
-                <span class="sample-dot" style="--sample-color: var(--syntax-type)"></span>
+                <span
+                  class="sample-dot"
+                  style="--sample-color: var(--syntax-type)"
+                ></span>
                 <strong>Type</strong>
                 <span>classes, structs, interfaces</span>
                 <code data-role-value="type"></code>
               </div>
               <div class="role-row">
-                <span class="sample-dot" style="--sample-color: var(--syntax-string)"></span>
+                <span
+                  class="sample-dot"
+                  style="--sample-color: var(--syntax-string)"
+                ></span>
                 <strong>String</strong>
                 <span>quoted content</span>
                 <code data-role-value="string"></code>
               </div>
               <div class="role-row">
-                <span class="sample-dot" style="--sample-color: var(--syntax-number)"></span>
+                <span
+                  class="sample-dot"
+                  style="--sample-color: var(--syntax-number)"
+                ></span>
                 <strong>Number</strong>
                 <span>numeric literals</span>
                 <code data-role-value="number"></code>
               </div>
               <div class="role-row">
-                <span class="sample-dot" style="--sample-color: var(--syntax-operator)"></span>
+                <span
+                  class="sample-dot"
+                  style="--sample-color: var(--syntax-operator)"
+                ></span>
                 <strong>Operator</strong>
                 <span>punctuation, separators</span>
                 <code data-role-value="operator"></code>
               </div>
               <div class="role-row">
-                <span class="sample-dot" style="--sample-color: var(--syntax-trivial)"></span>
+                <span
+                  class="sample-dot"
+                  style="--sample-color: var(--syntax-trivial)"
+                ></span>
                 <strong>Trivial</strong>
                 <span>comments, inactive text</span>
                 <code data-role-value="trivial"></code>
@@ -128,7 +173,10 @@
             </div>
           </section>
 
-          <section class="specimen-panel palette-panel" aria-labelledby="palette-title">
+          <section
+            class="specimen-panel palette-panel"
+            aria-labelledby="palette-title"
+          >
             <div class="panel-heading">
               <div>
                 <p class="section-kicker">Palette</p>
@@ -138,69 +186,108 @@
             </div>
             <div class="swatch-grid">
               <button type="button" class="swatch" data-copy-color="amber">
-                <span class="swatch-color" style="background: var(--color-amber)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-amber)"
+                ></span>
                 <span>Amber</span>
                 <code data-color-name="amber"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="blue">
-                <span class="swatch-color" style="background: var(--color-blue)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-blue)"
+                ></span>
                 <span>Blue</span>
                 <code data-color-name="blue"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="cyan">
-                <span class="swatch-color" style="background: var(--color-cyan)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-cyan)"
+                ></span>
                 <span>Cyan</span>
                 <code data-color-name="cyan"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="green">
-                <span class="swatch-color" style="background: var(--color-green)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-green)"
+                ></span>
                 <span>Green</span>
                 <code data-color-name="green"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="indigo">
-                <span class="swatch-color" style="background: var(--color-indigo)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-indigo)"
+                ></span>
                 <span>Indigo</span>
                 <code data-color-name="indigo"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="magenta">
-                <span class="swatch-color" style="background: var(--color-magenta)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-magenta)"
+                ></span>
                 <span>Magenta</span>
                 <code data-color-name="magenta"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="mint">
-                <span class="swatch-color" style="background: var(--color-mint)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-mint)"
+                ></span>
                 <span>Mint</span>
                 <code data-color-name="mint"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="orange">
-                <span class="swatch-color" style="background: var(--color-orange)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-orange)"
+                ></span>
                 <span>Orange</span>
                 <code data-color-name="orange"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="red">
-                <span class="swatch-color" style="background: var(--color-red)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-red)"
+                ></span>
                 <span>Red</span>
                 <code data-color-name="red"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="rose">
-                <span class="swatch-color" style="background: var(--color-rose)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-rose)"
+                ></span>
                 <span>Rose</span>
                 <code data-color-name="rose"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="violet">
-                <span class="swatch-color" style="background: var(--color-violet)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-violet)"
+                ></span>
                 <span>Violet</span>
                 <code data-color-name="violet"></code>
               </button>
               <button type="button" class="swatch" data-copy-color="yellow">
-                <span class="swatch-color" style="background: var(--color-yellow)"></span>
+                <span
+                  class="swatch-color"
+                  style="background: var(--color-yellow)"
+                ></span>
                 <span>Yellow</span>
                 <code data-color-name="yellow"></code>
               </button>
             </div>
           </section>
 
-          <section class="specimen-panel terminal-panel" aria-labelledby="terminal-title">
+          <section
+            class="specimen-panel terminal-panel"
+            aria-labelledby="terminal-title"
+          >
             <div class="panel-heading">
               <div>
                 <p class="section-kicker">Terminal</p>
@@ -215,18 +302,37 @@
               <p><strong>ok</strong> json, plist, vim, vscode</p>
             </div>
             <div class="ansi-row" aria-label="ANSI colors">
-              <span class="ansi-item"><b style="--ansi: var(--ansi-black)"></b>black</span>
-              <span class="ansi-item"><b style="--ansi: var(--ansi-red)"></b>red</span>
-              <span class="ansi-item"><b style="--ansi: var(--ansi-green)"></b>green</span>
-              <span class="ansi-item"><b style="--ansi: var(--ansi-yellow)"></b>yellow</span>
-              <span class="ansi-item"><b style="--ansi: var(--ansi-blue)"></b>blue</span>
-              <span class="ansi-item"><b style="--ansi: var(--ansi-magenta)"></b>magenta</span>
-              <span class="ansi-item"><b style="--ansi: var(--ansi-cyan)"></b>cyan</span>
-              <span class="ansi-item"><b style="--ansi: var(--ansi-white)"></b>white</span>
+              <span class="ansi-item"
+                ><b style="--ansi: var(--ansi-black)"></b>black</span
+              >
+              <span class="ansi-item"
+                ><b style="--ansi: var(--ansi-red)"></b>red</span
+              >
+              <span class="ansi-item"
+                ><b style="--ansi: var(--ansi-green)"></b>green</span
+              >
+              <span class="ansi-item"
+                ><b style="--ansi: var(--ansi-yellow)"></b>yellow</span
+              >
+              <span class="ansi-item"
+                ><b style="--ansi: var(--ansi-blue)"></b>blue</span
+              >
+              <span class="ansi-item"
+                ><b style="--ansi: var(--ansi-magenta)"></b>magenta</span
+              >
+              <span class="ansi-item"
+                ><b style="--ansi: var(--ansi-cyan)"></b>cyan</span
+              >
+              <span class="ansi-item"
+                ><b style="--ansi: var(--ansi-white)"></b>white</span
+              >
             </div>
           </section>
 
-          <section class="specimen-panel export-panel" aria-labelledby="exports-title">
+          <section
+            class="specimen-panel export-panel"
+            aria-labelledby="exports-title"
+          >
             <div class="panel-heading">
               <div>
                 <p class="section-kicker">Outputs</p>
@@ -236,69 +342,183 @@
             <div class="target-table">
               <article class="target-row">
                 <picture class="target-icon" data-icon-target="ghostty">
-                  <source data-icon-mode="light" media="(prefers-color-scheme: light)" srcset="./assets/icons/light/ghostty.png">
-                  <source data-icon-mode="dark" media="(prefers-color-scheme: dark)" srcset="./assets/icons/dark/ghostty.png">
-                  <img src="./assets/icons/dark/ghostty.png" alt="" width="28" height="28" loading="lazy" decoding="async">
+                  <source
+                    data-icon-mode="light"
+                    media="(prefers-color-scheme: light)"
+                    srcset="./assets/icons/light/ghostty.png"
+                  />
+                  <source
+                    data-icon-mode="dark"
+                    media="(prefers-color-scheme: dark)"
+                    srcset="./assets/icons/dark/ghostty.png"
+                  />
+                  <img
+                    src="./assets/icons/dark/ghostty.png"
+                    alt=""
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </picture>
                 <span>Terminal</span>
                 <strong>Ghostty</strong>
-                <code>ghostty/metis-dark  ghostty/metis-light</code>
+                <code>ghostty/metis-dark ghostty/metis-light</code>
               </article>
               <article class="target-row">
                 <picture class="target-icon" data-icon-target="iterm2">
-                  <source data-icon-mode="light" media="(prefers-color-scheme: light)" srcset="./assets/icons/light/iterm2.svg">
-                  <source data-icon-mode="dark" media="(prefers-color-scheme: dark)" srcset="./assets/icons/dark/iterm2.svg">
-                  <img src="./assets/icons/dark/iterm2.svg" alt="" width="28" height="28" loading="lazy" decoding="async">
+                  <source
+                    data-icon-mode="light"
+                    media="(prefers-color-scheme: light)"
+                    srcset="./assets/icons/light/iterm2.svg"
+                  />
+                  <source
+                    data-icon-mode="dark"
+                    media="(prefers-color-scheme: dark)"
+                    srcset="./assets/icons/dark/iterm2.svg"
+                  />
+                  <img
+                    src="./assets/icons/dark/iterm2.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </picture>
                 <span>Terminal</span>
                 <strong>iTerm2</strong>
-                <code>iterm/Metis Dark.itermcolors  iterm/Metis Light.itermcolors</code>
+                <code
+                  >iterm/Metis Dark.itermcolors iterm/Metis
+                  Light.itermcolors</code
+                >
               </article>
               <article class="target-row">
                 <picture class="target-icon" data-icon-target="xcode">
-                  <source data-icon-mode="light" media="(prefers-color-scheme: light)" srcset="./assets/icons/light/xcode.png">
-                  <source data-icon-mode="dark" media="(prefers-color-scheme: dark)" srcset="./assets/icons/dark/xcode.png">
-                  <img src="./assets/icons/dark/xcode.png" alt="" width="28" height="28" loading="lazy" decoding="async">
+                  <source
+                    data-icon-mode="light"
+                    media="(prefers-color-scheme: light)"
+                    srcset="./assets/icons/light/xcode.png"
+                  />
+                  <source
+                    data-icon-mode="dark"
+                    media="(prefers-color-scheme: dark)"
+                    srcset="./assets/icons/dark/xcode.png"
+                  />
+                  <img
+                    src="./assets/icons/dark/xcode.png"
+                    alt=""
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </picture>
                 <span>Editor</span>
                 <strong>Xcode</strong>
-                <code>xcode/Metis Dark.xccolortheme  xcode/Metis Light.xccolortheme</code>
+                <code
+                  >xcode/Metis Dark.xccolortheme xcode/Metis
+                  Light.xccolortheme</code
+                >
               </article>
               <article class="target-row">
                 <picture class="target-icon" data-icon-target="vscode">
-                  <source data-icon-mode="light" media="(prefers-color-scheme: light)" srcset="./assets/icons/light/vscode.png">
-                  <source data-icon-mode="dark" media="(prefers-color-scheme: dark)" srcset="./assets/icons/dark/vscode.png">
-                  <img src="./assets/icons/dark/vscode.png" alt="" width="28" height="28" loading="lazy" decoding="async">
+                  <source
+                    data-icon-mode="light"
+                    media="(prefers-color-scheme: light)"
+                    srcset="./assets/icons/light/vscode.png"
+                  />
+                  <source
+                    data-icon-mode="dark"
+                    media="(prefers-color-scheme: dark)"
+                    srcset="./assets/icons/dark/vscode.png"
+                  />
+                  <img
+                    src="./assets/icons/dark/vscode.png"
+                    alt=""
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </picture>
                 <span>Editor</span>
                 <strong>VSCode</strong>
-                <code>vscode/themes/metis-dark-color-theme.json  vscode/themes/metis-light-color-theme.json</code>
+                <code
+                  >vscode/themes/metis-dark-color-theme.json
+                  vscode/themes/metis-light-color-theme.json</code
+                >
               </article>
               <article class="target-row">
                 <picture class="target-icon" data-icon-target="shiki">
-                  <source data-icon-mode="light" media="(prefers-color-scheme: light)" srcset="./assets/icons/light/shiki.svg">
-                  <source data-icon-mode="dark" media="(prefers-color-scheme: dark)" srcset="./assets/icons/dark/shiki.svg">
-                  <img src="./assets/icons/dark/shiki.svg" alt="" width="28" height="28" loading="lazy" decoding="async">
+                  <source
+                    data-icon-mode="light"
+                    media="(prefers-color-scheme: light)"
+                    srcset="./assets/icons/light/shiki.svg"
+                  />
+                  <source
+                    data-icon-mode="dark"
+                    media="(prefers-color-scheme: dark)"
+                    srcset="./assets/icons/dark/shiki.svg"
+                  />
+                  <img
+                    src="./assets/icons/dark/shiki.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </picture>
                 <span>Renderer</span>
                 <strong>Shiki</strong>
-                <code>shiki/metis-dark.json  shiki/metis-light.json</code>
+                <code>shiki/metis-dark.json shiki/metis-light.json</code>
               </article>
               <article class="target-row">
                 <picture class="target-icon" data-icon-target="vim">
-                  <source data-icon-mode="light" media="(prefers-color-scheme: light)" srcset="./assets/icons/light/vim.svg">
-                  <source data-icon-mode="dark" media="(prefers-color-scheme: dark)" srcset="./assets/icons/dark/vim.svg">
-                  <img src="./assets/icons/dark/vim.svg" alt="" width="28" height="28" loading="lazy" decoding="async">
+                  <source
+                    data-icon-mode="light"
+                    media="(prefers-color-scheme: light)"
+                    srcset="./assets/icons/light/vim.svg"
+                  />
+                  <source
+                    data-icon-mode="dark"
+                    media="(prefers-color-scheme: dark)"
+                    srcset="./assets/icons/dark/vim.svg"
+                  />
+                  <img
+                    src="./assets/icons/dark/vim.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </picture>
                 <span>Editor</span>
                 <strong>Vim</strong>
-                <code>colors/metis.vim  autoload/airline/themes/metis.vim</code>
+                <code>colors/metis.vim autoload/airline/themes/metis.vim</code>
               </article>
               <article class="target-row">
                 <picture class="target-icon" data-icon-target="prismjs">
-                  <source data-icon-mode="light" media="(prefers-color-scheme: light)" srcset="./assets/icons/light/prismjs.svg">
-                  <source data-icon-mode="dark" media="(prefers-color-scheme: dark)" srcset="./assets/icons/dark/prismjs.svg">
-                  <img src="./assets/icons/dark/prismjs.svg" alt="" width="28" height="28" loading="lazy" decoding="async">
+                  <source
+                    data-icon-mode="light"
+                    media="(prefers-color-scheme: light)"
+                    srcset="./assets/icons/light/prismjs.svg"
+                  />
+                  <source
+                    data-icon-mode="dark"
+                    media="(prefers-color-scheme: dark)"
+                    srcset="./assets/icons/dark/prismjs.svg"
+                  />
+                  <img
+                    src="./assets/icons/dark/prismjs.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </picture>
                 <span>Renderer</span>
                 <strong>PrismJS</strong>
@@ -306,9 +526,24 @@
               </article>
               <article class="target-row">
                 <picture class="target-icon" data-icon-target="definitions">
-                  <source data-icon-mode="light" media="(prefers-color-scheme: light)" srcset="./assets/icons/light/definitions.svg">
-                  <source data-icon-mode="dark" media="(prefers-color-scheme: dark)" srcset="./assets/icons/dark/definitions.svg">
-                  <img src="./assets/icons/dark/definitions.svg" alt="" width="28" height="28" loading="lazy" decoding="async">
+                  <source
+                    data-icon-mode="light"
+                    media="(prefers-color-scheme: light)"
+                    srcset="./assets/icons/light/definitions.svg"
+                  />
+                  <source
+                    data-icon-mode="dark"
+                    media="(prefers-color-scheme: dark)"
+                    srcset="./assets/icons/dark/definitions.svg"
+                  />
+                  <img
+                    src="./assets/icons/dark/definitions.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </picture>
                 <span>Source</span>
                 <strong>Definitions</strong>
