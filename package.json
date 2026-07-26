@@ -2,7 +2,7 @@
 	"private": true,
 	"name": "metis-themes",
 	"version": "3.0.0",
-	"description": "Metis themes for Ghostty, iTerm2, Xcode, VSCode, Shiki, Vim, and PrismJS.",
+	"description": "Metis themes for Codex, Ghostty, iTerm2, Xcode, VSCode, Shiki, Vim, and PrismJS.",
 	"homepage": "https://charliewilco.github.io/metis/",
 	"license": "Unlicense",
 	"scripts": {

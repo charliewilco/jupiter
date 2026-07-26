@@ -7,6 +7,8 @@ const checkOnly = process.argv.includes("--check");
 const generated = [];
 
 const files = {
+	codexDark: "codex/metis-dark.json",
+	codexLight: "codex/metis-light.json",
 	definitions: "definitions/metis.json",
 	shikiDark: "shiki/metis-dark.json",
 	shikiLight: "shiki/metis-light.json",
@@ -396,6 +398,13 @@ function vscodeTheme(theme) {
 	});
 }
 
+function codexTheme(theme) {
+	return Object.assign(vscodeTheme(theme), {
+		displayName: theme.name,
+		name: theme.slug,
+	});
+}
+
 function prismTheme(theme) {
 	const selector = `.metis-${theme.type}, [data-theme="metis-${theme.type}"]`;
 	const childSelector = (child) => `.metis-${theme.type} ${child}, [data-theme="metis-${theme.type}"] ${child}`;
@@ -763,6 +772,8 @@ function build() {
 	const dark = Metis.themes.dark;
 	const light = Metis.themes.light;
 
+	writeFile(files.codexDark, asJson(codexTheme(dark)));
+	writeFile(files.codexLight, asJson(codexTheme(light)));
 	writeFile(files.definitions, asJson(Metis.definitions));
 	writeFile(files.shikiDark, asJson(shikiTheme(dark)));
 	writeFile(files.shikiLight, asJson(shikiTheme(light)));

@@ -1,6 +1,8 @@
 const fs = require("fs");
 
 const files = [
+	"codex/metis-dark.json",
+	"codex/metis-light.json",
 	"definitions/metis.json",
 	"shiki/metis-dark.json",
 	"shiki/metis-light.json",

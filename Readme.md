@@ -4,6 +4,7 @@ Metis is a color system and theme set for terminal, editor, and syntax highlight
 
 Supported targets:
 
+- Codex: `codex/metis-dark.json`, `codex/metis-light.json`
 - Ghostty: `ghostty/metis-dark`, `ghostty/metis-light`
 - iTerm2: `iterm/Metis Dark.itermcolors`, `iterm/Metis Light.itermcolors`
 - Xcode: `xcode/Metis Dark.xccolortheme`, `xcode/Metis Light.xccolortheme`
