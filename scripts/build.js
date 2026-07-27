@@ -39,10 +39,12 @@ const files = {
 	shikiGanymedeLight: "shiki/ganymede-light.json",
 	shikiLight: "shiki/metis-light.json",
 	prism: "prismjs/jupiter.css",
+	vimJupiter: "colors/jupiter.vim",
 	vim: "colors/metis.vim",
 	vimCallisto: "colors/callisto.vim",
 	vimEuropa: "colors/europa.vim",
 	vimGanymede: "colors/ganymede.vim",
+	vimAirlineJupiter: "autoload/airline/themes/jupiter.vim",
 	vimAirline: "autoload/airline/themes/metis.vim",
 	vimAirlineCallisto: "autoload/airline/themes/callisto.vim",
 	vimAirlineEuropa: "autoload/airline/themes/europa.vim",
@@ -247,6 +249,72 @@ const vimGroups = [
 	["EndOfBuffer", "ui.foregroundSubtle"],
 	["SpecialKey", "syntax.special"],
 	["Title", "syntax.special", "", "bold"],
+];
+
+const vimModernGroups = [
+	["@comment", "syntax.trivial", "", "italic", "nvim"],
+	["@string", "syntax.string", "", "", "nvim"],
+	["@string.regex", "syntax.regexp", "", "", "nvim"],
+	["@number", "syntax.number", "", "", "nvim"],
+	["@boolean", "syntax.number", "", "", "nvim"],
+	["@keyword", "syntax.statement", "", "", "nvim"],
+	["@operator", "syntax.operator", "", "", "nvim"],
+	["@function", "syntax.identifier", "", "", "nvim"],
+	["@function.builtin", "syntax.identifier", "", "", "nvim"],
+	["@method", "syntax.identifier", "", "", "nvim"],
+	["@constructor", "syntax.type", "", "", "nvim"],
+	["@type", "syntax.type", "", "", "nvim"],
+	["@type.builtin", "syntax.type", "", "", "nvim"],
+	["@variable", "syntax.identifier", "", "", "nvim"],
+	["@variable.builtin", "syntax.global", "", "", "nvim"],
+	["@property", "syntax.constant", "", "", "nvim"],
+	["@field", "syntax.constant", "", "", "nvim"],
+	["@constant", "syntax.constant", "", "", "nvim"],
+	["@constant.builtin", "syntax.constant", "", "", "nvim"],
+	["@punctuation", "syntax.operator", "", "", "nvim"],
+	["@punctuation.bracket", "syntax.operator", "", "", "nvim"],
+	["@punctuation.delimiter", "syntax.operator", "", "", "nvim"],
+	["@tag", "syntax.tag", "", "", "nvim"],
+	["@tag.attribute", "syntax.attribute", "", "", "nvim"],
+	["@tag.delimiter", "syntax.operator", "", "", "nvim"],
+	["@text.strong", "syntax.emphasis", "", "bold", "nvim"],
+	["@text.emphasis", "syntax.emphasis", "", "italic", "nvim"],
+	["@text.uri", "syntax.constant", "", "underline", "nvim"],
+	["@text.todo", "ui.background", "ui.userCurrentState", "bold", "nvim"],
+	["@diff.plus", "version.added", "", "", "nvim"],
+	["@diff.minus", "version.removed", "", "", "nvim"],
+	["@diff.delta", "version.modified", "", "", "nvim"],
+	["DiagnosticError", "ui.userActionNeeded"],
+	["DiagnosticWarn", "version.modified"],
+	["DiagnosticInfo", "ui.userCurrentState"],
+	["DiagnosticHint", "ui.foregroundSubtle"],
+	["DiagnosticUnderlineError", "ui.userActionNeeded", "", "undercurl"],
+	["DiagnosticUnderlineWarn", "version.modified", "", "undercurl"],
+	["DiagnosticUnderlineInfo", "ui.userCurrentState", "", "undercurl"],
+	["DiagnosticUnderlineHint", "ui.foregroundSubtle", "", "undercurl"],
+	["DiagnosticVirtualTextError", "ui.userActionNeeded", "ui.backgroundMuted"],
+	["DiagnosticVirtualTextWarn", "version.modified", "ui.backgroundMuted"],
+	["DiagnosticVirtualTextInfo", "ui.userCurrentState", "ui.backgroundMuted"],
+	["DiagnosticVirtualTextHint", "ui.foregroundSubtle", "ui.backgroundMuted"],
+	["LspReferenceText", "", "ui.userCurrentState"],
+	["LspReferenceRead", "", "ui.userCurrentState"],
+	["LspReferenceWrite", "", "ui.userCurrentState"],
+	["LspInlayHint", "ui.foregroundSubtle", "ui.backgroundMuted"],
+	["NormalFloat", "ui.foreground", "ui.backgroundElevated"],
+	["FloatBorder", "ui.border", "ui.backgroundElevated"],
+	["WinSeparator", "ui.border", "ui.background"],
+	["PmenuKind", "syntax.type", "ui.backgroundElevated"],
+	["PmenuExtra", "ui.foregroundSubtle", "ui.backgroundElevated"],
+	["PmenuMatch", "ui.userCurrentState", "ui.backgroundElevated", "bold"],
+	["QuickFixLine", "ui.background", "ui.userCurrentState"],
+	["WildMenu", "ui.background", "ui.userCurrentState"],
+	["Conceal", "ui.foregroundSubtle"],
+	["GitSignsAdd", "version.added"],
+	["GitSignsChange", "version.modified"],
+	["GitSignsDelete", "version.removed"],
+	["GitSignsAddNr", "version.added"],
+	["GitSignsChangeNr", "version.modified"],
+	["GitSignsDeleteNr", "version.removed"],
 ];
 
 const prismTokens = [
@@ -669,6 +737,12 @@ function vimHighlightLine(group, fgPath, bgPath, style, theme) {
 	return `call s:h("${group}", "${getRole(theme, fgPath)}", "${getRole(theme, bgPath)}", "${style || "NONE"}")`;
 }
 
+function vimHighlightLines(groups, theme, only = "") {
+	return groups
+		.filter(([, , , , target]) => (only ? target === only : !target))
+		.map(([group, fg, bg, style]) => vimHighlightLine(group, fg, bg, style, theme));
+}
+
 function vimThemeBlock(theme) {
 	const ansi = theme.ansiGroups;
 	const lines = [
@@ -691,7 +765,11 @@ function vimThemeBlock(theme) {
 	];
 
 	return lines
-		.concat(vimGroups.map(([group, fg, bg, style]) => vimHighlightLine(group, fg, bg, style, theme)))
+		.concat(vimHighlightLines(vimGroups, theme))
+		.concat(vimHighlightLines(vimModernGroups, theme))
+		.concat(['if has("nvim")'])
+		.concat(vimHighlightLines(vimModernGroups, theme, "nvim").map((line) => `  ${line}`))
+		.concat(["endif"])
 		.join("\n");
 }
 
@@ -720,10 +798,31 @@ ${vimThemeBlock(variant.themes.dark)}
 endif`;
 }
 
-function airlineBlock(theme, variant) {
+function vimJupiterTheme(variants) {
+	const cases = variants
+		.map(
+			(variant, index) => `${index === 0 ? "if" : "elseif"} s:variant ==# "${variant.slug}"
+  colorscheme ${variant.slug}`,
+		)
+		.join("\n");
+
+	return `" WARNING: Do not edit this file directly. It is generated by scripts/build.js.
+
+let s:variant = get(g:, "jupiter_variant", "metis")
+
+if s:variant ==# "" || s:variant ==# "jupiter"
+  let s:variant = "metis"
+endif
+
+${cases}
+else
+  echoerr "Jupiter variant must be one of: metis, ganymede, callisto, europa"
+endif`;
+}
+
+function airlineBlock(theme, variant, themeName = variant.slug) {
 	const ui = theme.uiGroups;
 	const colors = theme.colors;
-	const themeName = variant.slug;
 	const visual = colors.magenta || colors.pink || theme.syntaxGroups.emphasis;
 
 	return `let s:modified = {
@@ -780,6 +879,39 @@ if &background ==# "light"
 ${airlineBlock(variant.themes.light, variant)}
 else
 ${airlineBlock(variant.themes.dark, variant)}
+endif`;
+}
+
+function vimJupiterAirlineTheme(variants) {
+	const cases = variants
+		.map(
+			(variant, index) => `${index === 0 ? "if" : "elseif"} s:variant ==# "${variant.slug}"
+  if &background ==# "light"
+${airlineBlock(variant.themes.light, variant, "jupiter")
+	.split("\n")
+	.map((line) => `  ${line}`)
+	.join("\n")}
+  else
+${airlineBlock(variant.themes.dark, variant, "jupiter")
+	.split("\n")
+	.map((line) => `  ${line}`)
+	.join("\n")}
+  endif`,
+		)
+		.join("\n");
+
+	return `" WARNING: Do not edit this file directly. It is generated by scripts/build.js.
+
+let g:airline#themes#jupiter#palette = {}
+let s:variant = get(g:, "jupiter_variant", "metis")
+
+if s:variant ==# "" || s:variant ==# "jupiter"
+  let s:variant = "metis"
+endif
+
+${cases}
+else
+  echoerr "Jupiter airline variant must be one of: metis, ganymede, callisto, europa"
 endif`;
 }
 
@@ -874,10 +1006,14 @@ function build() {
 			prismTheme(europaLight),
 		].join("\n\n"),
 	);
+	const vimVariants = [Jupiter.metis, Jupiter.ganymede, Jupiter.callisto, Jupiter.europa];
+
+	writeFile(files.vimJupiter, vimJupiterTheme(vimVariants));
 	writeFile(files.vim, vimTheme(Jupiter.metis));
 	writeFile(files.vimCallisto, vimTheme(Jupiter.callisto));
 	writeFile(files.vimEuropa, vimTheme(Jupiter.europa));
 	writeFile(files.vimGanymede, vimTheme(Jupiter.ganymede));
+	writeFile(files.vimAirlineJupiter, vimJupiterAirlineTheme(vimVariants));
 	writeFile(files.vimAirline, vimAirlineTheme(Jupiter.metis));
 	writeFile(files.vimAirlineCallisto, vimAirlineTheme(Jupiter.callisto));
 	writeFile(files.vimAirlineEuropa, vimAirlineTheme(Jupiter.europa));
