@@ -1,6 +1,6 @@
-# Metis
+# Jupiter
 
-Metis is a color system and theme set for terminal, editor, and syntax highlighting surfaces.
+Jupiter is a color system and theme set for terminal, editor, and syntax highlighting surfaces. Metis and Ganymede are the first two variants.
 
 Supported targets:
 
@@ -11,8 +11,8 @@ Supported targets:
 - VSCode: `vscode/themes/metis-dark-color-theme.json`, `vscode/themes/metis-light-color-theme.json`, `vscode/themes/ganymede-dark-color-theme.json`, `vscode/themes/ganymede-light-color-theme.json`
 - Shiki: `shiki/metis-dark.json`, `shiki/metis-light.json`, `shiki/ganymede-dark.json`, `shiki/ganymede-light.json`
 - Vim: `colors/metis.vim`, `colors/ganymede.vim`, `autoload/airline/themes/metis.vim`, `autoload/airline/themes/ganymede.vim`
-- PrismJS: `prismjs/metis.css`
-- Generic definitions: `definitions/metis.json`
+- PrismJS: `prismjs/jupiter.css`
+- Generic definitions: `definitions/jupiter.json`
 
 ## Build
 
@@ -20,7 +20,7 @@ Supported targets:
 npm run build
 ```
 
-The build writes every generated artifact from `metis/index.js`.
+The build writes every generated artifact from `jupiter/index.js`.
 
 ```sh
 npm test
@@ -30,7 +30,7 @@ The test command validates the core package, verifies generated artifacts are cu
 
 ## Demo
 
-The previewer lives at https://charliewilco.github.io/metis/.
+The previewer lives at https://charliewilco.github.io/jupiter/.
 
 The previewer source lives in `docs/` and is built by Parcel in GitHub Actions. On pushes to `master`, `.github/workflows/deploy-demo.yml` builds `docs/index.html` into `docs-dist/` and publishes that output to the `gh-pages` branch.
 
@@ -46,18 +46,18 @@ Use `set background=light` before loading the colorscheme for the light variant.
 
 ## PrismJS
 
-Load `prismjs/metis.css` and scope code blocks with `.metis-dark`, `.metis-light`, `.ganymede-dark`, `.ganymede-light`, or the matching `data-theme` value.
+Load `prismjs/jupiter.css` and scope code blocks with `.metis-dark`, `.metis-light`, `.ganymede-dark`, `.ganymede-light`, or the matching `data-theme` value.
 
 ## Package
 
-The `metis` package exports the dark theme as its default compatibility surface plus explicit definitions:
+The `jupiter` package exports the Metis dark theme as its default compatibility surface plus explicit variant definitions:
 
 ```js
-const Metis = require("metis");
+const Jupiter = require("jupiter");
 
-Metis.themes.dark;
-Metis.themes.light;
-Metis.variants.ganymede.themes.dark;
-Metis.variants.ganymede.themes.light;
-Metis.definitions;
+Jupiter.themes.dark;
+Jupiter.themes.light;
+Jupiter.variants.metis.themes.dark;
+Jupiter.variants.ganymede.themes.dark;
+Jupiter.definitions;
 ```

@@ -3,7 +3,7 @@ const path = require("path");
 const { spawnSync } = require("child_process");
 
 const cwd = path.join(process.cwd(), "vscode");
-const packagePath = path.join(cwd, "metis-vscode-theme-3.0.0.vsix");
+const packagePath = path.join(cwd, "jupiter-vscode-theme-3.0.0.vsix");
 
 try {
 	const result = spawnSync("npm", ["exec", "--yes", "--", "@vscode/vsce", "package", "--no-dependencies"], {
