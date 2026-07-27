@@ -2,6 +2,32 @@ set nomore
 
 let s:variants = ["metis", "ganymede", "callisto", "europa"]
 let s:modes = ["dark", "light"]
+let s:modern_groups = [
+	\ "DiagnosticError",
+	\ "DiagnosticWarn",
+	\ "DiagnosticInfo",
+	\ "DiagnosticHint",
+	\ "DiagnosticUnderlineError",
+	\ "DiagnosticUnderlineWarn",
+	\ "DiagnosticUnderlineInfo",
+	\ "DiagnosticUnderlineHint",
+	\ "LspInlayHint",
+	\ "NormalFloat",
+	\ "FloatBorder",
+	\ "PmenuMatch",
+	\ "QuickFixLine",
+	\ "GitSignsAdd",
+	\ "GitSignsChange",
+	\ "GitSignsDelete",
+	\ ]
+let s:nvim_capture_groups = [
+	\ "@function",
+	\ "@type",
+	\ "@property",
+	\ "@keyword",
+	\ "@diff.plus",
+	\ "@diff.minus",
+	\ ]
 
 function! s:LoadDirect(variant, mode) abort
 	execute "set background=" . a:mode
@@ -25,6 +51,31 @@ function! s:ColorSnapshot() abort
 		\ "terminal_7": get(g:, "terminal_color_7", ""),
 		\ "terminal_15": get(g:, "terminal_color_15", ""),
 		\ }
+endfunction
+
+function! s:HighlightSnapshot(groups) abort
+	let l:snapshot = {}
+
+	for l:group in a:groups
+		let l:id = hlID(l:group)
+		let l:snapshot[l:group] = {
+			\ "fg": synIDattr(l:id, "fg#"),
+			\ "bg": synIDattr(l:id, "bg#"),
+			\ "style": synIDattr(l:id, "name"),
+			\ }
+	endfor
+
+	return l:snapshot
+endfunction
+
+function! s:AssertGroupsDefined(groups, label) abort
+	let l:snapshot = s:HighlightSnapshot(a:groups)
+
+	for l:group in a:groups
+		let l:highlight = l:snapshot[l:group]
+		let l:value = l:highlight.fg . l:highlight.bg . l:highlight.style
+		call assert_true(!empty(l:value), a:label . " should define " . l:group)
+	endfor
 endfunction
 
 function! s:AirlineSnapshot(theme) abort
@@ -53,9 +104,16 @@ for s:mode in s:modes
 	for s:variant in s:variants
 		call s:LoadDirect(s:variant, s:mode)
 		let s:direct = s:ColorSnapshot()
+		let s:direct_modern = s:HighlightSnapshot(s:modern_groups)
 
 		call s:LoadJupiter(s:variant, s:mode)
 		call assert_equal(s:direct, s:ColorSnapshot(), "colorscheme jupiter should match " . s:variant . " " . s:mode)
+		call assert_equal(s:direct_modern, s:HighlightSnapshot(s:modern_groups), "modern highlights should match " . s:variant . " " . s:mode)
+		call s:AssertGroupsDefined(s:modern_groups, s:variant . " " . s:mode)
+
+		if has("nvim")
+			call s:AssertGroupsDefined(s:nvim_capture_groups, s:variant . " " . s:mode)
+		endif
 
 		let s:direct_airline = s:LoadDirectAirline(s:variant, s:mode)
 		let s:jupiter_airline = s:LoadJupiterAirline(s:variant, s:mode)
