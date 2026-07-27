@@ -4,7 +4,14 @@ import "./PresetSelector.js";
 import "./SyntaxHighlighter.js";
 import { loadDefinitions } from "./definitions.js";
 
+const REPOSITORY_CONTENT_BASE = "https://github.com/charliewilco/jupiter/blob/main";
+
 const toKebab = (value) => value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
+
+const toTitle = (value) => `${value.slice(0, 1).toUpperCase()}${value.slice(1)}`;
+
+const repositoryContentUrl = (...segments) =>
+	`${REPOSITORY_CONTENT_BASE}/${segments.map(encodeURIComponent).join("/")}`;
 
 const getInitialVariant = (definitions) => {
 	const variant = localStorage.getItem("jupiter-preview-variant");
@@ -41,6 +48,69 @@ const syncOutputIcons = (mode) => {
 	});
 };
 
+const syncOutputLinks = (definitions, variant, mode) => {
+	const variantDefinition = definitions.variants[variant];
+	const theme = variantDefinition.themes[mode];
+	const variantName = variantDefinition.name;
+	const modeName = toTitle(mode);
+	const label = `${variantName} ${modeName}`;
+	const outputLinks = {
+		iterm: {
+			href: repositoryContentUrl("iterm", `${variantName} ${modeName}.itermcolors`),
+			label,
+		},
+		ghostty: {
+			href: repositoryContentUrl("ghostty", theme.slug),
+			label,
+		},
+		codex: {
+			href: repositoryContentUrl("codex", `${theme.slug}.json`),
+			label,
+		},
+		vim: {
+			href: repositoryContentUrl("colors", `${variant}.vim`),
+			label: variantName,
+		},
+		xcode: {
+			href: repositoryContentUrl("xcode", `${variantName} ${modeName}.xccolortheme`),
+			label,
+		},
+		vscode: {
+			href: repositoryContentUrl("vscode", "themes", `${theme.slug}-color-theme.json`),
+			label,
+		},
+		prismjs: {
+			href: repositoryContentUrl("prismjs", "jupiter.css"),
+			label: "PrismJS",
+		},
+		shiki: {
+			href: repositoryContentUrl("shiki", `${theme.slug}.json`),
+			label: "Shiki",
+		},
+		definitions: {
+			href: repositoryContentUrl("definitions", "jupiter.json"),
+			label: "source definitions",
+		},
+	};
+
+	document.querySelectorAll("[data-output-link]").forEach((link) => {
+		if (!(link instanceof HTMLAnchorElement)) {
+			return;
+		}
+
+		const output = link.dataset.outputLink || "";
+		const target = outputLinks[output];
+
+		if (!target) {
+			return;
+		}
+
+		link.href = target.href;
+		link.textContent = target.label;
+		link.setAttribute("aria-label", `Open ${target.label} ${output} artifact`);
+	});
+};
+
 const syncVariantSelector = (selector, variant) => {
 	const input = selector.querySelector(`input[value="${CSS.escape(variant)}"]`);
 
@@ -62,6 +132,7 @@ const setPreview = (definitions, variant, mode) => {
 	localStorage.setItem("jupiter-preview-mode", mode);
 	setThemeVars(theme);
 	syncOutputIcons(mode);
+	syncOutputLinks(definitions, variant, mode);
 
 	if (familySelector) {
 		syncVariantSelector(familySelector, variant);

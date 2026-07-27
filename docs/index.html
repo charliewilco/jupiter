@@ -119,15 +119,30 @@
 			</div>
 		</template>
 
-			<header class="site-header">
-				<div class="header-copy">
+		<header class="site-header">
+			<div class="header-copy">
+				<div class="brand-lockup">
+					<svg
+						class="brand-mark"
+						xmlns="http://www.w3.org/2000/svg"
+						width="64"
+						height="64"
+						viewBox="0 0 64 64"
+						aria-hidden="true"
+						focusable="false"
+					>
+						<path
+							fill="currentColor"
+							fill-rule="evenodd"
+							clip-rule="evenodd"
+							d="M20 2h24v4h8v6h6v8h4v24h-4v8h-6v6h-8v4H20v-4h-8v-6H6v-8H2V20h4v-8h6V6h8V2zM14 13h37v5H14zM6 26h51v6H6zM38 34h9v3h6v6h-5v4H38v-3h-5v-6h5v-4zM12 46h40v5H12z"
+						/>
+					</svg>
 					<h1>Jupiter</h1>
-					<p>A theme system for the small moons:
-						<br />Metis, Ganymede, Callisto, and Europa.</p>
 				</div>
-				<div class="controls">
-
-
+				<p>A theme system for the small moons: <br />Metis, Ganymede, Callisto, and Europa.</p>
+			</div>
+			<div class="controls">
 				<div class="theme-controls" aria-label="Theme preview controls">
 					<preset-selector data-mode-selector aria-label="Theme mode">
 						<preset-def id="light"></preset-def>
@@ -154,49 +169,52 @@
 								<span>Europa</span>
 							</label>
 						</div>
-
 					</fieldset>
 				</div>
-				</div>
-			</header>
+			</div>
+		</header>
 
-			<main class="preview-layout">
-				<article class="theme-article" aria-labelledby="article-title">
-					<color-stage aria-label="Jupiter palette"></color-stage>
+		<main class="preview-layout">
+			<article class="theme-article" aria-labelledby="article-title">
+				<color-stage aria-label="Jupiter palette"></color-stage>
 
-					<section class="explainer" aria-labelledby="article-title">
-						<h2 id="article-title">A compact palette with enough separation for code, terminals, and renderers.</h2>
-						<p>
-							Jupiter keeps the palettes small and maps each accent through shared role definitions. The same source
-							file produces light and dark presets for each variant, keeping the rendered code samples, editor themes,
-							and terminal colors in lockstep.
-						</p>
-						<p>
-							The Ganymede variant preserves the previous archive definition as a matched light and dark pair, so the
-							refined Metis palette can be compared against the original scheme without leaving the preview.
-						</p>
-						<p>
-							Oh Metis is the closest, most inward moon of Jupiter. I think it's mostly gas and vapor. Wait can you have
-							gas that cold? Wouldn't it become a solid at that temperature? I mean it's like that far from the Sun. I
-							should probably look into this.
-						</p>
-					</section>
+				<section class="explainer" aria-labelledby="article-title">
+					<h2 id="article-title">A compact palette with enough separation for code, terminals, and renderers.</h2>
+					<p>
+						Jupiter keeps the palettes small and maps each accent through shared role definitions. The same source file
+						produces light and dark presets for each variant, keeping the rendered code samples, editor themes, and
+						terminal colors in lockstep.
+					</p>
+					<p>
+						The Ganymede variant preserves the previous archive definition as a matched light and dark pair, so the
+						refined Metis palette can be compared against the original scheme without leaving the preview.
+					</p>
+					<p>
+						Oh Metis is the closest, most inward moon of Jupiter. I think it's mostly gas and vapor. Wait can you have
+						gas that cold? Wouldn't it become a solid at that temperature? I mean it's like that far from the Sun. I
+						should probably look into this.
+					</p>
+					<p>
+						Calliso, I'm pretty sure was an X-Men, but I don't remember what the gender was or the power set. But I
+						remember that was a name of an X-men and it reminding me of a moon name.
+					</p>
+				</section>
 
-					<section class="snippet-grid" aria-label="Prism rendered examples">
-						<syntax-highlighter language="typescript" label="TypeScript" file="theme.ts">
-							<template data-syntax-source>
-								<pre>
+				<section class="snippet-grid" aria-label="Prism rendered examples">
+					<syntax-highlighter language="typescript" label="TypeScript" file="theme.ts">
+						<template data-syntax-source>
+							<pre>
 type Output = "ghostty" | "xcode" | "prism";
 
 const writeTheme = async (output: Output) => {
 	const preset = await loadPreset("metis-dark");
 	return buildArtifact({ output, preset });
 };</pre>
-							</template>
-						</syntax-highlighter>
-						<syntax-highlighter language="go" label="Go" file="theme.go">
-							<template data-syntax-source>
-								<pre>
+						</template>
+					</syntax-highlighter>
+					<syntax-highlighter language="go" label="Go" file="theme.go">
+						<template data-syntax-source>
+							<pre>
 type TokenRole string
 
 func Resolve(role TokenRole, palette Palette) string {
@@ -205,11 +223,11 @@ func Resolve(role TokenRole, palette Palette) string {
 	}
 	return palette.Foreground
 }</pre>
-							</template>
-						</syntax-highlighter>
-						<syntax-highlighter language="swift" label="Swift" file="Theme.swift">
-							<template data-syntax-source>
-								<pre>
+						</template>
+					</syntax-highlighter>
+					<syntax-highlighter language="swift" label="Swift" file="Theme.swift">
+						<template data-syntax-source>
+							<pre>
 struct JupiterTheme {
 	let name: String
 	let syntax: [String: Color]
@@ -218,11 +236,11 @@ struct JupiterTheme {
 		syntax[role] ?? syntax["trivial"]!
 	}
 }</pre>
-							</template>
-						</syntax-highlighter>
-						<syntax-highlighter language="rust" label="Rust" file="theme.rs">
-							<template data-syntax-source>
-								<pre>
+						</template>
+					</syntax-highlighter>
+					<syntax-highlighter language="rust" label="Rust" file="theme.rs">
+						<template data-syntax-source>
+							<pre>
 pub fn accent(role: &amp;str, theme: &amp;Theme) -> Color {
 	match role {
 		"string" => theme.mint,
@@ -230,71 +248,116 @@ pub fn accent(role: &amp;str, theme: &amp;Theme) -> Color {
 		_ => theme.foreground,
 	}
 }</pre>
-							</template>
-						</syntax-highlighter>
-					</section>
-				</article>
+						</template>
+					</syntax-highlighter>
+				</section>
+			</article>
 
-				<aside class="sidebar" aria-labelledby="outputs-title">
-					<h2 id="outputs-title">Outputs</h2>
-					<ul class="output-list">
-						<li>
-							<output-icon
-								light="./assets/icons/light/iterm2.png"
-								dark="./assets/icons/dark/iterm2.png"
-								default="./assets/icons/dark/iterm2.png"
-								>iTerm2</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/ghostty.png"
-								dark="./assets/icons/dark/ghostty.png"
-								default="./assets/icons/dark/ghostty.png"
-								>Ghostty</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/codex.png"
-								dark="./assets/icons/dark/codex.png"
-								default="./assets/icons/dark/codex.png"
-								>Codex</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/vim.png"
-								dark="./assets/icons/dark/vim.png"
-								default="./assets/icons/dark/vim.png"
-								>Vim</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/xcode.png"
-								dark="./assets/icons/dark/xcode.png"
-								default="./assets/icons/dark/xcode.png"
-								>Xcode</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/vscode.png"
-								dark="./assets/icons/dark/vscode.png"
-								default="./assets/icons/dark/vscode.png"
-								>VSCode</output-icon
-							>
-						</li>
-					</ul>
-					<p class="secondary-outputs">Also available for PrismJS, Shiki, and source definitions.</p>
-				</aside>
-			</main>
+			<aside class="sidebar" aria-labelledby="outputs-title">
+				<h2 id="outputs-title">Outputs</h2>
+				<ul class="output-list">
+					<li>
+						<output-icon
+							light="./assets/icons/light/iterm2.png"
+							dark="./assets/icons/dark/iterm2.png"
+							default="./assets/icons/dark/iterm2.png"
+							>iTerm2</output-icon
+						>
+						<a
+							class="output-link"
+							data-output-link="iterm"
+							href="https://github.com/charliewilco/jupiter/tree/main/iterm"
+							>Metis Dark</a
+						>
+					</li>
+					<li>
+						<output-icon
+							light="./assets/icons/light/ghostty.png"
+							dark="./assets/icons/dark/ghostty.png"
+							default="./assets/icons/dark/ghostty.png"
+							>Ghostty</output-icon
+						>
+						<a
+							class="output-link"
+							data-output-link="ghostty"
+							href="https://github.com/charliewilco/jupiter/tree/main/ghostty"
+							>Metis Dark</a
+						>
+					</li>
+					<li>
+						<output-icon
+							light="./assets/icons/light/codex.png"
+							dark="./assets/icons/dark/codex.png"
+							default="./assets/icons/dark/codex.png"
+							>Codex</output-icon
+						>
+						<a
+							class="output-link"
+							data-output-link="codex"
+							href="https://github.com/charliewilco/jupiter/tree/main/codex"
+							>Metis Dark</a
+						>
+					</li>
+					<li>
+						<output-icon
+							light="./assets/icons/light/vim.png"
+							dark="./assets/icons/dark/vim.png"
+							default="./assets/icons/dark/vim.png"
+							>Vim</output-icon
+						>
+						<a
+							class="output-link"
+							data-output-link="vim"
+							href="https://github.com/charliewilco/jupiter/tree/main/colors"
+							>Metis</a
+						>
+					</li>
+					<li>
+						<output-icon
+							light="./assets/icons/light/xcode.png"
+							dark="./assets/icons/dark/xcode.png"
+							default="./assets/icons/dark/xcode.png"
+							>Xcode</output-icon
+						>
+						<a
+							class="output-link"
+							data-output-link="xcode"
+							href="https://github.com/charliewilco/jupiter/tree/main/xcode"
+							>Metis Dark</a
+						>
+					</li>
+					<li>
+						<output-icon
+							light="./assets/icons/light/vscode.png"
+							dark="./assets/icons/dark/vscode.png"
+							default="./assets/icons/dark/vscode.png"
+							>VSCode</output-icon
+						>
+						<a
+							class="output-link"
+							data-output-link="vscode"
+							href="https://github.com/charliewilco/jupiter/tree/main/vscode/themes"
+							>Metis Dark</a
+						>
+					</li>
+				</ul>
+				<p class="secondary-outputs">
+					<a data-output-link="prismjs" href="https://github.com/charliewilco/jupiter/blob/main/prismjs/jupiter.css"
+						>PrismJS</a
+					>, <a data-output-link="shiki" href="https://github.com/charliewilco/jupiter/tree/main/shiki">Shiki</a>, and
+					<a
+						data-output-link="definitions"
+						href="https://github.com/charliewilco/jupiter/blob/main/definitions/jupiter.json"
+						>source definitions</a
+					>.
+				</p>
+			</aside>
+		</main>
 
-			<footer class="site-footer" aria-label="Footer">
-				<a href="https://charliewil.co/">charliewil.co</a>
-				<a href="https://github.com/charliewilco/jupiter">GitHub</a>
-			</footer>
+		<footer class="site-footer" aria-label="Footer">
+			<a href="https://charliewil.co/">charliewil.co</a>
+			<a href="https://github.com/charliewilco/jupiter">GitHub</a>
+		</footer>
 		<script type="module" src="./src/main.js"></script>
 	</body>
 </html>
