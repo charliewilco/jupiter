@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>DVTConsoleDebuggerInputTextColor</key>
+  <string>0.415686 0.607843 1.000000 1</string>
+  <key>DVTConsoleDebuggerOutputTextColor</key>
+  <string>0.909804 0.933333 0.972549 1</string>
+  <key>DVTConsoleDebuggerPromptTextColor</key>
+  <string>0.105882 0.843137 1.000000 1</string>
+  <key>DVTConsoleExectuableInputTextColor</key>
+  <string>1.000000 0.678431 0.074510 1</string>
+  <key>DVTConsoleExectuableOutputTextColor</key>
+  <string>0.690196 0.745098 0.827451 1</string>
+  <key>DVTConsoleTextBackgroundColor</key>
+  <string>0.027451 0.043137 0.070588 1</string>
+  <key>DVTConsoleTextInsertionPointColor</key>
+  <string>0.105882 0.843137 1.000000 1</string>
+  <key>DVTConsoleTextSelectionColor</key>
+  <string>0.149020 0.239216 0.400000 1</string>
+  <key>DVTSourceTextBackground</key>
+  <string>0.027451 0.043137 0.070588 1</string>
+  <key>DVTSourceTextBlockDimBackgroundColor</key>
+  <string>0.082353 0.117647 0.176471 1</string>
+  <key>DVTSourceTextCurrentLineHighlightColor</key>
+  <string>0.082353 0.117647 0.176471 1</string>
+  <key>DVTSourceTextInsertionPointColor</key>
+  <string>0.105882 0.843137 1.000000 1</string>
+  <key>DVTSourceTextInvisiblesColor</key>
+  <string>0.400000 0.470588 0.564706 1</string>
+  <key>DVTSourceTextSelectionColor</key>
+  <string>0.149020 0.239216 0.400000 1</string>
+  <key>DVTSourceTextSyntaxColors</key>
+  <dict>
+    <key>xcode.syntax.attribute</key>
+    <string>0.105882 0.843137 1.000000 1</string>
+    <key>xcode.syntax.character</key>
+    <string>0.215686 0.847059 0.682353 1</string>
+    <key>xcode.syntax.comment</key>
+    <string>0.400000 0.470588 0.564706 1</string>
+    <key>xcode.syntax.comment.doc</key>
+    <string>0.400000 0.470588 0.564706 1</string>
+    <key>xcode.syntax.comment.mark</key>
+    <string>1.000000 0.521569 0.231373 1</string>
+    <key>xcode.syntax.identifier.class</key>
+    <string>0.549020 0.866667 0.341176 1</string>
+    <key>xcode.syntax.identifier.constant</key>
+    <string>0.105882 0.843137 1.000000 1</string>
+    <key>xcode.syntax.identifier.function</key>
+    <string>0.415686 0.607843 1.000000 1</string>
+    <key>xcode.syntax.identifier.macro</key>
+    <string>0.705882 0.415686 1.000000 1</string>
+    <key>xcode.syntax.identifier.type</key>
+    <string>0.549020 0.866667 0.341176 1</string>
+    <key>xcode.syntax.identifier.variable</key>
+    <string>0.415686 0.607843 1.000000 1</string>
+    <key>xcode.syntax.keyword</key>
+    <string>1.000000 0.678431 0.074510 1</string>
+    <key>xcode.syntax.number</key>
+    <string>0.964706 0.850980 0.313725 1</string>
+    <key>xcode.syntax.plain</key>
+    <string>0.909804 0.933333 0.972549 1</string>
+    <key>xcode.syntax.preprocessor</key>
+    <string>0.705882 0.415686 1.000000 1</string>
+    <key>xcode.syntax.string</key>
+    <string>0.215686 0.847059 0.682353 1</string>
+    <key>xcode.syntax.url</key>
+    <string>0.105882 0.843137 1.000000 1</string>
+    <key>xcode.syntax.diff.added</key>
+    <string>0.549020 0.866667 0.341176 1</string>
+    <key>xcode.syntax.diff.changed</key>
+    <string>1.000000 0.678431 0.074510 1</string>
+    <key>xcode.syntax.diff.deleted</key>
+    <string>1.000000 0.337255 0.384314 1</string>
+  </dict>
+</dict>
+</plist>

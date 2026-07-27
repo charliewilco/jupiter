@@ -1,0 +1,14 @@
+{
+	"name": "jupiter",
+	"version": "3.0.0",
+	"description": "Jupiter color definitions for terminals, editors, and syntax highlighters.",
+	"homepage": "https://charliewilco.github.io/jupiter/",
+	"main": "index.js",
+	"scripts": {
+		"test": "node test.js"
+	},
+	"repository": "charliewilco/jupiter",
+	"keywords": [],
+	"author": "charlie peters <charlespeters42@gmail.com> (https://charliewil.co)",
+	"license": "Unlicense"
+}

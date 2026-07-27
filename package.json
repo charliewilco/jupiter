@@ -1,25 +1,27 @@
 {
-  "private": true,
-  "name": "metis-themes",
-  "version": "3.0.0",
-  "description": "Metis themes for Ghostty, iTerm2, Xcode, VSCode, Shiki, Vim, and PrismJS.",
-  "homepage": "https://charliewilco.github.io/metis/",
-  "license": "Unlicense",
-  "scripts": {
-    "build": "node scripts/build.js",
-    "check:generated": "node scripts/build.js --check",
-    "check:json": "node scripts/validate-json.js",
-    "check:plist": "node scripts/validate-plist.js",
-    "check:vim": "vim --clean -Nu NONE -n -es -c 'set runtimepath^=$PWD' -c 'set background=dark' -c 'colorscheme metis' -c 'set background=light' -c 'colorscheme metis' -c 'qa!'",
-    "check:vscode": "node scripts/validate-vscode-package.js",
-    "check": "npm run check:generated && npm run check:json && npm run check:plist && npm run check:vim && npm run check:vscode",
-    "test": "node metis/test.js && npm run check"
-  },
-  "workspaces": [
-    "metis",
-    "vscode"
-  ],
-  "devDependencies": {
-    "parcel": "^2.16.4"
-  }
+	"private": true,
+	"name": "jupiter-themes",
+	"version": "3.0.0",
+	"description": "Jupiter themes for Codex, Ghostty, iTerm2, Xcode, VSCode, Shiki, Vim, and PrismJS.",
+	"homepage": "https://charliewilco.github.io/jupiter/",
+	"license": "Unlicense",
+	"scripts": {
+		"build": "node scripts/build.js",
+		"check:generated": "node scripts/build.js --check",
+		"check:json": "node scripts/validate-json.js",
+		"check:plist": "node scripts/validate-plist.js",
+		"check:vim": "node scripts/check-vim.js",
+		"check:vscode": "node scripts/validate-vscode-package.js",
+		"check": "npm run check:generated && npm run check:json && npm run check:plist && npm run check:vim && npm run check:vscode",
+		"test": "node jupiter/test.js && npm run check"
+	},
+	"workspaces": [
+		"jupiter",
+		"vscode"
+	],
+	"devDependencies": {
+		"parcel": "^2.16.4",
+		"prettier": "^3.9.6",
+		"prismjs": "^1.30.0"
+	}
 }

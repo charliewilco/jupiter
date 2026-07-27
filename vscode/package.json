@@ -1,14 +1,14 @@
 {
-  "name": "metis-vscode-theme",
-  "displayName": "Metis",
+  "name": "jupiter-vscode-theme",
+  "displayName": "Jupiter",
   "publisher": "charliewilco",
-  "description": "Metis themes for VSCode.",
+  "description": "Jupiter themes for VSCode.",
   "version": "3.0.0",
-  "homepage": "https://charliewilco.github.io/metis/",
+  "homepage": "https://charliewilco.github.io/jupiter/",
   "license": "Unlicense",
   "repository": {
     "type": "git",
-    "url": "https://github.com/charliewilco/metis"
+    "url": "https://github.com/charliewilco/jupiter"
   },
   "engines": {
     "vscode": "^1.80.0"
@@ -32,6 +32,36 @@
         "label": "Metis Light",
         "uiTheme": "vs",
         "path": "./themes/metis-light-color-theme.json"
+      },
+      {
+        "label": "Ganymede Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ganymede-dark-color-theme.json"
+      },
+      {
+        "label": "Ganymede Light",
+        "uiTheme": "vs",
+        "path": "./themes/ganymede-light-color-theme.json"
+      },
+      {
+        "label": "Callisto Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/callisto-dark-color-theme.json"
+      },
+      {
+        "label": "Callisto Light",
+        "uiTheme": "vs",
+        "path": "./themes/callisto-light-color-theme.json"
+      },
+      {
+        "label": "Europa Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/europa-dark-color-theme.json"
+      },
+      {
+        "label": "Europa Light",
+        "uiTheme": "vs",
+        "path": "./themes/europa-light-color-theme.json"
       }
     ]
   }
