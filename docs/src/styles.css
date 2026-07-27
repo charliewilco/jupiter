@@ -20,8 +20,12 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--wide-container: 61rem;
+	--short-container: 45rem;
+}
+
 body {
-	min-width: 320px;
 	min-height: 100vh;
 	margin: 0;
 	color: var(--ui-foreground);
@@ -61,17 +65,14 @@ pre {
 	font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
 }
 
-.page-shell {
-	width: min(1240px, calc(100% - 32px));
+body {
+	max-width: var(--wide-container);
+	width: 100%;
 	margin: 0 auto;
 	padding: 24px 0 40px;
 }
 
 .site-header {
-	display: grid;
-	grid-template-columns: 1fr minmax(0, 680px) 1fr;
-	gap: 24px;
-	align-items: center;
 	padding: 8px 0 26px;
 }
 
@@ -85,17 +86,31 @@ pre {
 	display: grid;
 	gap: 8px;
 	justify-self: end;
+	order: 1;
+}
+
+.controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 2rem;
+}
+
+.variant-controls {
+	display: block;
+	order: 2;
 }
 
 .variant-selector {
-	max-width: 100%;
-	display: inline-flex;
-	gap: 14px;
-	align-items: center;
-	min-width: 0;
-	margin: 0 auto;
+	display: block;
+	width: 100%;
 	padding: 0;
 	border: 0;
+}
+
+.variant-selector > div {
+	display: flex;
+	gap: 1rem;
 }
 
 .variant-selector label {
@@ -109,8 +124,8 @@ pre {
 }
 
 .variant-selector input {
-	width: 10px;
-	height: 10px;
+	width: 1rem;
+	height: 1rem;
 	margin: 0;
 	appearance: none;
 	background: var(--ui-background);
@@ -277,9 +292,13 @@ color-stage {
 	line-height: 1.1;
 }
 
+.controls,
 .explainer {
-	max-width: 720px;
+	max-width: var(--short-container);
 	margin: auto;
+}
+
+.explainer {
 	padding: 34px 0 26px;
 }
 
@@ -385,6 +404,14 @@ syntax-highlighter {
 }
 
 @media (min-width: 981px) {
+	.theme-controls {
+		order: 2;
+	}
+
+	.variant-controls {
+		order: 1;
+	}
+
 	.preview-layout {
 		grid-template-columns: 246px minmax(0, 1fr);
 	}
@@ -414,11 +441,6 @@ syntax-highlighter {
 }
 
 @media (max-width: 680px) {
-	.page-shell {
-		width: min(100% - 20px, 520px);
-		padding-top: 16px;
-	}
-
 	.theme-controls,
 	.site-header preset-selector {
 		width: 100%;

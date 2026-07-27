@@ -119,37 +119,45 @@
 			</div>
 		</template>
 
-		<div class="page-shell">
 			<header class="site-header">
 				<div class="header-copy">
 					<h1>Jupiter</h1>
-					<p>A theme system for the small moons: Metis, Ganymede, Callisto, and Europa.</p>
+					<p>A theme system for the small moons:
+						<br />Metis, Ganymede, Callisto, and Europa.</p>
 				</div>
+				<div class="controls">
+
+
 				<div class="theme-controls" aria-label="Theme preview controls">
 					<preset-selector data-mode-selector aria-label="Theme mode">
 						<preset-def id="light"></preset-def>
 						<preset-def id="dark"></preset-def>
 					</preset-selector>
 				</div>
+				<div class="variant-controls">
+					<fieldset class="variant-selector" data-family-selector aria-label="Theme family">
+						<div>
+							<label>
+								<input type="radio" name="theme-family" value="metis" />
+								<span>Metis</span>
+							</label>
+							<label>
+								<input type="radio" name="theme-family" value="ganymede" />
+								<span>Ganymede</span>
+							</label>
+							<label>
+								<input type="radio" name="theme-family" value="callisto" />
+								<span>Callisto</span>
+							</label>
+							<label>
+								<input type="radio" name="theme-family" value="europa" />
+								<span>Europa</span>
+							</label>
+						</div>
 
-				<fieldset class="variant-selector" data-family-selector aria-label="Theme family">
-					<label>
-						<input type="radio" name="theme-family" value="metis" />
-						<span>Metis</span>
-					</label>
-					<label>
-						<input type="radio" name="theme-family" value="ganymede" />
-						<span>Ganymede</span>
-					</label>
-					<label>
-						<input type="radio" name="theme-family" value="callisto" />
-						<span>Callisto</span>
-					</label>
-					<label>
-						<input type="radio" name="theme-family" value="europa" />
-						<span>Europa</span>
-					</label>
-				</fieldset>
+					</fieldset>
+				</div>
+				</div>
 			</header>
 
 			<main class="preview-layout">
@@ -287,7 +295,6 @@ pub fn accent(role: &amp;str, theme: &amp;Theme) -> Color {
 				<a href="https://charliewil.co/">charliewil.co</a>
 				<a href="https://github.com/charliewilco/jupiter">GitHub</a>
 			</footer>
-		</div>
 		<script type="module" src="./src/main.js"></script>
 	</body>
 </html>
