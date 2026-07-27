@@ -32,7 +32,9 @@ jobs:
         run: git diff --exit-code
 
       - name: Build demo
-        run: npx parcel build docs/index.html --dist-dir docs-dist --public-url ./
+        run: |
+          npx parcel build docs/index.html --dist-dir docs-dist --public-url ./
+          cp docs/robots.txt docs/sitemap.xml docs-dist/
 
       - name: Validate themes
         run: npm test
