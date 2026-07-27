@@ -22,7 +22,8 @@
 
 				.icon {
 					display: grid;
-					width: 4rem;
+					flex: 0 0 var(--output-icon-size, 4rem);
+					width: var(--output-icon-size, 4rem);
 					aspect-ratio: 1;
 					place-items: center;
 				}
@@ -36,6 +37,7 @@
 
 				.label {
 					min-width: 0;
+					overflow-wrap: anywhere;
 				}
 			</style>
 			<span class="icon">

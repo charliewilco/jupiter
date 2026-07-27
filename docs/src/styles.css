@@ -114,7 +114,8 @@ pre {
 
 .variant-selector > div {
 	display: flex;
-	gap: 1rem;
+	flex-wrap: wrap;
+	gap: 0.75rem 1rem;
 }
 
 .variant-selector label {
@@ -190,14 +191,16 @@ h1 {
 
 .output-list {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
 	gap: 1rem;
 	margin-top: 12px;
 }
 
 .output-list li {
+	--output-icon-size: 4rem;
 	display: grid;
 	gap: 2px;
+	min-width: 0;
 	min-height: 46px;
 	padding: 7px 8px;
 	color: var(--ui-foreground);
@@ -211,7 +214,8 @@ output-icon {
 
 .output-link {
 	width: fit-content;
-	margin-left: calc(4rem + 12px);
+	max-width: 100%;
+	margin-left: calc(var(--output-icon-size) + 12px);
 	color: var(--ui-foreground-muted);
 	font-size: 0.72rem;
 	font-weight: 760;
@@ -443,6 +447,10 @@ syntax-highlighter {
 
 	color-stage {
 		padding: 12px;
+	}
+
+	.output-list li {
+		--output-icon-size: 3.4rem;
 	}
 
 	.color-orb {
