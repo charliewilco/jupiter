@@ -1,30 +1,36 @@
 // @ts-check
 
-import definitions from "../../definitions/jupiter.json";
-
-const variants = /** @type {Record<string, typeof definitions.variants.metis>} */ (definitions.variants);
+import { loadDefinitions } from "./definitions.js";
+import { findTemplateElement } from "./dom.js";
 
 class ColorStage extends HTMLElement {
 	static get observedAttributes() {
 		return ["mode", "variant"];
 	}
 
+	/** @type {any} */
+	#definitions = null;
+
 	connectedCallback() {
 		if (!this.hasAttribute("role")) {
 			this.setAttribute("role", "group");
+		}
+
+		this.#load();
+	}
+
+	attributeChangedCallback() {
+		if (!this.#definitions) {
+			return;
 		}
 
 		this.#render();
 		this.#sync();
 	}
 
-	attributeChangedCallback() {
-		this.#render();
-		this.#sync();
-	}
-
 	get variant() {
 		const variant = this.getAttribute("variant");
+		const variants = this.#definitions?.variants || {};
 
 		return variant && variants[variant] ? variant : "metis";
 	}
@@ -35,7 +41,7 @@ class ColorStage extends HTMLElement {
 
 	get mode() {
 		const mode = this.getAttribute("mode");
-		const themes = variants[this.variant].themes;
+		const themes = this.#definitions?.variants[this.variant].themes || {};
 
 		return mode && themes[mode] ? mode : "dark";
 	}
@@ -44,36 +50,51 @@ class ColorStage extends HTMLElement {
 		this.setAttribute("mode", value);
 	}
 
+	async #load() {
+		this.#definitions = await loadDefinitions();
+		this.#render();
+		this.#sync();
+	}
+
 	#render() {
-		this.replaceChildren();
+		const template = findTemplateElement("color-stage-swatch-template");
+		const fragment = document.createDocumentFragment();
+		const variants = this.#definitions.variants;
 
 		Object.keys(variants[this.variant].palette).forEach((name) => {
-			const figure = document.createElement("figure");
-			const button = document.createElement("button");
-			const object = document.createElement("object");
-			const caption = document.createElement("figcaption");
-			const label = document.createElement("span");
-			const value = document.createElement("code");
+			const figure = template.content.firstElementChild?.cloneNode(true);
 
-			figure.className = "color-swatch";
-			button.type = "button";
-			button.className = `color-orb orb-${name}`;
+			if (!(figure instanceof HTMLElement)) {
+				return;
+			}
+
+			const button = figure.querySelector(".color-orb");
+			const label = figure.querySelector("[data-color-label]");
+			const value = figure.querySelector("[data-color-name]");
+
+			if (
+				!(button instanceof HTMLButtonElement) ||
+				!(label instanceof HTMLElement) ||
+				!(value instanceof HTMLElement)
+			) {
+				return;
+			}
+
+			button.classList.add(`orb-${name}`);
 			button.dataset.copyColor = name;
 			button.addEventListener("click", () => this.#copy(name, button));
-			object.setAttribute("aria-hidden", "true");
 
 			label.textContent = this.#label(name);
 			value.dataset.colorName = name;
 
-			button.append(object);
-			caption.append(label, value);
-			figure.append(button, caption);
-			this.append(figure);
+			fragment.append(figure);
 		});
+
+		this.replaceChildren(fragment);
 	}
 
 	#sync() {
-		const theme = variants[this.variant].themes[this.mode];
+		const theme = this.#definitions.variants[this.variant].themes[this.mode];
 		const colors = /** @type {Record<string, string>} */ (theme.colors);
 
 		/** @type {NodeListOf<HTMLElement>} */
@@ -100,7 +121,9 @@ class ColorStage extends HTMLElement {
 	 * @param {HTMLButtonElement} button
 	 */
 	async #copy(name, button) {
-		const colors = /** @type {Record<string, string>} */ (variants[this.variant].themes[this.mode].colors);
+		const colors = /** @type {Record<string, string>} */ (
+			this.#definitions.variants[this.variant].themes[this.mode].colors
+		);
 		const color = colors[name];
 
 		try {

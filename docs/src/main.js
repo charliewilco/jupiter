@@ -1,24 +1,18 @@
-import Prism from "prismjs";
-import "prismjs/components/prism-clike";
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-typescript";
-import "prismjs/components/prism-go";
-import "prismjs/components/prism-swift";
-import "prismjs/components/prism-rust";
-import "../../prismjs/jupiter.css";
-import definitions from "../../definitions/jupiter.json";
 import "./ColorStage.js";
+import "./OutputIcon.js";
 import "./PresetSelector.js";
+import "./SyntaxHighlighter.js";
+import { loadDefinitions } from "./definitions.js";
 
 const toKebab = (value) => value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
 
-const getInitialVariant = () => {
+const getInitialVariant = (definitions) => {
 	const variant = localStorage.getItem("jupiter-preview-variant");
 
 	return variant && definitions.variants[variant] ? variant : "metis";
 };
 
-const getInitialMode = () => {
+const getInitialMode = (definitions) => {
 	const mode = localStorage.getItem("jupiter-preview-mode");
 
 	return mode && definitions.themes[mode] ? mode : "dark";
@@ -41,37 +35,13 @@ const setThemeVars = (theme) => {
 	});
 };
 
-const cacheIconSources = () => {
-	document.querySelectorAll("[data-icon-target]").forEach((picture) => {
-		picture.querySelectorAll("[data-icon-mode]").forEach((source) => {
-			picture.dataset[`${source.dataset.iconMode}Icon`] = source.srcset;
-		});
+const syncOutputIcons = (mode) => {
+	document.querySelectorAll("output-icon").forEach((icon) => {
+		icon.setAttribute("mode", mode);
 	});
 };
 
-const updateIcons = () => {
-	const mode = document.documentElement.dataset.mode || "dark";
-
-	document.querySelectorAll("[data-icon-target]").forEach((picture) => {
-		const src = picture.dataset[`${mode}Icon`];
-
-		if (!src) {
-			return;
-		}
-
-		picture.querySelectorAll("source").forEach((source) => {
-			source.srcset = src;
-		});
-
-		const image = picture.querySelector("img");
-
-		if (image) {
-			image.src = src;
-		}
-	});
-};
-
-const setPreview = (variant, mode) => {
+const setPreview = (definitions, variant, mode) => {
 	const theme = definitions.variants[variant].themes[mode];
 	const familySelector = document.querySelector("[data-family-selector]");
 	const modeSelector = document.querySelector("[data-mode-selector]");
@@ -83,7 +53,7 @@ const setPreview = (variant, mode) => {
 	localStorage.setItem("jupiter-preview-variant", variant);
 	localStorage.setItem("jupiter-preview-mode", mode);
 	setThemeVars(theme);
-	updateIcons();
+	syncOutputIcons(mode);
 
 	if (familySelector) {
 		familySelector.setAttribute("value", variant);
@@ -99,19 +69,22 @@ const setPreview = (variant, mode) => {
 	}
 };
 
-cacheIconSources();
-Prism.highlightAll();
+const start = async () => {
+	const definitions = await loadDefinitions();
 
-document.querySelector("[data-family-selector]")?.addEventListener("preset-change", (event) => {
-	if (event instanceof CustomEvent && typeof event.detail.value === "string") {
-		setPreview(event.detail.value, document.documentElement.dataset.mode || "dark");
-	}
-});
+	document.querySelector("[data-family-selector]")?.addEventListener("preset-change", (event) => {
+		if (event instanceof CustomEvent && typeof event.detail.value === "string") {
+			setPreview(definitions, event.detail.value, document.documentElement.dataset.mode || "dark");
+		}
+	});
 
-document.querySelector("[data-mode-selector]")?.addEventListener("preset-change", (event) => {
-	if (event instanceof CustomEvent && typeof event.detail.value === "string") {
-		setPreview(document.documentElement.dataset.variant || "metis", event.detail.value);
-	}
-});
+	document.querySelector("[data-mode-selector]")?.addEventListener("preset-change", (event) => {
+		if (event instanceof CustomEvent && typeof event.detail.value === "string") {
+			setPreview(definitions, document.documentElement.dataset.variant || "metis", event.detail.value);
+		}
+	});
 
-setPreview(getInitialVariant(), getInitialMode());
+	setPreview(definitions, getInitialVariant(definitions), getInitialMode(definitions));
+};
+
+start();

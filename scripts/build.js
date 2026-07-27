@@ -12,6 +12,8 @@ const files = {
 	codexGanymedeLight: "codex/ganymede-light.json",
 	codexLight: "codex/metis-light.json",
 	definitions: "definitions/jupiter.json",
+	docsDefinitions: "docs/definitions/jupiter.json",
+	docsPrism: "docs/prismjs/jupiter.css",
 	ghosttyGanymedeDark: "ghostty/ganymede-dark",
 	ghosttyGanymedeLight: "ghostty/ganymede-light",
 	itermGanymedeDark: "iterm/Ganymede Dark.itermcolors",
@@ -801,12 +803,17 @@ function build() {
 	writeFile(files.codexGanymedeLight, asJson(codexTheme(ganymedeLight)));
 	writeFile(files.codexLight, asJson(codexTheme(light)));
 	writeFile(files.definitions, asJson(Jupiter.definitions));
+	writeFile(files.docsDefinitions, asJson(Jupiter.definitions));
 	writeFile(files.shikiDark, asJson(shikiTheme(dark)));
 	writeFile(files.shikiGanymedeDark, asJson(shikiTheme(ganymedeDark)));
 	writeFile(files.shikiGanymedeLight, asJson(shikiTheme(ganymedeLight)));
 	writeFile(files.shikiLight, asJson(shikiTheme(light)));
 	writeFile(
 		files.prism,
+		[prismTheme(dark), prismTheme(light), prismTheme(ganymedeDark), prismTheme(ganymedeLight)].join("\n\n"),
+	);
+	writeFile(
+		files.docsPrism,
 		[prismTheme(dark), prismTheme(light), prismTheme(ganymedeDark), prismTheme(ganymedeLight)].join("\n\n"),
 	);
 	writeFile(files.vim, vimTheme(Jupiter.metis));

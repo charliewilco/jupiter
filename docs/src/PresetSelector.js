@@ -1,5 +1,7 @@
 // @ts-check
 
+import { findTemplateElement } from "./dom.js";
+
 class PresetDef extends HTMLElement {
 	get presetId() {
 		return this.getAttribute("id") || "";
@@ -49,56 +51,14 @@ class PresetSelector extends HTMLElement {
 
 	#render() {
 		const defs = Array.from(this.querySelectorAll("preset-def"));
-		const style = document.createElement("style");
-		const wrapper = document.createElement("div");
+		this.#root.replaceChildren(findTemplateElement("preset-selector-template").content.cloneNode(true));
 
-		style.textContent = `
-      :host {
-        display: inline-block;
-      }
+		const wrapper = this.#root.querySelector("[data-preset-options]");
 
-      div {
-        display: inline-grid;
-        grid-template-columns: repeat(var(--preset-count, 2), minmax(0, 1fr));
-        gap: 1px;
-        overflow: hidden;
-        min-width: 142px;
-        background: var(--ui-border);
-        border: 1px solid var(--ui-border);
-        border-radius: 7px;
-      }
+		if (!(wrapper instanceof HTMLElement)) {
+			return;
+		}
 
-      button {
-        min-height: 34px;
-        padding: 0 14px;
-        color: inherit;
-        cursor: pointer;
-        background: var(--ui-background-elevated);
-        border: 0;
-        font: inherit;
-        font-size: 0.82rem;
-        font-weight: 760;
-      }
-
-      button[aria-pressed="true"] {
-        color: var(--ui-background);
-        background: var(--ui-foreground);
-      }
-
-      button:focus-visible {
-        outline: 2px solid var(--ui-user-current-state);
-        outline-offset: 2px;
-      }
-
-      @media (max-width: 640px) {
-        :host,
-        div {
-          width: 100%;
-        }
-      }
-    `;
-
-		wrapper.setAttribute("role", "group");
 		wrapper.setAttribute("aria-label", this.getAttribute("aria-label") || "Preset");
 		wrapper.style.setProperty("--preset-count", String(defs.length || 1));
 		this.#buttons.clear();
@@ -116,8 +76,6 @@ class PresetSelector extends HTMLElement {
 			wrapper.append(button);
 			this.#buttons.set(def.presetId, button);
 		});
-
-		this.#root.replaceChildren(style, wrapper);
 	}
 
 	/**

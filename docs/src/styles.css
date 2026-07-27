@@ -133,10 +133,7 @@ h1 {
 }
 
 .output-list li {
-	display: grid;
-	grid-template-columns: 36px minmax(0, 1fr);
-	gap: 12px;
-	align-items: center;
+	display: block;
 	min-height: 46px;
 	padding: 7px 8px;
 	color: var(--ui-foreground);
@@ -144,18 +141,8 @@ h1 {
 	font-weight: 760;
 }
 
-.output-icon {
-	display: grid;
-	width: 34px;
-	aspect-ratio: 1;
-	place-items: center;
-}
-
-.output-icon img {
-	display: block;
-	width: 24px;
-	height: 24px;
-	object-fit: contain;
+output-icon {
+	width: 100%;
 }
 
 .secondary-outputs {
@@ -277,6 +264,11 @@ color-stage {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: 14px;
+}
+
+syntax-highlighter {
+	display: block;
+	min-width: 0;
 }
 
 .snippet-card {

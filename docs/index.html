@@ -6,9 +6,120 @@
 		<title>Jupiter Theme Previewer</title>
 		<meta name="description" content="Preview Jupiter colors across code, terminal, and editor surfaces." />
 		<link rel="stylesheet" href="./src/styles.css" />
-		<script type="module" src="./src/main.js"></script>
+		<link rel="stylesheet" href="./prismjs/jupiter.css" />
 	</head>
 	<body>
+		<template id="output-icon-template">
+			<style>
+				:host {
+					display: grid;
+					grid-template-columns: 36px minmax(0, 1fr);
+					gap: 12px;
+					align-items: center;
+					width: 100%;
+					color: inherit;
+					font: inherit;
+				}
+
+				.icon {
+					display: grid;
+					width: 34px;
+					aspect-ratio: 1;
+					place-items: center;
+				}
+
+				img {
+					display: block;
+					width: 24px;
+					height: 24px;
+					object-fit: contain;
+				}
+
+				.label {
+					min-width: 0;
+				}
+			</style>
+			<span class="icon">
+				<picture>
+					<source data-icon-source="light" media="(prefers-color-scheme: light)" />
+					<source data-icon-source="dark" media="(prefers-color-scheme: dark)" />
+					<img alt="" width="28" height="28" loading="lazy" decoding="async" />
+				</picture>
+			</span>
+			<span class="label"><slot></slot></span>
+		</template>
+
+		<template id="preset-selector-template">
+			<style>
+				:host {
+					display: inline-block;
+				}
+
+				div {
+					display: inline-grid;
+					grid-template-columns: repeat(var(--preset-count, 2), minmax(0, 1fr));
+					gap: 1px;
+					overflow: hidden;
+					min-width: 142px;
+					background: var(--ui-border);
+					border: 1px solid var(--ui-border);
+					border-radius: 7px;
+				}
+
+				button {
+					min-height: 34px;
+					padding: 0 14px;
+					color: inherit;
+					cursor: pointer;
+					background: var(--ui-background-elevated);
+					border: 0;
+					font: inherit;
+					font-size: 0.82rem;
+					font-weight: 760;
+				}
+
+				button[aria-pressed="true"] {
+					color: var(--ui-background);
+					background: var(--ui-foreground);
+				}
+
+				button:focus-visible {
+					outline: 2px solid var(--ui-user-current-state);
+					outline-offset: 2px;
+				}
+
+				@media (max-width: 640px) {
+					:host,
+					div {
+						width: 100%;
+					}
+				}
+			</style>
+			<div data-preset-options role="group"></div>
+		</template>
+
+		<template id="color-stage-swatch-template">
+			<figure class="color-swatch">
+				<button type="button" class="color-orb">
+					<object aria-hidden="true"></object>
+				</button>
+				<figcaption>
+					<span data-color-label></span>
+					<code data-color-name></code>
+				</figcaption>
+			</figure>
+		</template>
+
+		<template id="syntax-highlighter-template">
+			<div class="snippet-card">
+				<div class="snippet-heading">
+					<h3 data-syntax-title></h3>
+					<code data-syntax-file></code>
+				</div>
+				<pre><code data-syntax-code></code></pre>
+			</div>
+		</template>
+
 		<div class="page-shell">
 			<header class="site-header">
 				<div class="header-copy">
@@ -32,135 +143,52 @@
 					<h2 id="outputs-title">Outputs</h2>
 					<ul class="output-list">
 						<li>
-							<picture class="output-icon" data-icon-target="iterm2">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/iterm2.png"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/iterm2.png"
-								/>
-								<img
-									src="./assets/icons/dark/iterm2.png"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>iTerm2</span>
+							<output-icon
+								light="./assets/icons/light/iterm2.png"
+								dark="./assets/icons/dark/iterm2.png"
+								default="./assets/icons/dark/iterm2.png"
+								>iTerm2</output-icon
+							>
 						</li>
 						<li>
-							<picture class="output-icon" data-icon-target="ghostty">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/ghostty.png"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/ghostty.png"
-								/>
-								<img
-									src="./assets/icons/dark/ghostty.png"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>Ghostty</span>
+							<output-icon
+								light="./assets/icons/light/ghostty.png"
+								dark="./assets/icons/dark/ghostty.png"
+								default="./assets/icons/dark/ghostty.png"
+								>Ghostty</output-icon
+							>
 						</li>
 						<li>
-							<picture class="output-icon" data-icon-target="codex">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/codex.png"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/codex.png"
-								/>
-								<img
-									src="./assets/icons/dark/codex.png"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>Codex</span>
+							<output-icon
+								light="./assets/icons/light/codex.png"
+								dark="./assets/icons/dark/codex.png"
+								default="./assets/icons/dark/codex.png"
+								>Codex</output-icon
+							>
 						</li>
 						<li>
-							<picture class="output-icon" data-icon-target="vim">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/vim.png"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/vim.png"
-								/>
-								<img src="./assets/icons/dark/vim.png" alt="" width="28" height="28" loading="lazy" decoding="async" />
-							</picture>
-							<span>Vim</span>
+							<output-icon
+								light="./assets/icons/light/vim.png"
+								dark="./assets/icons/dark/vim.png"
+								default="./assets/icons/dark/vim.png"
+								>Vim</output-icon
+							>
 						</li>
 						<li>
-							<picture class="output-icon" data-icon-target="xcode">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/xcode.png"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/xcode.png"
-								/>
-								<img
-									src="./assets/icons/dark/xcode.png"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>Xcode</span>
+							<output-icon
+								light="./assets/icons/light/xcode.png"
+								dark="./assets/icons/dark/xcode.png"
+								default="./assets/icons/dark/xcode.png"
+								>Xcode</output-icon
+							>
 						</li>
 						<li>
-							<picture class="output-icon" data-icon-target="vscode">
-								<source
-									data-icon-mode="light"
-									media="(prefers-color-scheme: light)"
-									srcset="./assets/icons/light/vscode.png"
-								/>
-								<source
-									data-icon-mode="dark"
-									media="(prefers-color-scheme: dark)"
-									srcset="./assets/icons/dark/vscode.png"
-								/>
-								<img
-									src="./assets/icons/dark/vscode.png"
-									alt=""
-									width="28"
-									height="28"
-									loading="lazy"
-									decoding="async"
-								/>
-							</picture>
-							<span>VSCode</span>
+							<output-icon
+								light="./assets/icons/light/vscode.png"
+								dark="./assets/icons/dark/vscode.png"
+								default="./assets/icons/dark/vscode.png"
+								>VSCode</output-icon
+							>
 						</li>
 					</ul>
 					<p class="secondary-outputs">Also available for PrismJS, Shiki, and source definitions.</p>
@@ -188,68 +216,61 @@
 					</section>
 
 					<section class="snippet-grid" aria-label="Prism rendered examples">
-						<div class="snippet-card">
-							<div class="snippet-heading">
-								<h3>TypeScript</h3>
-								<code>theme.ts</code>
-							</div>
-							<pre
-								class="language-typescript"
-							><code class="language-typescript">type Output = "ghostty" | "xcode" | "prism";
+						<syntax-highlighter language="typescript" label="TypeScript" file="theme.ts">
+							<template data-syntax-source>
+								<pre>
+type Output = "ghostty" | "xcode" | "prism";
 
-const writeTheme = async (output: Output) =&gt; {
+const writeTheme = async (output: Output) => {
 	const preset = await loadPreset("metis-dark");
 	return buildArtifact({ output, preset });
-};</code></pre>
-						</div>
-						<div class="snippet-card">
-							<div class="snippet-heading">
-								<h3>Go</h3>
-								<code>theme.go</code>
-							</div>
-							<pre class="language-go"><code class="language-go">type TokenRole string
+};</pre>
+							</template>
+						</syntax-highlighter>
+						<syntax-highlighter language="go" label="Go" file="theme.go">
+							<template data-syntax-source>
+								<pre>
+type TokenRole string
 
 func Resolve(role TokenRole, palette Palette) string {
 	if role == "statement" {
 		return palette.Amber
 	}
 	return palette.Foreground
-}</code></pre>
-						</div>
-						<div class="snippet-card">
-							<div class="snippet-heading">
-								<h3>Swift</h3>
-								<code>Theme.swift</code>
-							</div>
-							<pre class="language-swift"><code class="language-swift">struct JupiterTheme {
+}</pre>
+							</template>
+						</syntax-highlighter>
+						<syntax-highlighter language="swift" label="Swift" file="Theme.swift">
+							<template data-syntax-source>
+								<pre>
+struct JupiterTheme {
 	let name: String
 	let syntax: [String: Color]
 
-	func color(for role: String) -&gt; Color {
+	func color(for role: String) -> Color {
 		syntax[role] ?? syntax["trivial"]!
 	}
-}</code></pre>
-						</div>
-						<div class="snippet-card">
-							<div class="snippet-heading">
-								<h3>Rust</h3>
-								<code>theme.rs</code>
-							</div>
-							<pre
-								class="language-rust"
-							><code class="language-rust">pub fn accent(role: &amp;str, theme: &amp;Theme) -&gt; Color {
+}</pre>
+							</template>
+						</syntax-highlighter>
+						<syntax-highlighter language="rust" label="Rust" file="theme.rs">
+							<template data-syntax-source>
+								<pre>
+pub fn accent(role: &amp;str, theme: &amp;Theme) -> Color {
 	match role {
-		"string" =&gt; theme.mint,
-		"number" =&gt; theme.yellow,
-		_ =&gt; theme.foreground,
+		"string" => theme.mint,
+		"number" => theme.yellow,
+		_ => theme.foreground,
 	}
-}</code></pre>
-						</div>
+}</pre>
+							</template>
+						</syntax-highlighter>
 					</section>
 				</article>
 			</main>
 
 			<footer class="site-footer" aria-label="Footer"></footer>
 		</div>
+		<script type="module" src="./src/main.js"></script>
 	</body>
 </html>
