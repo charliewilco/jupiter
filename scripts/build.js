@@ -8,33 +8,61 @@ const generated = [];
 
 const files = {
 	codexDark: "codex/metis-dark.json",
+	codexCallistoDark: "codex/callisto-dark.json",
+	codexCallistoLight: "codex/callisto-light.json",
+	codexEuropaDark: "codex/europa-dark.json",
+	codexEuropaLight: "codex/europa-light.json",
 	codexGanymedeDark: "codex/ganymede-dark.json",
 	codexGanymedeLight: "codex/ganymede-light.json",
 	codexLight: "codex/metis-light.json",
 	definitions: "definitions/jupiter.json",
 	docsDefinitions: "docs/definitions/jupiter.json",
 	docsPrism: "docs/prismjs/jupiter.css",
+	ghosttyCallistoDark: "ghostty/callisto-dark",
+	ghosttyCallistoLight: "ghostty/callisto-light",
+	ghosttyEuropaDark: "ghostty/europa-dark",
+	ghosttyEuropaLight: "ghostty/europa-light",
 	ghosttyGanymedeDark: "ghostty/ganymede-dark",
 	ghosttyGanymedeLight: "ghostty/ganymede-light",
+	itermCallistoDark: "iterm/Callisto Dark.itermcolors",
+	itermCallistoLight: "iterm/Callisto Light.itermcolors",
+	itermEuropaDark: "iterm/Europa Dark.itermcolors",
+	itermEuropaLight: "iterm/Europa Light.itermcolors",
 	itermGanymedeDark: "iterm/Ganymede Dark.itermcolors",
 	itermGanymedeLight: "iterm/Ganymede Light.itermcolors",
 	shikiDark: "shiki/metis-dark.json",
+	shikiCallistoDark: "shiki/callisto-dark.json",
+	shikiCallistoLight: "shiki/callisto-light.json",
+	shikiEuropaDark: "shiki/europa-dark.json",
+	shikiEuropaLight: "shiki/europa-light.json",
 	shikiGanymedeDark: "shiki/ganymede-dark.json",
 	shikiGanymedeLight: "shiki/ganymede-light.json",
 	shikiLight: "shiki/metis-light.json",
 	prism: "prismjs/jupiter.css",
 	vim: "colors/metis.vim",
+	vimCallisto: "colors/callisto.vim",
+	vimEuropa: "colors/europa.vim",
 	vimGanymede: "colors/ganymede.vim",
 	vimAirline: "autoload/airline/themes/metis.vim",
+	vimAirlineCallisto: "autoload/airline/themes/callisto.vim",
+	vimAirlineEuropa: "autoload/airline/themes/europa.vim",
 	vimAirlineGanymede: "autoload/airline/themes/ganymede.vim",
 	ghosttyDark: "ghostty/metis-dark",
 	ghosttyLight: "ghostty/metis-light",
 	itermDark: "iterm/Metis Dark.itermcolors",
 	itermLight: "iterm/Metis Light.itermcolors",
+	xcodeCallistoDark: "xcode/Callisto Dark.xccolortheme",
+	xcodeCallistoLight: "xcode/Callisto Light.xccolortheme",
+	xcodeEuropaDark: "xcode/Europa Dark.xccolortheme",
+	xcodeEuropaLight: "xcode/Europa Light.xccolortheme",
 	xcodeDark: "xcode/Metis Dark.xccolortheme",
 	xcodeGanymedeDark: "xcode/Ganymede Dark.xccolortheme",
 	xcodeGanymedeLight: "xcode/Ganymede Light.xccolortheme",
 	xcodeLight: "xcode/Metis Light.xccolortheme",
+	vscodeCallistoDark: "vscode/themes/callisto-dark-color-theme.json",
+	vscodeCallistoLight: "vscode/themes/callisto-light-color-theme.json",
+	vscodeEuropaDark: "vscode/themes/europa-dark-color-theme.json",
+	vscodeEuropaLight: "vscode/themes/europa-light-color-theme.json",
 	vscodeDark: "vscode/themes/metis-dark-color-theme.json",
 	vscodeGanymedeDark: "vscode/themes/ganymede-dark-color-theme.json",
 	vscodeGanymedeLight: "vscode/themes/ganymede-light-color-theme.json",
@@ -756,7 +784,7 @@ endif`;
 }
 
 function vscodePackage() {
-	const themes = [Jupiter.metis, Jupiter.ganymede].flatMap((variant) => [
+	const themes = [Jupiter.metis, Jupiter.ganymede, Jupiter.callisto, Jupiter.europa].flatMap((variant) => [
 		{
 			label: `${variant.name} Dark`,
 			uiTheme: "vs-dark",
@@ -797,42 +825,92 @@ function build() {
 	const light = Jupiter.themes.light;
 	const ganymedeDark = Jupiter.ganymede.themes.dark;
 	const ganymedeLight = Jupiter.ganymede.themes.light;
+	const callistoDark = Jupiter.callisto.themes.dark;
+	const callistoLight = Jupiter.callisto.themes.light;
+	const europaDark = Jupiter.europa.themes.dark;
+	const europaLight = Jupiter.europa.themes.light;
 
 	writeFile(files.codexDark, asJson(codexTheme(dark)));
+	writeFile(files.codexCallistoDark, asJson(codexTheme(callistoDark)));
+	writeFile(files.codexCallistoLight, asJson(codexTheme(callistoLight)));
+	writeFile(files.codexEuropaDark, asJson(codexTheme(europaDark)));
+	writeFile(files.codexEuropaLight, asJson(codexTheme(europaLight)));
 	writeFile(files.codexGanymedeDark, asJson(codexTheme(ganymedeDark)));
 	writeFile(files.codexGanymedeLight, asJson(codexTheme(ganymedeLight)));
 	writeFile(files.codexLight, asJson(codexTheme(light)));
 	writeFile(files.definitions, asJson(Jupiter.definitions));
 	writeFile(files.docsDefinitions, asJson(Jupiter.definitions));
 	writeFile(files.shikiDark, asJson(shikiTheme(dark)));
+	writeFile(files.shikiCallistoDark, asJson(shikiTheme(callistoDark)));
+	writeFile(files.shikiCallistoLight, asJson(shikiTheme(callistoLight)));
+	writeFile(files.shikiEuropaDark, asJson(shikiTheme(europaDark)));
+	writeFile(files.shikiEuropaLight, asJson(shikiTheme(europaLight)));
 	writeFile(files.shikiGanymedeDark, asJson(shikiTheme(ganymedeDark)));
 	writeFile(files.shikiGanymedeLight, asJson(shikiTheme(ganymedeLight)));
 	writeFile(files.shikiLight, asJson(shikiTheme(light)));
 	writeFile(
 		files.prism,
-		[prismTheme(dark), prismTheme(light), prismTheme(ganymedeDark), prismTheme(ganymedeLight)].join("\n\n"),
+		[
+			prismTheme(dark),
+			prismTheme(light),
+			prismTheme(ganymedeDark),
+			prismTheme(ganymedeLight),
+			prismTheme(callistoDark),
+			prismTheme(callistoLight),
+			prismTheme(europaDark),
+			prismTheme(europaLight),
+		].join("\n\n"),
 	);
 	writeFile(
 		files.docsPrism,
-		[prismTheme(dark), prismTheme(light), prismTheme(ganymedeDark), prismTheme(ganymedeLight)].join("\n\n"),
+		[
+			prismTheme(dark),
+			prismTheme(light),
+			prismTheme(ganymedeDark),
+			prismTheme(ganymedeLight),
+			prismTheme(callistoDark),
+			prismTheme(callistoLight),
+			prismTheme(europaDark),
+			prismTheme(europaLight),
+		].join("\n\n"),
 	);
 	writeFile(files.vim, vimTheme(Jupiter.metis));
+	writeFile(files.vimCallisto, vimTheme(Jupiter.callisto));
+	writeFile(files.vimEuropa, vimTheme(Jupiter.europa));
 	writeFile(files.vimGanymede, vimTheme(Jupiter.ganymede));
 	writeFile(files.vimAirline, vimAirlineTheme(Jupiter.metis));
+	writeFile(files.vimAirlineCallisto, vimAirlineTheme(Jupiter.callisto));
+	writeFile(files.vimAirlineEuropa, vimAirlineTheme(Jupiter.europa));
 	writeFile(files.vimAirlineGanymede, vimAirlineTheme(Jupiter.ganymede));
 	writeFile(files.ghosttyDark, ghosttyTheme(dark));
+	writeFile(files.ghosttyCallistoDark, ghosttyTheme(callistoDark));
+	writeFile(files.ghosttyCallistoLight, ghosttyTheme(callistoLight));
+	writeFile(files.ghosttyEuropaDark, ghosttyTheme(europaDark));
+	writeFile(files.ghosttyEuropaLight, ghosttyTheme(europaLight));
 	writeFile(files.ghosttyGanymedeDark, ghosttyTheme(ganymedeDark));
 	writeFile(files.ghosttyGanymedeLight, ghosttyTheme(ganymedeLight));
 	writeFile(files.ghosttyLight, ghosttyTheme(light));
 	writeFile(files.itermDark, itermTheme(dark));
+	writeFile(files.itermCallistoDark, itermTheme(callistoDark));
+	writeFile(files.itermCallistoLight, itermTheme(callistoLight));
+	writeFile(files.itermEuropaDark, itermTheme(europaDark));
+	writeFile(files.itermEuropaLight, itermTheme(europaLight));
 	writeFile(files.itermGanymedeDark, itermTheme(ganymedeDark));
 	writeFile(files.itermGanymedeLight, itermTheme(ganymedeLight));
 	writeFile(files.itermLight, itermTheme(light));
 	writeFile(files.xcodeDark, xcodeTheme(dark));
+	writeFile(files.xcodeCallistoDark, xcodeTheme(callistoDark));
+	writeFile(files.xcodeCallistoLight, xcodeTheme(callistoLight));
+	writeFile(files.xcodeEuropaDark, xcodeTheme(europaDark));
+	writeFile(files.xcodeEuropaLight, xcodeTheme(europaLight));
 	writeFile(files.xcodeGanymedeDark, xcodeTheme(ganymedeDark));
 	writeFile(files.xcodeGanymedeLight, xcodeTheme(ganymedeLight));
 	writeFile(files.xcodeLight, xcodeTheme(light));
 	writeFile(files.vscodeDark, asJson(vscodeTheme(dark)));
+	writeFile(files.vscodeCallistoDark, asJson(vscodeTheme(callistoDark)));
+	writeFile(files.vscodeCallistoLight, asJson(vscodeTheme(callistoLight)));
+	writeFile(files.vscodeEuropaDark, asJson(vscodeTheme(europaDark)));
+	writeFile(files.vscodeEuropaLight, asJson(vscodeTheme(europaLight)));
 	writeFile(files.vscodeGanymedeDark, asJson(vscodeTheme(ganymedeDark)));
 	writeFile(files.vscodeGanymedeLight, asJson(vscodeTheme(ganymedeLight)));
 	writeFile(files.vscodeLight, asJson(vscodeTheme(light)));

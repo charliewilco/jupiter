@@ -41,6 +41,14 @@ const syncOutputIcons = (mode) => {
 	});
 };
 
+const syncVariantSelector = (selector, variant) => {
+	const input = selector.querySelector(`input[value="${CSS.escape(variant)}"]`);
+
+	if (input instanceof HTMLInputElement) {
+		input.checked = true;
+	}
+};
+
 const setPreview = (definitions, variant, mode) => {
 	const theme = definitions.variants[variant].themes[mode];
 	const familySelector = document.querySelector("[data-family-selector]");
@@ -56,7 +64,7 @@ const setPreview = (definitions, variant, mode) => {
 	syncOutputIcons(mode);
 
 	if (familySelector) {
-		familySelector.setAttribute("value", variant);
+		syncVariantSelector(familySelector, variant);
 	}
 
 	if (modeSelector) {
@@ -72,9 +80,9 @@ const setPreview = (definitions, variant, mode) => {
 const start = async () => {
 	const definitions = await loadDefinitions();
 
-	document.querySelector("[data-family-selector]")?.addEventListener("preset-change", (event) => {
-		if (event instanceof CustomEvent && typeof event.detail.value === "string") {
-			setPreview(definitions, event.detail.value, document.documentElement.dataset.mode || "dark");
+	document.querySelector("[data-family-selector]")?.addEventListener("change", (event) => {
+		if (event.target instanceof HTMLInputElement && event.target.value in definitions.variants) {
+			setPreview(definitions, event.target.value, document.documentElement.dataset.mode || "dark");
 		}
 	});
 

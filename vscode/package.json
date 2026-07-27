@@ -42,6 +42,26 @@
         "label": "Ganymede Light",
         "uiTheme": "vs",
         "path": "./themes/ganymede-light-color-theme.json"
+      },
+      {
+        "label": "Callisto Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/callisto-dark-color-theme.json"
+      },
+      {
+        "label": "Callisto Light",
+        "uiTheme": "vs",
+        "path": "./themes/callisto-light-color-theme.json"
+      },
+      {
+        "label": "Europa Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/europa-dark-color-theme.json"
+      },
+      {
+        "label": "Europa Light",
+        "uiTheme": "vs",
+        "path": "./themes/europa-light-color-theme.json"
       }
     ]
   }

@@ -10,7 +10,7 @@
 		"check:generated": "node scripts/build.js --check",
 		"check:json": "node scripts/validate-json.js",
 		"check:plist": "node scripts/validate-plist.js",
-		"check:vim": "vim --clean -Nu NONE -n -es -c 'set runtimepath^=$PWD' -c 'set background=dark' -c 'colorscheme metis' -c 'set background=light' -c 'colorscheme metis' -c 'set background=dark' -c 'colorscheme ganymede' -c 'set background=light' -c 'colorscheme ganymede' -c 'qa!'",
+		"check:vim": "node scripts/check-vim.js",
 		"check:vscode": "node scripts/validate-vscode-package.js",
 		"check": "npm run check:generated && npm run check:json && npm run check:plist && npm run check:vim && npm run check:vscode",
 		"test": "node jupiter/test.js && npm run check"

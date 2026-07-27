@@ -4,34 +4,34 @@ let g:airline#themes#metis#palette = {}
 
 if &background ==# "light"
 let s:modified = {
-  \ 'airline_c': [ "#AE3431" , "" , "" , "" , "" ]
+  \ 'airline_c': [ "#B73D38" , "" , "" , "" , "" ]
   \ }
 
-let s:N1 = [ "#F7FAFC" , "#007E9F" , "" , "" ]
-let s:N2 = [ "#172631" , "#DCE7EE" , "" , "" ]
-let s:N3 = [ "#4B6070" , "#EDF4F8" , "" , "" ]
+let s:N1 = [ "#F7FCFE" , "#007FA3" , "" , "" ]
+let s:N2 = [ "#0B2F44" , "#D5EDF7" , "" , "" ]
+let s:N3 = [ "#335F74" , "#ECF7FC" , "" , "" ]
 let g:airline#themes#metis#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
 let g:airline#themes#metis#palette.normal_modified = s:modified
 
-let s:I1 = [ "#F7FAFC" , "#397735" , "" , "" ]
+let s:I1 = [ "#F7FCFE" , "#74772E" , "" , "" ]
 let g:airline#themes#metis#palette.insert = airline#themes#generate_color_map(s:I1, s:N2, s:N3)
 let g:airline#themes#metis#palette.insert_modified = s:modified
 
-let s:V1 = [ "#F7FAFC" , "#A83B80" , "" , "" ]
+let s:V1 = [ "#F7FCFE" , "#A84D5E" , "" , "" ]
 let g:airline#themes#metis#palette.visual = airline#themes#generate_color_map(s:V1, s:N2, s:N3)
 let g:airline#themes#metis#palette.visual_modified = s:modified
 
-let s:R1 = [ "#F7FAFC" , "#AE3431" , "" , "" ]
+let s:R1 = [ "#F7FCFE" , "#B73D38" , "" , "" ]
 let g:airline#themes#metis#palette.replace = airline#themes#generate_color_map(s:R1, s:N2, s:N3)
 let g:airline#themes#metis#palette.replace_modified = s:modified
 
-let s:IN1 = [ "#718493" , "#DCE7EE" , "" , "" ]
+let s:IN1 = [ "#5C8396" , "#D5EDF7" , "" , "" ]
 let g:airline#themes#metis#palette.inactive = airline#themes#generate_color_map(s:IN1, s:IN1, s:IN1)
 let g:airline#themes#metis#palette.inactive_modified = s:modified
 
-let s:AirlineError = [ "#F7FAFC" , "#AE3431" , "" , "" ]
-let s:AirlineWarning = [ "#F7FAFC" , "#8F6800" , "" , "" ]
-let g:airline#themes#metis#palette.accents = {'red': [ "#AE3431" , "" , "" , "" ]}
+let s:AirlineError = [ "#F7FCFE" , "#B73D38" , "" , "" ]
+let s:AirlineWarning = [ "#F7FCFE" , "#946E00" , "" , "" ]
+let g:airline#themes#metis#palette.accents = {'red': [ "#B73D38" , "" , "" , "" ]}
 
 for s:mode in ['normal', 'insert', 'visual', 'replace']
   let g:airline#themes#metis#palette[s:mode].airline_error = s:AirlineError
@@ -42,40 +42,40 @@ let s:tabfill = airline#themes#get_highlight2(['Normal', 'bg'], ['Normal', 'bg']
 let g:airline#themes#metis#palette.tabline = {
   \ 'airline_tab': s:N2,
   \ 'airline_tabsel': s:N1,
-  \ 'airline_tabtype': [ "#F7FAFC" , "#397735" , "" , "" ],
+  \ 'airline_tabtype': [ "#F7FCFE" , "#74772E" , "" , "" ],
   \ 'airline_tabfill': s:tabfill,
   \ 'airline_tabhid': s:IN1
   \ }
 else
 let s:modified = {
-  \ 'airline_c': [ "#FF665D" , "" , "" , "" , "" ]
+  \ 'airline_c': [ "#F25F57" , "" , "" , "" , "" ]
   \ }
 
-let s:N1 = [ "#0C1218" , "#4ACDEB" , "" , "" ]
-let s:N2 = [ "#E1EBF2" , "#1B2834" , "" , "" ]
-let s:N3 = [ "#AFBBC4" , "#131D26" , "" , "" ]
+let s:N1 = [ "#082D42" , "#38C2E6" , "" , "" ]
+let s:N2 = [ "#DCEBF5" , "#104B68" , "" , "" ]
+let s:N3 = [ "#9CCFE7" , "#0B3A54" , "" , "" ]
 let g:airline#themes#metis#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
 let g:airline#themes#metis#palette.normal_modified = s:modified
 
-let s:I1 = [ "#0C1218" , "#7FC86B" , "" , "" ]
+let s:I1 = [ "#082D42" , "#C7C46B" , "" , "" ]
 let g:airline#themes#metis#palette.insert = airline#themes#generate_color_map(s:I1, s:N2, s:N3)
 let g:airline#themes#metis#palette.insert_modified = s:modified
 
-let s:V1 = [ "#0C1218" , "#EB70BE" , "" , "" ]
+let s:V1 = [ "#082D42" , "#DD747D" , "" , "" ]
 let g:airline#themes#metis#palette.visual = airline#themes#generate_color_map(s:V1, s:N2, s:N3)
 let g:airline#themes#metis#palette.visual_modified = s:modified
 
-let s:R1 = [ "#0C1218" , "#FF665D" , "" , "" ]
+let s:R1 = [ "#082D42" , "#F25F57" , "" , "" ]
 let g:airline#themes#metis#palette.replace = airline#themes#generate_color_map(s:R1, s:N2, s:N3)
 let g:airline#themes#metis#palette.replace_modified = s:modified
 
-let s:IN1 = [ "#7A8B98" , "#1B2834" , "" , "" ]
+let s:IN1 = [ "#6096B2" , "#104B68" , "" , "" ]
 let g:airline#themes#metis#palette.inactive = airline#themes#generate_color_map(s:IN1, s:IN1, s:IN1)
 let g:airline#themes#metis#palette.inactive_modified = s:modified
 
-let s:AirlineError = [ "#0C1218" , "#FF665D" , "" , "" ]
-let s:AirlineWarning = [ "#0C1218" , "#F0AD2E" , "" , "" ]
-let g:airline#themes#metis#palette.accents = {'red': [ "#FF665D" , "" , "" , "" ]}
+let s:AirlineError = [ "#082D42" , "#F25F57" , "" , "" ]
+let s:AirlineWarning = [ "#082D42" , "#F0A818" , "" , "" ]
+let g:airline#themes#metis#palette.accents = {'red': [ "#F25F57" , "" , "" , "" ]}
 
 for s:mode in ['normal', 'insert', 'visual', 'replace']
   let g:airline#themes#metis#palette[s:mode].airline_error = s:AirlineError
@@ -86,7 +86,7 @@ let s:tabfill = airline#themes#get_highlight2(['Normal', 'bg'], ['Normal', 'bg']
 let g:airline#themes#metis#palette.tabline = {
   \ 'airline_tab': s:N2,
   \ 'airline_tabsel': s:N1,
-  \ 'airline_tabtype': [ "#0C1218" , "#7FC86B" , "" , "" ],
+  \ 'airline_tabtype': [ "#082D42" , "#C7C46B" , "" , "" ],
   \ 'airline_tabfill': s:tabfill,
   \ 'airline_tabhid': s:IN1
   \ }

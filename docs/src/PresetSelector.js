@@ -18,7 +18,7 @@ class PresetDef extends HTMLElement {
 
 class PresetSelector extends HTMLElement {
 	static get observedAttributes() {
-		return ["appearance", "value"];
+		return ["value"];
 	}
 
 	/** @type {ShadowRoot} */
@@ -37,11 +37,7 @@ class PresetSelector extends HTMLElement {
 		this.#sync();
 	}
 
-	attributeChangedCallback(name) {
-		if (name === "appearance" && this.isConnected) {
-			this.#render();
-		}
-
+	attributeChangedCallback() {
 		this.#sync();
 	}
 
@@ -51,10 +47,6 @@ class PresetSelector extends HTMLElement {
 
 	set value(value) {
 		this.setAttribute("value", value);
-	}
-
-	get appearance() {
-		return this.getAttribute("appearance") || "segmented";
 	}
 
 	#render() {
@@ -68,7 +60,6 @@ class PresetSelector extends HTMLElement {
 		}
 
 		wrapper.setAttribute("aria-label", this.getAttribute("aria-label") || "Preset");
-		wrapper.setAttribute("role", this.appearance === "radio" ? "radiogroup" : "group");
 		wrapper.style.setProperty("--preset-count", String(defs.length || 1));
 		this.#buttons.clear();
 
@@ -81,11 +72,7 @@ class PresetSelector extends HTMLElement {
 			button.type = "button";
 			button.textContent = def.label;
 			button.dataset.presetOption = def.presetId;
-			if (this.appearance === "radio") {
-				button.setAttribute("role", "radio");
-			}
 			button.addEventListener("click", () => this.#select(def.presetId));
-			button.addEventListener("keydown", (event) => this.#handleKeydown(event, def.presetId));
 			wrapper.append(button);
 			this.#buttons.set(def.presetId, button);
 		});
@@ -104,52 +91,9 @@ class PresetSelector extends HTMLElement {
 		);
 	}
 
-	/**
-	 * @param {KeyboardEvent} event
-	 * @param {string} currentValue
-	 */
-	#handleKeydown(event, currentValue) {
-		if (this.appearance !== "radio") {
-			return;
-		}
-
-		const values = Array.from(this.#buttons.keys());
-		const currentIndex = values.indexOf(currentValue);
-		const lastIndex = values.length - 1;
-		let nextIndex = currentIndex;
-
-		if (event.key === "ArrowRight" || event.key === "ArrowDown") {
-			nextIndex = currentIndex === lastIndex ? 0 : currentIndex + 1;
-		} else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-			nextIndex = currentIndex <= 0 ? lastIndex : currentIndex - 1;
-		} else if (event.key === "Home") {
-			nextIndex = 0;
-		} else if (event.key === "End") {
-			nextIndex = lastIndex;
-		} else {
-			return;
-		}
-
-		event.preventDefault();
-		const nextValue = values[nextIndex];
-		const nextButton = this.#buttons.get(nextValue);
-		this.#select(nextValue);
-		nextButton?.focus();
-	}
-
 	#sync() {
 		this.#buttons.forEach((button, value) => {
-			const selected = value === this.value;
-
-			if (this.appearance === "radio") {
-				button.setAttribute("aria-checked", String(selected));
-				button.removeAttribute("aria-pressed");
-				button.tabIndex = selected ? 0 : -1;
-			} else {
-				button.setAttribute("aria-pressed", String(selected));
-				button.removeAttribute("aria-checked");
-				button.removeAttribute("tabindex");
-			}
+			button.setAttribute("aria-pressed", String(value === this.value));
 		});
 	}
 }
