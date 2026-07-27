@@ -12,8 +12,7 @@
 		<template id="output-icon-template">
 			<style>
 				:host {
-					display: grid;
-					grid-template-columns: 36px minmax(0, 1fr);
+					display: flex;
 					gap: 12px;
 					align-items: center;
 					width: 100%;
@@ -23,15 +22,15 @@
 
 				.icon {
 					display: grid;
-					width: 34px;
+					width: 4rem;
 					aspect-ratio: 1;
 					place-items: center;
 				}
 
 				img {
 					display: block;
-					width: 24px;
-					height: 24px;
+					width: 100%;
+					height: 100%;
 					object-fit: contain;
 				}
 
@@ -83,6 +82,45 @@
 					background: var(--ui-foreground);
 				}
 
+				:host([appearance="radio"]) div {
+					display: inline-flex;
+					gap: 14px;
+					overflow: visible;
+					min-width: 0;
+					background: transparent;
+					border: 0;
+					border-radius: 0;
+				}
+
+				:host([appearance="radio"]) button {
+					display: inline-flex;
+					gap: 7px;
+					align-items: center;
+					min-height: 32px;
+					padding: 0;
+					color: var(--ui-foreground-muted);
+					background: transparent;
+				}
+
+				:host([appearance="radio"]) button::before {
+					display: block;
+					width: 10px;
+					height: 10px;
+					content: "";
+					background: var(--ui-background);
+					border: 1.5px solid var(--ui-border);
+					border-radius: 50%;
+				}
+
+				:host([appearance="radio"]) button[aria-checked="true"] {
+					color: var(--ui-foreground);
+				}
+
+				:host([appearance="radio"]) button[aria-checked="true"]::before {
+					background: radial-gradient(circle at center, currentColor 0 38%, transparent 42%);
+					border-color: currentColor;
+				}
+
 				button:focus-visible {
 					outline: 2px solid var(--ui-user-current-state);
 					outline-offset: 2px;
@@ -127,73 +165,19 @@
 					<p>A theme system for the small moons: Metis and Ganymede.</p>
 				</div>
 				<div class="theme-controls" aria-label="Theme preview controls">
-					<preset-selector data-family-selector aria-label="Theme family">
-						<preset-def id="metis"></preset-def>
-						<preset-def id="ganymede"></preset-def>
-					</preset-selector>
 					<preset-selector data-mode-selector aria-label="Theme mode">
 						<preset-def id="light"></preset-def>
 						<preset-def id="dark"></preset-def>
 					</preset-selector>
 				</div>
+
+				<preset-selector data-family-selector appearance="radio" aria-label="Theme family">
+					<preset-def id="metis"></preset-def>
+					<preset-def id="ganymede"></preset-def>
+				</preset-selector>
 			</header>
 
 			<main class="preview-layout">
-				<aside class="sidebar" aria-labelledby="outputs-title">
-					<h2 id="outputs-title">Outputs</h2>
-					<ul class="output-list">
-						<li>
-							<output-icon
-								light="./assets/icons/light/iterm2.png"
-								dark="./assets/icons/dark/iterm2.png"
-								default="./assets/icons/dark/iterm2.png"
-								>iTerm2</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/ghostty.png"
-								dark="./assets/icons/dark/ghostty.png"
-								default="./assets/icons/dark/ghostty.png"
-								>Ghostty</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/codex.png"
-								dark="./assets/icons/dark/codex.png"
-								default="./assets/icons/dark/codex.png"
-								>Codex</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/vim.png"
-								dark="./assets/icons/dark/vim.png"
-								default="./assets/icons/dark/vim.png"
-								>Vim</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/xcode.png"
-								dark="./assets/icons/dark/xcode.png"
-								default="./assets/icons/dark/xcode.png"
-								>Xcode</output-icon
-							>
-						</li>
-						<li>
-							<output-icon
-								light="./assets/icons/light/vscode.png"
-								dark="./assets/icons/dark/vscode.png"
-								default="./assets/icons/dark/vscode.png"
-								>VSCode</output-icon
-							>
-						</li>
-					</ul>
-					<p class="secondary-outputs">Also available for PrismJS, Shiki, and source definitions.</p>
-				</aside>
-
 				<article class="theme-article" aria-labelledby="article-title">
 					<color-stage aria-label="Jupiter palette"></color-stage>
 
@@ -267,6 +251,61 @@ pub fn accent(role: &amp;str, theme: &amp;Theme) -> Color {
 						</syntax-highlighter>
 					</section>
 				</article>
+
+				<aside class="sidebar" aria-labelledby="outputs-title">
+					<h2 id="outputs-title">Outputs</h2>
+					<ul class="output-list">
+						<li>
+							<output-icon
+								light="./assets/icons/light/iterm2.png"
+								dark="./assets/icons/dark/iterm2.png"
+								default="./assets/icons/dark/iterm2.png"
+								>iTerm2</output-icon
+							>
+						</li>
+						<li>
+							<output-icon
+								light="./assets/icons/light/ghostty.png"
+								dark="./assets/icons/dark/ghostty.png"
+								default="./assets/icons/dark/ghostty.png"
+								>Ghostty</output-icon
+							>
+						</li>
+						<li>
+							<output-icon
+								light="./assets/icons/light/codex.png"
+								dark="./assets/icons/dark/codex.png"
+								default="./assets/icons/dark/codex.png"
+								>Codex</output-icon
+							>
+						</li>
+						<li>
+							<output-icon
+								light="./assets/icons/light/vim.png"
+								dark="./assets/icons/dark/vim.png"
+								default="./assets/icons/dark/vim.png"
+								>Vim</output-icon
+							>
+						</li>
+						<li>
+							<output-icon
+								light="./assets/icons/light/xcode.png"
+								dark="./assets/icons/dark/xcode.png"
+								default="./assets/icons/dark/xcode.png"
+								>Xcode</output-icon
+							>
+						</li>
+						<li>
+							<output-icon
+								light="./assets/icons/light/vscode.png"
+								dark="./assets/icons/dark/vscode.png"
+								default="./assets/icons/dark/vscode.png"
+								>VSCode</output-icon
+							>
+						</li>
+					</ul>
+					<p class="secondary-outputs">Also available for PrismJS, Shiki, and source definitions.</p>
+				</aside>
 			</main>
 
 			<footer class="site-footer" aria-label="Footer"></footer>
