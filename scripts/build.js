@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const Metis = require("../metis");
+const Jupiter = require("../jupiter");
 
 const root = path.resolve(__dirname, "..");
 const checkOnly = process.argv.includes("--check");
@@ -11,7 +11,7 @@ const files = {
 	codexGanymedeDark: "codex/ganymede-dark.json",
 	codexGanymedeLight: "codex/ganymede-light.json",
 	codexLight: "codex/metis-light.json",
-	definitions: "definitions/metis.json",
+	definitions: "definitions/jupiter.json",
 	ghosttyGanymedeDark: "ghostty/ganymede-dark",
 	ghosttyGanymedeLight: "ghostty/ganymede-light",
 	itermGanymedeDark: "iterm/Ganymede Dark.itermcolors",
@@ -20,7 +20,7 @@ const files = {
 	shikiGanymedeDark: "shiki/ganymede-dark.json",
 	shikiGanymedeLight: "shiki/ganymede-light.json",
 	shikiLight: "shiki/metis-light.json",
-	prism: "prismjs/metis.css",
+	prism: "prismjs/jupiter.css",
 	vim: "colors/metis.vim",
 	vimGanymede: "colors/ganymede.vim",
 	vimAirline: "autoload/airline/themes/metis.vim",
@@ -441,6 +441,10 @@ function prismTheme(theme) {
 	return `${selector} {
   color: ${theme.uiGroups.foreground};
   background: ${theme.uiGroups.background};
+  --jupiter-background: ${theme.uiGroups.background};
+  --jupiter-foreground: ${theme.uiGroups.foreground};
+  --jupiter-selection: ${theme.uiGroups.selection};
+  --jupiter-border: ${theme.uiGroups.border};
   --metis-background: ${theme.uiGroups.background};
   --metis-foreground: ${theme.uiGroups.foreground};
   --metis-selection: ${theme.uiGroups.selection};
@@ -750,7 +754,7 @@ endif`;
 }
 
 function vscodePackage() {
-	const themes = [Metis.metis, Metis.ganymede].flatMap((variant) => [
+	const themes = [Jupiter.metis, Jupiter.ganymede].flatMap((variant) => [
 		{
 			label: `${variant.name} Dark`,
 			uiTheme: "vs-dark",
@@ -764,16 +768,16 @@ function vscodePackage() {
 	]);
 
 	return {
-		name: "metis-vscode-theme",
-		displayName: "Metis",
+		name: "jupiter-vscode-theme",
+		displayName: "Jupiter",
 		publisher: "charliewilco",
-		description: "Metis themes for VSCode.",
+		description: "Jupiter themes for VSCode.",
 		version: "3.0.0",
-		homepage: "https://charliewilco.github.io/metis/",
+		homepage: "https://charliewilco.github.io/jupiter/",
 		license: "Unlicense",
 		repository: {
 			type: "git",
-			url: "https://github.com/charliewilco/metis",
+			url: "https://github.com/charliewilco/jupiter",
 		},
 		engines: {
 			vscode: "^1.80.0",
@@ -787,16 +791,16 @@ function vscodePackage() {
 }
 
 function build() {
-	const dark = Metis.themes.dark;
-	const light = Metis.themes.light;
-	const ganymedeDark = Metis.ganymede.themes.dark;
-	const ganymedeLight = Metis.ganymede.themes.light;
+	const dark = Jupiter.themes.dark;
+	const light = Jupiter.themes.light;
+	const ganymedeDark = Jupiter.ganymede.themes.dark;
+	const ganymedeLight = Jupiter.ganymede.themes.light;
 
 	writeFile(files.codexDark, asJson(codexTheme(dark)));
 	writeFile(files.codexGanymedeDark, asJson(codexTheme(ganymedeDark)));
 	writeFile(files.codexGanymedeLight, asJson(codexTheme(ganymedeLight)));
 	writeFile(files.codexLight, asJson(codexTheme(light)));
-	writeFile(files.definitions, asJson(Metis.definitions));
+	writeFile(files.definitions, asJson(Jupiter.definitions));
 	writeFile(files.shikiDark, asJson(shikiTheme(dark)));
 	writeFile(files.shikiGanymedeDark, asJson(shikiTheme(ganymedeDark)));
 	writeFile(files.shikiGanymedeLight, asJson(shikiTheme(ganymedeLight)));
@@ -805,10 +809,10 @@ function build() {
 		files.prism,
 		[prismTheme(dark), prismTheme(light), prismTheme(ganymedeDark), prismTheme(ganymedeLight)].join("\n\n"),
 	);
-	writeFile(files.vim, vimTheme(Metis.metis));
-	writeFile(files.vimGanymede, vimTheme(Metis.ganymede));
-	writeFile(files.vimAirline, vimAirlineTheme(Metis.metis));
-	writeFile(files.vimAirlineGanymede, vimAirlineTheme(Metis.ganymede));
+	writeFile(files.vim, vimTheme(Jupiter.metis));
+	writeFile(files.vimGanymede, vimTheme(Jupiter.ganymede));
+	writeFile(files.vimAirline, vimAirlineTheme(Jupiter.metis));
+	writeFile(files.vimAirlineGanymede, vimAirlineTheme(Jupiter.ganymede));
 	writeFile(files.ghosttyDark, ghosttyTheme(dark));
 	writeFile(files.ghosttyGanymedeDark, ghosttyTheme(ganymedeDark));
 	writeFile(files.ghosttyGanymedeLight, ghosttyTheme(ganymedeLight));
@@ -829,7 +833,7 @@ function build() {
 	writeFile(files.vscodeLicense, fs.readFileSync(path.join(root, "LICENSE"), "utf8"));
 
 	if (!checkOnly) {
-		process.stdout.write(`Generated ${generated.length} Metis artifacts.\n`);
+		process.stdout.write(`Generated ${generated.length} Jupiter artifacts.\n`);
 	}
 }
 

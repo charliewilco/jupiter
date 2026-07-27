@@ -5,21 +5,21 @@ import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-go";
 import "prismjs/components/prism-swift";
 import "prismjs/components/prism-rust";
-import "../../prismjs/metis.css";
-import definitions from "../../definitions/metis.json";
+import "../../prismjs/jupiter.css";
+import definitions from "../../definitions/jupiter.json";
 import "./ColorStage.js";
 import "./PresetSelector.js";
 
 const toKebab = (value) => value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
 
 const getInitialVariant = () => {
-	const variant = localStorage.getItem("metis-preview-variant");
+	const variant = localStorage.getItem("jupiter-preview-variant");
 
 	return variant && definitions.variants[variant] ? variant : "metis";
 };
 
 const getInitialMode = () => {
-	const mode = localStorage.getItem("metis-preview-mode");
+	const mode = localStorage.getItem("jupiter-preview-mode");
 
 	return mode && definitions.themes[mode] ? mode : "dark";
 };
@@ -80,8 +80,8 @@ const setPreview = (variant, mode) => {
 	document.documentElement.dataset.variant = variant;
 	document.documentElement.dataset.mode = mode;
 	document.documentElement.dataset.theme = theme.slug;
-	localStorage.setItem("metis-preview-variant", variant);
-	localStorage.setItem("metis-preview-mode", mode);
+	localStorage.setItem("jupiter-preview-variant", variant);
+	localStorage.setItem("jupiter-preview-mode", mode);
 	setThemeVars(theme);
 	updateIcons();
 

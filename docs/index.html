@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Metis Theme Previewer</title>
-		<meta name="description" content="Preview Metis colors across code, terminal, and editor surfaces." />
+		<title>Jupiter Theme Previewer</title>
+		<meta name="description" content="Preview Jupiter colors across code, terminal, and editor surfaces." />
 		<link rel="stylesheet" href="./src/styles.css" />
 		<script type="module" src="./src/main.js"></script>
 	</head>
@@ -12,8 +12,8 @@
 		<div class="page-shell">
 			<header class="site-header">
 				<div class="header-copy">
-					<h1>Metis</h1>
-					<p>A color theme that made me think of Jupiter for some strange reason.</p>
+					<h1>Jupiter</h1>
+					<p>A theme system for the small moons: Metis and Ganymede.</p>
 				</div>
 				<div class="theme-controls" aria-label="Theme preview controls">
 					<preset-selector data-family-selector aria-label="Theme family">
@@ -167,18 +167,18 @@
 				</aside>
 
 				<article class="theme-article" aria-labelledby="article-title">
-					<color-stage aria-label="Metis palette"></color-stage>
+					<color-stage aria-label="Jupiter palette"></color-stage>
 
 					<section class="explainer" aria-labelledby="article-title">
 						<h2 id="article-title">A compact palette with enough separation for code, terminals, and renderers.</h2>
 						<p>
-							Metis keeps the palette small and maps each accent through shared role definitions. The same source file
-							produces light and dark presets, keeping the rendered code samples, editor themes, and terminal colors in
-							lockstep.
+							Jupiter keeps the palettes small and maps each accent through shared role definitions. The same source
+							file produces light and dark presets for each variant, keeping the rendered code samples, editor themes,
+							and terminal colors in lockstep.
 						</p>
 						<p>
 							The Ganymede variant preserves the previous archive definition as a matched light and dark pair, so the
-							newer Metis palette can be compared against the original scheme without leaving the preview.
+							refined Metis palette can be compared against the original scheme without leaving the preview.
 						</p>
 						<p>
 							Oh Metis is the closest, most inward moon of Jupiter. I think it's mostly gas and vapor. Wait can you have
@@ -221,7 +221,7 @@ func Resolve(role TokenRole, palette Palette) string {
 								<h3>Swift</h3>
 								<code>Theme.swift</code>
 							</div>
-							<pre class="language-swift"><code class="language-swift">struct MetisTheme {
+							<pre class="language-swift"><code class="language-swift">struct JupiterTheme {
 	let name: String
 	let syntax: [String: Color]
 

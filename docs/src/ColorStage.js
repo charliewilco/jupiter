@@ -1,6 +1,6 @@
 // @ts-check
 
-import definitions from "../../definitions/metis.json";
+import definitions from "../../definitions/jupiter.json";
 
 const variants = /** @type {Record<string, typeof definitions.variants.metis>} */ (definitions.variants);
 

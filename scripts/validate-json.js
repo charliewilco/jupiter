@@ -5,7 +5,7 @@ const files = [
 	"codex/ganymede-light.json",
 	"codex/metis-dark.json",
 	"codex/metis-light.json",
-	"definitions/metis.json",
+	"definitions/jupiter.json",
 	"shiki/ganymede-dark.json",
 	"shiki/ganymede-light.json",
 	"shiki/metis-dark.json",
